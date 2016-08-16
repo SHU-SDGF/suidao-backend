@@ -17,3 +17,6 @@ if(!ActStatus.any?)
   act_status = ActStatus.create([{name:"未开始", order: 0}, {name: "进行中", order: 1}, {name: "已结束", order: 2}])
 end
 
+if(!Authority.any?)
+  authorities = Authority.create([{name: "资产数据采集", order: 1}, {name: "展示访客", order: 2}, {name: "技术人员", order: 3}, {name: "访客", order: 4}, {name: "系统管理人员", order: 5},{name: "中控巡检管理", order: 6},{name: "中控巡检采集", order: 7},{name: "运营管理", order: 8}])
+end
