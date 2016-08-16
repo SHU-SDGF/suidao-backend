@@ -8,3 +8,5 @@
 log/development.log
 
 *.log
+
+.byebug_history
