@@ -2736,3 +2736,108 @@ Processing by AuthController#authenticate as HTML
 Completed 401 Unauthorized in 13ms (Views: 0.4ms | ActiveRecord: 2.3ms)
 
 
+  [1m[35m (0.4ms)[0m  [1m[34mSELECT DATABASE() as db[0m
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT GET_LOCK('5779066784707508460', 0);[0m
+  [1m[36mActiveRecord::SchemaMigration Load (9.5ms)[0m  [1m[34mSELECT `schema_migrations`.* FROM `schema_migrations`[0m
+Migrating to CreateActTypes (20160816022649)
+  [1m[35m (88.7ms)[0m  [1m[35mCREATE TABLE `act_types` (`id` int AUTO_INCREMENT PRIMARY KEY, `name` varchar(255), `order` int, `created_at` datetime NOT NULL, `updated_at` datetime NOT NULL) ENGINE=InnoDB[0m
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[35mSQL (0.5ms)[0m  [1m[32mINSERT INTO `schema_migrations` (`version`) VALUES ('20160816022649')[0m
+  [1m[35m (0.2ms)[0m  [1m[35mCOMMIT[0m
+Migrating to CreateActStatuses (20160816024608)
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT RELEASE_LOCK('5779066784707508460')[0m
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT DATABASE() as db[0m
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT GET_LOCK('5779066784707508460', 0);[0m
+  [1m[36mActiveRecord::SchemaMigration Load (0.2ms)[0m  [1m[34mSELECT `schema_migrations`.* FROM `schema_migrations`[0m
+Migrating to CreateActStatuses (20160816024608)
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT RELEASE_LOCK('5779066784707508460')[0m
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT DATABASE() as db[0m
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT GET_LOCK('5779066784707508460', 0);[0m
+  [1m[36mActiveRecord::SchemaMigration Load (0.2ms)[0m  [1m[34mSELECT `schema_migrations`.* FROM `schema_migrations`[0m
+Migrating to CreateActStatuses (20160816024608)
+  [1m[35m (28.2ms)[0m  [1m[35mCREATE TABLE `act_statuses` (`id` int AUTO_INCREMENT PRIMARY KEY, `name` varchar(255), `order` int, `created_at` datetime NOT NULL, `updated_at` datetime NOT NULL) ENGINE=InnoDB[0m
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[35mSQL (0.2ms)[0m  [1m[32mINSERT INTO `schema_migrations` (`version`) VALUES ('20160816024608')[0m
+  [1m[35m (0.3ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mActiveRecord::InternalMetadata Load (0.3ms)[0m  [1m[34mSELECT  `ar_internal_metadata`.* FROM `ar_internal_metadata` WHERE `ar_internal_metadata`.`key` = 'environment' LIMIT 1[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (0.1ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT RELEASE_LOCK('5779066784707508460')[0m
+  [1m[36mActiveRecord::SchemaMigration Load (0.2ms)[0m  [1m[34mSELECT `schema_migrations`.* FROM `schema_migrations`[0m
+  [1m[35m (0.2ms)[0m  [1m[35mSHOW CREATE TABLE `act_statuses`[0m
+  [1m[35m (0.3ms)[0m  [1m[35mSHOW TABLE STATUS LIKE 'act_statuses'[0m
+  [1m[35m (0.2ms)[0m  [1m[35mSHOW CREATE TABLE `act_types`[0m
+  [1m[35m (0.2ms)[0m  [1m[35mSHOW TABLE STATUS LIKE 'act_types'[0m
+  [1m[35m (0.1ms)[0m  [1m[35mSHOW CREATE TABLE `authorities`[0m
+  [1m[35m (0.3ms)[0m  [1m[35mSHOW TABLE STATUS LIKE 'authorities'[0m
+  [1m[35m (0.1ms)[0m  [1m[35mSHOW CREATE TABLE `users`[0m
+  [1m[35m (0.2ms)[0m  [1m[35mSHOW TABLE STATUS LIKE 'users'[0m
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT fk.referenced_table_name as 'to_table'
+      ,fk.referenced_column_name as 'primary_key'
+      ,fk.column_name as 'column'
+      ,fk.constraint_name as 'name'
+FROM information_schema.key_column_usage fk
+WHERE fk.referenced_column_name is not null
+  AND fk.table_schema = 'suidao_backend_development'
+  AND fk.table_name = 'act_statuses'
+[0m
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT fk.referenced_table_name as 'to_table'
+      ,fk.referenced_column_name as 'primary_key'
+      ,fk.column_name as 'column'
+      ,fk.constraint_name as 'name'
+FROM information_schema.key_column_usage fk
+WHERE fk.referenced_column_name is not null
+  AND fk.table_schema = 'suidao_backend_development'
+  AND fk.table_name = 'act_types'
+[0m
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT fk.referenced_table_name as 'to_table'
+      ,fk.referenced_column_name as 'primary_key'
+      ,fk.column_name as 'column'
+      ,fk.constraint_name as 'name'
+FROM information_schema.key_column_usage fk
+WHERE fk.referenced_column_name is not null
+  AND fk.table_schema = 'suidao_backend_development'
+  AND fk.table_name = 'authorities'
+[0m
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT fk.referenced_table_name as 'to_table'
+      ,fk.referenced_column_name as 'primary_key'
+      ,fk.column_name as 'column'
+      ,fk.constraint_name as 'name'
+FROM information_schema.key_column_usage fk
+WHERE fk.referenced_column_name is not null
+  AND fk.table_schema = 'suidao_backend_development'
+  AND fk.table_name = 'users'
+[0m
+  [1m[36mActStatus Load (0.4ms)[0m  [1m[34mSELECT `act_statuses`.* FROM `act_statuses`[0m
+  [1m[36mActStatus Load (0.3ms)[0m  [1m[34mSELECT `act_statuses`.* FROM `act_statuses`[0m
+  [1m[35m (8.3ms)[0m  [1m[34mSELECT COUNT(*) FROM `act_statuses`[0m
+  [1m[36mActiveRecord::SchemaMigration Load (0.2ms)[0m  [1m[34mSELECT `schema_migrations`.* FROM `schema_migrations`[0m
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT COUNT(*) FROM `users`[0m
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT COUNT(*) FROM `act_types`[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[35mSQL (0.3ms)[0m  [1m[32mINSERT INTO `act_types` (`name`, `order`, `created_at`, `updated_at`) VALUES ('加载', 1, '2016-08-16 03:16:57', '2016-08-16 03:16:57')[0m
+  [1m[35m (0.3ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[35mSQL (0.2ms)[0m  [1m[32mINSERT INTO `act_types` (`name`, `order`, `created_at`, `updated_at`) VALUES ('减载', 2, '2016-08-16 03:16:57', '2016-08-16 03:16:57')[0m
+  [1m[35m (0.3ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[35mSQL (1.9ms)[0m  [1m[32mINSERT INTO `act_types` (`name`, `order`, `created_at`, `updated_at`) VALUES ('振动', 3, '2016-08-16 03:16:57', '2016-08-16 03:16:57')[0m
+  [1m[35m (0.3ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[35mSQL (0.2ms)[0m  [1m[32mINSERT INTO `act_types` (`name`, `order`, `created_at`, `updated_at`) VALUES ('静载', 4, '2016-08-16 03:16:57', '2016-08-16 03:16:57')[0m
+  [1m[35m (0.3ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[35mSQL (0.2ms)[0m  [1m[32mINSERT INTO `act_types` (`name`, `order`, `created_at`, `updated_at`) VALUES ('其他', 5, '2016-08-16 03:16:57', '2016-08-16 03:16:57')[0m
+  [1m[35m (0.3ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT COUNT(*) FROM `act_statuses`[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[35mSQL (1.3ms)[0m  [1m[32mINSERT INTO `act_statuses` (`name`, `order`, `created_at`, `updated_at`) VALUES ('未开始', 0, '2016-08-16 03:16:57', '2016-08-16 03:16:57')[0m
+  [1m[35m (0.4ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[35mSQL (0.2ms)[0m  [1m[32mINSERT INTO `act_statuses` (`name`, `order`, `created_at`, `updated_at`) VALUES ('进行中', 1, '2016-08-16 03:16:57', '2016-08-16 03:16:57')[0m
+  [1m[35m (0.2ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[35mSQL (0.1ms)[0m  [1m[32mINSERT INTO `act_statuses` (`name`, `order`, `created_at`, `updated_at`) VALUES ('已结束', 2, '2016-08-16 03:16:57', '2016-08-16 03:16:57')[0m
+  [1m[35m (0.3ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mActType Load (0.3ms)[0m  [1m[34mSELECT `act_types`.* FROM `act_types`[0m
+  [1m[36mActStatus Load (0.3ms)[0m  [1m[34mSELECT `act_statuses`.* FROM `act_statuses`[0m
