@@ -1,0 +1,35 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  ACT_NO: MyString
+  ACT_NAME: MyString
+  START_DATE: 2016-08-16 15:30:45
+  Surround_NO: MyString
+  TAD_ID: MyText
+  END_DATE: 2016-08-16 15:30:45
+  DESCRIPTION: MyText
+  ACT_LEVEL: MyString
+  LONGTITUDE: 9.99
+  LATITUDE: 9.99
+  SynChronize: 1
+  DEL_FLG: 1
+  UDPATE_CNT: 1
+  CREATE_USER: MyString
+  UPDATE_USER: MyString
+
+two:
+  ACT_NO: MyString
+  ACT_NAME: MyString
+  START_DATE: 2016-08-16 15:30:45
+  Surround_NO: MyString
+  TAD_ID: MyText
+  END_DATE: 2016-08-16 15:30:45
+  DESCRIPTION: MyText
+  ACT_LEVEL: MyString
+  LONGTITUDE: 9.99
+  LATITUDE: 9.99
+  SynChronize: 1
+  DEL_FLG: 1
+  UDPATE_CNT: 1
+  CREATE_USER: MyString
+  UPDATE_USER: MyString

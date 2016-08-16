@@ -1,0 +1,2 @@
+class EnvironmentActivity < ApplicationRecord
+end
