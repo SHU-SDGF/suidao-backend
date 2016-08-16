@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160816034130) do
+ActiveRecord::Schema.define(version: 20160816074814) do
 
   create_table "act_statuses", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.string   "name"
@@ -28,8 +28,29 @@ ActiveRecord::Schema.define(version: 20160816034130) do
 
   create_table "authorities", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.string   "name"
+    t.integer  "order"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+  end
+
+  create_table "environment_actitivity_summaries", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+    t.string   "ACT_NO"
+    t.string   "ACT_NAME"
+    t.datetime "START_DATE"
+    t.string   "Surround_NO"
+    t.text     "TAD_ID",      limit: 65535
+    t.datetime "END_DATE"
+    t.text     "DESCRIPTION", limit: 65535
+    t.string   "ACT_LEVEL"
+    t.decimal  "LONGTITUDE",                precision: 10
+    t.decimal  "LATITUDE",                  precision: 10
+    t.integer  "SynChronize"
+    t.integer  "DEL_FLG"
+    t.integer  "UDPATE_CNT"
+    t.string   "CREATE_USER"
+    t.string   "UPDATE_USER"
+    t.datetime "created_at",                               null: false
+    t.datetime "updated_at",                               null: false
   end
 
   create_table "environment_activities", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
@@ -55,6 +76,7 @@ ActiveRecord::Schema.define(version: 20160816034130) do
     t.string   "name"
     t.string   "email"
     t.string   "password_digest"
+    t.integer  "Authority"
     t.datetime "created_at",      null: false
     t.datetime "updated_at",      null: false
   end
