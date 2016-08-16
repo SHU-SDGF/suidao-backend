@@ -1,4 +1,9 @@
 
 *.pid
 
+*.log
+
+*.log
+
+log/development.log
 .byebug_history

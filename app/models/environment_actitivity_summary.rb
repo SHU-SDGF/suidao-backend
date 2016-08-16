@@ -1,0 +1,2 @@
+class EnvironmentActitivitySummary < ApplicationRecord
+end
