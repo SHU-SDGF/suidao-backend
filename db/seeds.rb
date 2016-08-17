@@ -36,3 +36,7 @@ end
 if(!DirectionInformation.any?)
   directioninformations = DirectionInformation.create([{name: "东侧", order: "1"},{name: "西侧", order: "2"},{name: "不区分", order: "0"}])
 end
+
+if(!Monomer.any?)
+  monomers = Monomer.create([{name: "东线隧道", order: "1"},{name: "西线隧道", order: "2"},{name: "浦东工作井", order: "3"},{name: "浦西工作井", order: "4"}, {name: "1#联络通道", order: "5"}, {name: "2#联络通道", order: "6"},{name: "隧道管理大楼", order: "7"},{name: "矩形段安全通道", order: "8"},{name: "矩形段电缆通道", order: "9"},{name: "保护区", order: "A"},{name: "浦东龙门架", order: "B"},{name: "浦西龙门架", order: "C"}])
+end

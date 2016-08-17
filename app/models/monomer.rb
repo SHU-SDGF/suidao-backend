@@ -1,0 +1,2 @@
+class Monomer < ApplicationRecord
+end
