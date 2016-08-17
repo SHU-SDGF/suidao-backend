@@ -1,0 +1,2 @@
+class DefectLocation < ApplicationRecord
+end

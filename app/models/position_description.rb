@@ -1,0 +1,2 @@
+class PositionDescription < ApplicationRecord
+end

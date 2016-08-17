@@ -12,6 +12,8 @@ gem 'bcrypt', '~> 3.1.7'
 
 gem 'jwt'
 
+gem 'uuidtools'
+
 gem 'rack-cors', :require => 'rack/cors'
 
 gem 'mina'

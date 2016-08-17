@@ -1,6 +1,6 @@
-class CreateActTypes < ActiveRecord::Migration[5.0]
+class CreateDetailTypes < ActiveRecord::Migration[5.0]
   def change
-    create_table :act_types do |t|
+    create_table :detail_types do |t|
       t.string :name
       t.string :order
 

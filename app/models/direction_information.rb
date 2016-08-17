@@ -1,0 +1,2 @@
+class DirectionInformation < ApplicationRecord
+end

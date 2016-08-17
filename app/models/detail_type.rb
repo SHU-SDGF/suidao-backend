@@ -1,0 +1,2 @@
+class DetailType < ApplicationRecord
+end

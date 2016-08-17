@@ -1,0 +1,17 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  MILEAGE: MyString
+  TwoD_X: 9.99
+  TwoD_Y: 9.99
+  ThreeD_X: 9.99
+  ThreeD_Y: 9.99
+  ThreeD_Z: 9.99
+
+two:
+  MILEAGE: MyString
+  TwoD_X: 9.99
+  TwoD_Y: 9.99
+  ThreeD_X: 9.99
+  ThreeD_Y: 9.99
+  ThreeD_Z: 9.99

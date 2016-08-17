@@ -12,6 +12,7 @@ class CreateEnvironmentActitivitySummaries < ActiveRecord::Migration[5.0]
       t.decimal :LONGTITUDE
       t.decimal :LATITUDE
       t.integer :SynChronize
+      t.integer :user_id
       t.integer :DEL_FLG
       t.integer :UDPATE_CNT
       t.string :CREATE_USER

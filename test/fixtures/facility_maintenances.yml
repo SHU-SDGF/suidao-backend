@@ -1,0 +1,25 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  DISEASE_NO: MyString
+  REPAIR_CONTENT: MyString
+  REPAIR_AMOUNT: 1
+  QUOTA_NO: MyString
+  REPAIR_FEE: 9.99
+  FINISH_DATE: 2016-08-17 20:08:00
+  DEL_FLG: 1
+  UPDATE_CNT: 1
+  CREATE_USER: MyString
+  UPDATE_USER: MyString
+
+two:
+  DISEASE_NO: MyString
+  REPAIR_CONTENT: MyString
+  REPAIR_AMOUNT: 1
+  QUOTA_NO: MyString
+  REPAIR_FEE: 9.99
+  FINISH_DATE: 2016-08-17 20:08:00
+  DEL_FLG: 1
+  UPDATE_CNT: 1
+  CREATE_USER: MyString
+  UPDATE_USER: MyString
