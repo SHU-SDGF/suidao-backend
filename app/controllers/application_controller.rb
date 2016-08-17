@@ -1,14 +1,6 @@
 class ApplicationController < ActionController::API
   before_action :set_current_user, :authenticated_request
 
-  # rescue_from NotAuthenticatedError do
-  #   render json: { error: 'Not Authorized'}, status: :unauthorized
-  # end
-
-  # rescue_from AuthenticationTimeoutError do
-  #   render json: { error: 'Auth token is expired' }, status: 419
-  # end
-
   private
 
   def set_current_user
@@ -18,11 +10,10 @@ class ApplicationController < ActionController::API
   end
 
   def authenticated_request
-    byebug
-    if auth_token_expired?
-      fail AuthenticationTimeoutError
-    elsif !@current_user
-      fail  NotAuthenticatedError
+    if !@current_user
+      render json: { error: 'Not Authorized'}, status: 401 
+    elsif auth_token_expired?
+      render json: { error: 'Auth token is expired' }, status: 419
     end
   end
 
