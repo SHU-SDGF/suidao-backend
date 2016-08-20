@@ -4,5 +4,6 @@ Rails.application.routes.draw do
     post 'user/validate' => 'auth#validate', module: 'api'
     get 'inspections' => 'inspection#getInspectionList', module: 'api'
     resources :users, only: [:index]
+    resources :environment_activities
   end
 end

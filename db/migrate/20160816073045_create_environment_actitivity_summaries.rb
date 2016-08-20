@@ -1,6 +1,6 @@
 class CreateEnvironmentActitivitySummaries < ActiveRecord::Migration[5.0]
   def change
-    create_table :environment_actitivity_summaries do |t|
+    create_table :environment_activity_summaries do |t|
       t.string :ACT_NO
       t.string :ACT_NAME
       t.datetime :START_DATE
@@ -12,7 +12,6 @@ class CreateEnvironmentActitivitySummaries < ActiveRecord::Migration[5.0]
       t.decimal :LONGTITUDE
       t.decimal :LATITUDE
       t.integer :SynChronize
-      t.integer :user_id
       t.integer :DEL_FLG
       t.integer :UDPATE_CNT
       t.string :CREATE_USER

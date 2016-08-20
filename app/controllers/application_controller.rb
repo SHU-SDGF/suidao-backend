@@ -1,5 +1,5 @@
 class ApplicationController < ActionController::API
-  before_action :set_current_user, :authenticated_request
+  # before_action :set_current_user, :authenticated_request
 
   private
 

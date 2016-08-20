@@ -10,7 +10,6 @@ class CreateEnvironmentActivities < ActiveRecord::Migration[5.0]
       t.string :Audio
       t.string :VIDEO
       t.string :Recorder
-      t.integer :user_id
       t.boolean :SynChronize
       t.boolean :DEL_FLG
       t.string :UPDATE_CNT

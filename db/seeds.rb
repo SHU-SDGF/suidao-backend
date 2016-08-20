@@ -41,3 +41,12 @@ end
 if(!Monomer.any?)
   monomers = Monomer.create([{name: "东线隧道", order: "1"},{name: "西线隧道", order: "2"},{name: "浦东工作井", order: "3"},{name: "浦西工作井", order: "4"}, {name: "1#联络通道", order: "5"}, {name: "2#联络通道", order: "6"},{name: "隧道管理大楼", order: "7"},{name: "矩形段安全通道", order: "8"},{name: "矩形段电缆通道", order: "9"},{name: "保护区", order: "A"},{name: "浦东龙门架", order: "B"},{name: "浦西龙门架", order: "C"}])
 end
+
+if(!EnvironmentActivitySummary.any?)
+  eas = EnvironmentActivitySummary.create(ACT_NO: "2015040101", ACT_NAME: "东线隧道日常巡检", START_DATE: "4/1/15 0:00", Surround_NO: "HDLL100SZ000K00000_000", ACT_LEVEL: 0, LONGTITUDE: '', LATITUDE: '', CREATE_USER: '', UPDATE_USER: 'TUNNELDL')
+end
+
+if(!EnvironmentActivity.any?) 
+  EnvironmentActivity.create(ACT_NO: '2015040101', INSP_DATE: '5/26/15 0:00', ACT_TYPE: '2', ACT_STATUS: '1', Description: '建发大厦正在建造', Recorder: '吴心刚', CREATE_USER: 'TUNNELDL', UPDATE_USER: 'TUNNELDL')
+  EnvironmentActivity.create(ACT_NO: '2015040101', INSP_DATE: '6/26/15 0:00', ACT_TYPE: '1', ACT_STATUS: '0', Description: '建发大厦开始建造', Recorder: '吴心刚', CREATE_USER: 'TUNNELDL', UPDATE_USER: 'TUNNELDL')
+end

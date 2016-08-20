@@ -67,7 +67,26 @@ ActiveRecord::Schema.define(version: 20160817150208) do
     t.datetime "updated_at", null: false
   end
 
-  create_table "environment_actitivity_summaries", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+  create_table "environment_activities", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+    t.string   "ACT_NO"
+    t.datetime "INSP_DATE"
+    t.string   "ACT_TYPE"
+    t.string   "ACT_STATUS"
+    t.text     "Description", limit: 65535
+    t.string   "Photo"
+    t.string   "Audio"
+    t.string   "VIDEO"
+    t.string   "Recorder"
+    t.boolean  "SynChronize"
+    t.boolean  "DEL_FLG"
+    t.string   "UPDATE_CNT"
+    t.string   "CREATE_USER"
+    t.string   "UPDATE_USER"
+    t.datetime "created_at",                null: false
+    t.datetime "updated_at",                null: false
+  end
+
+  create_table "environment_activity_summaries", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.string   "ACT_NO"
     t.string   "ACT_NAME"
     t.datetime "START_DATE"
@@ -79,33 +98,12 @@ ActiveRecord::Schema.define(version: 20160817150208) do
     t.decimal  "LONGTITUDE",                precision: 10
     t.decimal  "LATITUDE",                  precision: 10
     t.integer  "SynChronize"
-    t.integer  "user_id"
     t.integer  "DEL_FLG"
     t.integer  "UDPATE_CNT"
     t.string   "CREATE_USER"
     t.string   "UPDATE_USER"
     t.datetime "created_at",                               null: false
     t.datetime "updated_at",                               null: false
-  end
-
-  create_table "environment_activities", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
-    t.string   "ACT_NO"
-    t.datetime "INSP_DATE"
-    t.string   "ACT_TYPE"
-    t.string   "ACT_STATUS"
-    t.text     "Description", limit: 65535
-    t.string   "Photo"
-    t.string   "Audio"
-    t.string   "VIDEO"
-    t.string   "Recorder"
-    t.integer  "user_id"
-    t.boolean  "SynChronize"
-    t.boolean  "DEL_FLG"
-    t.string   "UPDATE_CNT"
-    t.string   "CREATE_USER"
-    t.string   "UPDATE_USER"
-    t.datetime "created_at",                null: false
-    t.datetime "updated_at",                null: false
   end
 
   create_table "facilities", id: false, force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
