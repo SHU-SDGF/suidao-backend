@@ -7,6 +7,7 @@
 #   Character.create(name: 'Luke', movie: movies.first)
 if(!User.any?)
   user = User.create({ name: 'admin', email: 'admin@gmail.com', password: 'admin', password_confirmation: 'admin'})
+  user = User.create({name: 'admin1', email: 'admin1@gmail.com', password: 'admin1', password_confirmation: 'admin1'})
 end
 
 if(!ActType.any?)  
