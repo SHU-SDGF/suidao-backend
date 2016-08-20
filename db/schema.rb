@@ -48,8 +48,9 @@ ActiveRecord::Schema.define(version: 20160817150208) do
   create_table "detail_types", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.string   "name"
     t.string   "order"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.integer  "disease_type_id"
+    t.datetime "created_at",      null: false
+    t.datetime "updated_at",      null: false
   end
 
   create_table "direction_informations", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
