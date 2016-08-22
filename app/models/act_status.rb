@@ -1,2 +1,0 @@
-class ActStatus < ApplicationRecord
-end

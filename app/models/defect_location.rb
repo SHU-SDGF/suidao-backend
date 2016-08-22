@@ -1,2 +1,0 @@
-class DefectLocation < ApplicationRecord
-end

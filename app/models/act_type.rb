@@ -1,2 +1,0 @@
-class ActType < ApplicationRecord
-end
