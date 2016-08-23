@@ -1,9 +1,39 @@
-
+.DS_Store
 *.pid
 
 *.log
 
-*.log
 
 log/development.log
 .byebug_history
+*.class
+
+# Mobile Tools for Java (J2ME)
+.mtj.tmp/
+
+# Package Files #
+*.jar
+*.war
+*.ear
+
+.idea
+
+# virtual machine crash logs, see http://www.java.com/en/download/help/error_hotspot.xml
+hs_err_pid*
+/build/
+/bin/
+.idea/
+.classpath
+.gradle/
+.project
+.settings/
+src/main/resources/static/9f52f945cfa42344d51474491b3a1eb8.png
+*.css
+src/main/resources/static/app.js
+*.map
+src/main/resources/static/fontAwesome.js
+*.map
+*.js
+src/main/resources/static/vendor.js.map
+*.css
+
