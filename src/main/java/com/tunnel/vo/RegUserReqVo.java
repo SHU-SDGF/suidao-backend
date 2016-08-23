@@ -17,7 +17,7 @@ import lombok.ToString;
 @JsonInclude(JsonInclude.Include.NON_NULL)
 public class RegUserReqVo {
 
-	private int authority;
+	private Authority authority;
 
 	@NotBlank(message = "{RegUserReqVo.email.NotBlank}")
     @Email
@@ -28,5 +28,17 @@ public class RegUserReqVo {
 
 	@NotBlank(message = "{RegUserReqVo.passwordDigest.NotBlank}")
 	private String passwordDigest;
+	
+	@Setter
+	@Getter
+	public static class Authority {
+		
+		private int id;
+
+		private String name;
+
+		private int order;
+		
+	}
 	
 }

@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.RestController;
 import com.tunnel.exception.AppAuthException;
 import com.tunnel.exception.AppException;
 import com.tunnel.model.User;
+import com.tunnel.repository.AuthorityRepo;
 import com.tunnel.repository.UserRepo;
 import com.tunnel.service.UserService;
 import com.tunnel.util.AppConstants;
@@ -34,17 +35,17 @@ public class UserController extends BaseController {
 
 	@Autowired
 	private UserRepo userRepo;
-    
+
 	@RequestMapping(value = "/register", method = RequestMethod.POST)
 	@ResponseBody
-	public ResponseEntity<RegUserReqVo> register(@Validated @RequestBody RegUserReqVo user) {
+	public ResponseEntity<RegUserReqVo> register(@Validated @RequestBody RegUserReqVo reqUserVo) {
 
 		log.info("register ...");
 		try {
-			user.setPasswordDigest(Base64.encodeBase64String(user.getPasswordDigest().getBytes()));
-			User u = mapper.map(user, User.class);
-			RegUserReqVo v = mapper.map(userRepo.save(u), RegUserReqVo.class); 
-			return new ResponseEntity<>(v, HttpStatus.OK);
+			reqUserVo.setPasswordDigest(Base64.encodeBase64String(reqUserVo.getPasswordDigest().getBytes()));
+			User u = mapper.map(reqUserVo, User.class);
+			RegUserReqVo rspUserVo = mapper.map(userRepo.save(u), RegUserReqVo.class);
+			return new ResponseEntity<>(rspUserVo, HttpStatus.OK);
 		} catch (Exception e) {
 			log.error("err.register.failed", e);
 			throw new AppException(msg("err.register.failed"), e);

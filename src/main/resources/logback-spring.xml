@@ -9,7 +9,7 @@
     </appender>
 
     <appender name="FILE" class="ch.qos.logback.core.rolling.RollingFileAppender">
-        <file>/usr/local/c360/logFiles/cip.log</file>
+        <file>/usr/local/tomcat/logs/tunnel-service.log</file>
 
         <rollingPolicy class="ch.qos.logback.core.rolling.FixedWindowRollingPolicy">
             <fileNamePattern>cip.%i.log.zip</fileNamePattern>
