@@ -16,6 +16,9 @@ import org.springframework.data.jpa.repository.config.EnableJpaAuditing;
 import org.springframework.scheduling.concurrent.ThreadPoolTaskExecutor;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
 import org.springframework.web.client.RestTemplate;
+import org.springframework.web.servlet.config.annotation.CorsRegistry;
+import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
+import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter;
 
 import java.util.Date;
 
@@ -57,6 +60,20 @@ public class Application extends SpringBootServletInitializer {
     @Bean
     public RestTemplate restTemplate() {
         return new RestTemplate();
+    }
+    
+    @Bean
+    public WebMvcConfigurer corsConfigurer() {
+        return new WebMvcConfigurerAdapter() {
+            @Override
+            public void addCorsMappings(CorsRegistry registry) {
+            	registry.addMapping("/**").allowedOrigins("*")
+				.allowedHeaders("Authorization", "DNT", "User-Agent", "Keep-Alive", "Content-Type", "accept", "origin",
+						"X-Requested-With")
+				.allowedMethods("GET", "HEAD", "POST", "PUT", "PATCH", "DELETE", "OPTIONS", "TRACE")
+				.allowCredentials(true).maxAge(3628800);
+            }
+        };
     }
 
 
