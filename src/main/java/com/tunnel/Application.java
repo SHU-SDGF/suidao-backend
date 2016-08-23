@@ -65,11 +65,11 @@ public class Application extends SpringBootServletInitializer {
         return application.sources(Application.class);
     }
     
-//    @Bean
-//    public Module customModule() {
-//        SimpleModule module = new SimpleModule();
-//        module.addSerializer(Date.class, new DateConverter.DateSerialize());
-//        module.addDeserializer(Date.class, new DateConverter.DateDeserialize());
-//        return module;
-//    }
+    @Bean
+    public Module customModule() {
+        SimpleModule module = new SimpleModule();
+        module.addSerializer(Date.class, new DateConverter.DateSerialize());
+        module.addDeserializer(Date.class, new DateConverter.DateDeserialize());
+        return module;
+    }
 }
