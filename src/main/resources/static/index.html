@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<title>login page</title>
+<script src="http://libs.baidu.com/jquery/2.0.0/jquery.min.js"></script>
+<script type="text/javascript">
+	function login() {
+		var username = $("input#username").val();
+		var password = $("input#password").val();
+
+		function make_base_auth(user, password) {
+			var tok = user + ':' + password;
+			var hash = btoa(tok);
+			return "Basic " + hash;
+		}
+		$.ajax({
+			type : "POST",
+			url : "login",
+			dataType : 'json',
+			async : false,
+			data : '{}',
+			beforeSend : function(xhr) {
+				xhr.setRequestHeader('Authorization', make_base_auth(username,
+						password));
+			},
+			success : function() {
+				alert("登录成功，现在你可以查看API了")
+			},
+			error: function() {
+				alert("登录失败")
+			}
+		});
+	}
+</script>
+</head>
+<body>
+	<div>
+		<input type="text" name="username" id="username" class="text" />
+		 <input type="password" name="password" id="password" class="text" /> 
+		 <input type="submit" name="sub" onclick="login();" />
+	</div>
+	<div id="API_link">
+		<a href="swagger-ui.html"> Check API</a>
+	</div>
+</body>
+</html>
