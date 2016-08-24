@@ -2,6 +2,9 @@ package com.tunnel.model;
 
 import javax.persistence.*;
 
+import org.springframework.data.annotation.CreatedBy;
+import org.springframework.data.annotation.LastModifiedBy;
+
 import lombok.Getter;
 import lombok.Setter;
 
@@ -33,9 +36,6 @@ public class EnvironmentActitivitySummary extends AbstractEntity {
 	@Column(name="ACT_NO")
 	private String actNo;
 
-	@Column(name="CREATE_USER")
-	private String createUser;
-
 	@Column(name="DEL_FLG")
 	private boolean delFlg;
 
@@ -64,11 +64,17 @@ public class EnvironmentActitivitySummary extends AbstractEntity {
 	@Column(name="TAD_ID", columnDefinition="TEXT")
 	private String tadId;
 
+	@Version
 	@Column(name="UDPATE_CNT")
 	private int udpateCnt;
 
+	@LastModifiedBy
 	@Column(name="UPDATE_USER")
 	private String updateUser;
+	
+	@CreatedBy
+	@Column(name="CREATE_USER")
+	private String createUser;
 
 	@Column(name="user_id")
 	private int userId;

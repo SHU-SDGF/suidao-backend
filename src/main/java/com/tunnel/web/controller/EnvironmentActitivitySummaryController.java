@@ -2,6 +2,9 @@ package com.tunnel.web.controller;
 
 import com.tunnel.model.EnvironmentActitivitySummary;
 import com.tunnel.repository.EnvironmentActitivitySummaryRepo;
+import com.tunnel.service.EnvironmentActitivitySummaryService;
+import com.tunnel.vo.CreateEnvironmentActitivitySummaryReqVo;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -19,24 +22,29 @@ import lombok.extern.slf4j.Slf4j;
 
 @RestController
 @Slf4j
-@RequestMapping("/environment-activities-summary")
+@RequestMapping()
 public class EnvironmentActitivitySummaryController extends BaseController {
 
 	@Autowired
 	private EnvironmentActitivitySummaryRepo environmentActitivitySummaryRepo;
 
-	@RequestMapping(value = "/list/", method = RequestMethod.GET)
+	@Autowired
+	private EnvironmentActitivitySummaryService environmentActitivitySummaryService;
+
+	@RequestMapping(value = "/environment-activities-summary/list/", method = RequestMethod.GET)
 	@ResponseBody
 	public Page<EnvironmentActitivitySummary> get(
 			@PageableDefault(value = 10, sort = { "id" }, direction = Direction.DESC) Pageable pageable) {
 		return environmentActitivitySummaryRepo.findAll(pageable);
 	}
 
-	@RequestMapping(value = "/create/", method = RequestMethod.POST)
+	@RequestMapping(value = "/createEnvironmentActivity/", method = RequestMethod.POST)
 	@ResponseBody
-	public ResponseEntity<EnvironmentActitivitySummary> create(
-			@RequestBody EnvironmentActitivitySummary environmentActivitySummary) {
-		return new ResponseEntity<>(environmentActitivitySummaryRepo.save(environmentActivitySummary), HttpStatus.OK);
+	public ResponseEntity<CreateEnvironmentActitivitySummaryReqVo> create(
+			@RequestBody CreateEnvironmentActitivitySummaryReqVo vo) {
+		log.info("create a new environment activities summary");
+		return new ResponseEntity<>(environmentActitivitySummaryService.createEnvironmentActitivitySummary(vo),
+				HttpStatus.OK);
 	}
 
 }

@@ -2,6 +2,9 @@ package com.tunnel.model;
 
 import javax.persistence.*;
 
+import org.springframework.data.annotation.CreatedBy;
+import org.springframework.data.annotation.LastModifiedBy;
+
 import lombok.Getter;
 import lombok.Setter;
 
@@ -21,7 +24,8 @@ public class EnvironmentActivity extends AbstractEntity {
 	private static final long serialVersionUID = 1L;
 
 	@Id
-	private int id;
+	@Column(name="NO")
+	private int no;
 
 	@Column(name="ACT_NO")
 	private String actNo;
@@ -33,9 +37,6 @@ public class EnvironmentActivity extends AbstractEntity {
 	private String actType;
 
 	private String audio;
-
-	@Column(name="CREATE_USER")
-	private String createUser;
 
 	@Column(name="DEL_FLG")
 	private boolean delFlg;
@@ -55,9 +56,15 @@ public class EnvironmentActivity extends AbstractEntity {
 	@Column(name="SYNCHRONIZE")
 	private boolean synChronize;
 
+	@CreatedBy
+	@Column(name="CREATE_USER")
+	private String createUser;
+	
+	@Version
 	@Column(name="UPDATE_CNT")
-	private String updateCnt;
+	private int updateCnt;
 
+	@LastModifiedBy
 	@Column(name="UPDATE_USER")
 	private String updateUser;
 

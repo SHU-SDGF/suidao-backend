@@ -10,11 +10,11 @@ import com.tunnel.util.AppConstants;
 
 import java.io.IOException;
 import java.text.DateFormat;
-import java.text.ParseException;
+//import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
-import static org.apache.commons.lang3.StringUtils.isBlank;
+//import static org.apache.commons.lang3.StringUtils.isBlank;
 
 /**
  * Converts the local date time to standard date time format
@@ -38,7 +38,8 @@ public class DateConverter {
             if (value == null) {
                 jgen.writeNull();
             } else {
-                jgen.writeString(format.format(value));
+//                jgen.writeString(format.format(value));
+                jgen.writeNumber(value.getTime());
             }
         }
     }
@@ -51,16 +52,18 @@ public class DateConverter {
         @Override
         public Date deserialize(JsonParser jp, DeserializationContext ctxt)
                 throws IOException {
-            String dateAsString = jp.getText();
-            if (isBlank(dateAsString)) {
-                return null;
-            } else {
-                try {
-					return format.parse(dateAsString);
-				} catch (ParseException e) {
-					throw new IOException(e);
-				}
-            }
+        	Long dateAsLong = jp.getValueAsLong();
+            return new Date(dateAsLong);
+//            String dateAsString = jp.getText();
+//            if (isBlank(dateAsString)) {
+//                return null;
+//            } else {
+//                try {
+//					return format.parse(dateAsString);
+//				} catch (ParseException e) {
+//					throw new IOException(e);
+//				}
+//            }
         }
     }
 }
