@@ -33,6 +33,8 @@ public class RegUserRespVo implements Serializable {
     private String guid;
 
     private String mailId;
+    
+    private String token;
 
     private UserTypeEnum userType;
 

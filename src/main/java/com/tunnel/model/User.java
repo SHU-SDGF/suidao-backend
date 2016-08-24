@@ -31,6 +31,8 @@ public class User extends AbstractEntity {
 	private String email;
 
 	private String name;
+	
+	private String token;
 
 	@Column(name = "password_digest")
 	private String passwordDigest;

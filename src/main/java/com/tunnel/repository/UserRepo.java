@@ -10,6 +10,8 @@ public interface UserRepo extends CrudRepository<User, Integer>{
 	
 	Optional<User> findByNameAndPasswordDigest(String name, String passwordDigest);
 	
+	Optional<User> findByNameAndToken(String name, String token);
+	
 	User findOneByNameAndPasswordDigest(String name, String passwordDigest);
 
 }

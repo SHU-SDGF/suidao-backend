@@ -1,6 +1,7 @@
 package com.tunnel.service.imp;
 
 import java.util.Locale;
+import java.util.UUID;
 
 import org.apache.commons.codec.binary.Base64;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -35,8 +36,20 @@ public class UserServiceImp implements UserService{
 	public User authenticate(String name, String password) {
 
 		log.info("UserServiceImp.authenticate ...");
-		return userRepo.findByNameAndPasswordDigest(name, Base64.encodeBase64String(password.getBytes()))
+		User u = userRepo.findByNameAndPasswordDigest(name, Base64.encodeBase64String(password.getBytes()))
 				.orElseThrow(()->new AppAuthException(msg("err.login.failed")));
+		u.setToken(UUID.randomUUID().toString());
+		userRepo.save(u);
+		return u;
+	}
+	
+	@Override
+	public User verifyToken(String name, String token) {
+
+		log.info("UserServiceImp.authenticate ...");
+		User u = userRepo.findByNameAndToken(name, token)
+				.orElseThrow(()->new AppAuthException(msg("err.login.failed.wrongToken")));
+		return u;
 	}
 
 }

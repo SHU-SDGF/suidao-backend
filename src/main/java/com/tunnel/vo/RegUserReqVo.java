@@ -29,6 +29,8 @@ public class RegUserReqVo {
 	@NotBlank(message = "{RegUserReqVo.passwordDigest.NotBlank}")
 	private String passwordDigest;
 	
+	private String token;
+	
 	@Setter
 	@Getter
 	public static class Authority {

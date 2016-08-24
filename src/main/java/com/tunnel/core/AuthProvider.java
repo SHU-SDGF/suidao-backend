@@ -31,7 +31,7 @@ public class AuthProvider implements AuthenticationProvider {
     @Override
     public Authentication authenticate(Authentication auth) {
         try {
-            User userVo = userService.authenticate(auth.getName(), auth.getCredentials().toString());
+            User userVo = userService.verifyToken(auth.getName(), auth.getCredentials().toString());
 
             List<GrantedAuthority> authorities = Collections.singletonList(new SimpleGrantedAuthority("admin"));
 
