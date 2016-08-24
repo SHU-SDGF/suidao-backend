@@ -13,6 +13,7 @@ import org.springframework.security.authentication.AuthenticationProvider;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.method.configuration.EnableGlobalMethodSecurity;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
+import org.springframework.security.config.annotation.web.builders.WebSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.config.http.SessionCreationPolicy;
@@ -56,6 +57,11 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     @Configuration
     @Order(1)
     public static class ApiConfigurationAdapter extends WebSecurityConfigurerAdapter {
+    	
+//    	@Override
+//	    public void configure(WebSecurity web) throws Exception {
+//	        web.ignoring().antMatchers(HttpMethod.OPTIONS, "/**");
+//	    }
 
         protected void configure(HttpSecurity http) throws Exception {
 
@@ -66,7 +72,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                     .sessionCreationPolicy(SessionCreationPolicy.ALWAYS);
 
             http.authorizeRequests()
-                    .antMatchers("/user/register/**", "/index.html").permitAll()
+                    .antMatchers("/user/register/**","/login", "/index.html").permitAll()
                     .antMatchers("/**")
                     .authenticated()
                     .and()
@@ -116,10 +122,10 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                              AuthenticationException authException) throws IOException, ServletException {
         	if(HttpMethod.OPTIONS.matches(request.getMethod())){
                 response.setStatus(HttpServletResponse.SC_OK);
+                response.setHeader(HttpHeaders.ACCESS_CONTROL_ALLOW_CREDENTIALS, "true");
                 response.setHeader(HttpHeaders.ACCESS_CONTROL_ALLOW_ORIGIN, request.getHeader(HttpHeaders.ORIGIN));
                 response.setHeader(HttpHeaders.ACCESS_CONTROL_ALLOW_HEADERS, request.getHeader(HttpHeaders.ACCESS_CONTROL_REQUEST_HEADERS));
-                response.setHeader(HttpHeaders.ACCESS_CONTROL_ALLOW_METHODS, request.getHeader(HttpHeaders.ACCESS_CONTROL_REQUEST_METHOD));
-                response.setHeader(HttpHeaders.ACCESS_CONTROL_ALLOW_CREDENTIALS, "true");
+                response.setHeader(HttpHeaders.ACCESS_CONTROL_ALLOW_METHODS, request.getHeader(HttpHeaders.ACCESS_CONTROL_REQUEST_METHOD)); 
                 return;
             }
         	

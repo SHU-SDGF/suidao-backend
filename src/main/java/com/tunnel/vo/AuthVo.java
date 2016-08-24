@@ -1,16 +1,17 @@
 package com.tunnel.vo;
 
-import lombok.AllArgsConstructor;
-import lombok.Getter;
+import com.fasterxml.jackson.annotation.JsonInclude;
 
-/**
- * Created by jbelligund001 on 8/2/2016.
- */
+import lombok.Getter;
+import lombok.Setter;
+
+
 @Getter
-@AllArgsConstructor
+@Setter
+@JsonInclude(JsonInclude.Include.NON_NULL)
 public class AuthVo {
 
-    private final String userId;
+    private String userName;
 
-    private final byte[] pwd;
+    private String password;
 }

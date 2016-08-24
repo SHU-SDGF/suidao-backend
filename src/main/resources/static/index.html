@@ -9,6 +9,11 @@
 		var username = $("input#username").val();
 		var password = $("input#password").val();
 
+		var postData = {
+				userName:username,
+				password:password
+		};
+		
 		function make_base_auth(user, password) {
 			var tok = user + ':' + password;
 			var hash = btoa(tok);
@@ -18,11 +23,12 @@
 			type : "POST",
 			url : "login",
 			dataType : 'json',
+			contentType : 'application/json',
 			async : false,
-			data : '{}',
+			/* data : '{}', */
+			data : JSON.stringify(postData),
 			beforeSend : function(xhr) {
-				xhr.setRequestHeader('Authorization', make_base_auth(username,
-						password));
+				/* xhr.setRequestHeader('Authorization', make_base_auth(username, password)); */
 			},
 			success : function() {
 				alert("登录成功，现在你可以查看API了")
