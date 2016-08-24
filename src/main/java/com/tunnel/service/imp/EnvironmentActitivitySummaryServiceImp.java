@@ -36,9 +36,9 @@ public class EnvironmentActitivitySummaryServiceImp implements EnvironmentActiti
 			CreateEnvironmentActitivitySummaryReqVo vo) {
 		log.info("creating new activity ...");
 		
-		EnvironmentActitivitySummary activitySummary = environmentActitivitySummaryRepo.save(vo.getEnvironmentActitivitySummary());
-		EnvironmentActivity activity = environmentActitivityRepo.save(vo.getEnvironmentActivity());
-
+		EnvironmentActitivitySummary activitySummary = vo.getEnvironmentActitivitySummary();
+		EnvironmentActivity activity = vo.getEnvironmentActivity();
+		
 		/**
 		 * logic to generate act_no
 		 * 编码规则：活动类型（1位）+日期（首次发现活动的日期）8位+序号（2位）
@@ -46,13 +46,13 @@ public class EnvironmentActitivitySummaryServiceImp implements EnvironmentActiti
 	    // 0 代表前面补充0         
 	    // 2 代表长度为2         
 	    // d 代表参数为正数型         
-	    String serialStr = String.format("%02d", activity.getNo()%100); 
+	    String serialStr = String.format("%02d", environmentActitivitySummaryRepo.count()%100); 
 		String actNo = activity.getActType().substring(0, 1) + format.format(new Date()) + serialStr;
 		activity.setActNo(actNo);
 		activitySummary.setActNo(actNo);
 		
-		activitySummary = environmentActitivitySummaryRepo.save(vo.getEnvironmentActitivitySummary());
-		activity = environmentActitivityRepo.save(vo.getEnvironmentActivity());
+		activitySummary = environmentActitivitySummaryRepo.saveAndFlush(vo.getEnvironmentActitivitySummary());
+		activity = environmentActitivityRepo.saveAndFlush(vo.getEnvironmentActivity());
 		
 		vo.setEnvironmentActitivitySummary(activitySummary);
 		vo.setEnvironmentActivity(activity);

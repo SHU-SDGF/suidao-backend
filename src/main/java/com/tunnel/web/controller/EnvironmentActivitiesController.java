@@ -25,7 +25,7 @@ import lombok.extern.slf4j.Slf4j;
 
 @RestController
 @Slf4j
-@RequestMapping()
+@RequestMapping
 public class EnvironmentActivitiesController extends BaseController {
 
 	@Autowired
@@ -37,7 +37,7 @@ public class EnvironmentActivitiesController extends BaseController {
 	@Autowired
 	private EnvironmentActitivitySummaryService environmentActitivitySummaryService;
 
-	@RequestMapping(value = "/createEnvironmentActivity/", method = RequestMethod.POST)
+	@RequestMapping(value = "/createEnvironmentActivity", method = RequestMethod.POST)
 	@ResponseBody
 	public ResponseEntity<CreateEnvironmentActitivitySummaryReqVo> createEnvironmentActivity(
 			@RequestBody CreateEnvironmentActitivitySummaryReqVo vo) {
@@ -46,14 +46,14 @@ public class EnvironmentActivitiesController extends BaseController {
 				HttpStatus.OK);
 	}
 
-	@RequestMapping(value = "/environment-activities/list/", method = RequestMethod.GET)
+	@RequestMapping(value = "/environment-activities/list", method = RequestMethod.GET)
 	@ResponseBody
 	public Page<EnvironmentActivity> getEnvironmentActivityPage(
 			@PageableDefault(value = 10, sort = { "id" }, direction = Direction.DESC) Pageable pageable) {
 		return environmentActivityRepo.findAll(pageable);
 	}
 
-	@RequestMapping(value = "/environment-activities/create/", method = RequestMethod.POST)
+	@RequestMapping(value = "/environment-activities/create", method = RequestMethod.POST)
 	@ResponseBody
 	public ResponseEntity<EnvironmentActivity> createEnvironmentActivityDetail(@RequestBody EnvironmentActivity environmentActivity) {
 		return new ResponseEntity<>(environmentActivityRepo.save(environmentActivity), HttpStatus.OK);
@@ -68,7 +68,7 @@ public class EnvironmentActivitiesController extends BaseController {
 		return environmentActivityRepo.findAllByActNo(actNo, pageable);
 	}
 	
-	@RequestMapping(value = "/environment-activities-summary/list/", method = RequestMethod.GET)
+	@RequestMapping(value = "/environment-activities-summary/list", method = RequestMethod.GET)
 	@ResponseBody
 	public Page<EnvironmentActitivitySummary> getEnvironmentActitivitySummaryPage(
 			@PageableDefault(value = 10, sort = { "id" }, direction = Direction.DESC) Pageable pageable) {

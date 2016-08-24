@@ -25,7 +25,7 @@ public class EnvironmentActivity extends AbstractEntity {
 
 	@Id
 	@Column(name="NO")
-	private int no;
+	private int id;
 
 	@Column(name="ACT_NO")
 	private String actNo;
