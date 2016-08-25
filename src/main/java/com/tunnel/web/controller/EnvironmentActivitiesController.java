@@ -37,7 +37,7 @@ public class EnvironmentActivitiesController extends BaseController {
 	@Autowired
 	private EnvironmentActitivitySummaryService environmentActitivitySummaryService;
 
-	@RequestMapping(value = "/createEnvironmentActivity", method = RequestMethod.POST)
+	@RequestMapping(value = "/environment-activities-summary/create", method = RequestMethod.POST)
 	@ResponseBody
 	public ResponseEntity<CreateEnvironmentActitivitySummaryReqVo> createEnvironmentActivity(
 			@RequestBody CreateEnvironmentActitivitySummaryReqVo vo) {
