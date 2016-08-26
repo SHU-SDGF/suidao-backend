@@ -22,7 +22,8 @@ public class TSurrAct extends AbstractEntity {
 	private static final long serialVersionUID = 1L;
 
 	@Id
-	private int no;
+	@Column(name="NO")
+	private int id;
 
 	@Column(name = "ACT_NO", columnDefinition = "char")
 	private String actNo;
