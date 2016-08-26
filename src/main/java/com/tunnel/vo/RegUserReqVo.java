@@ -1,8 +1,5 @@
 package com.tunnel.vo;
 
-import javax.persistence.Column;
-
-import org.hibernate.validator.constraints.Email;
 import org.hibernate.validator.constraints.NotBlank;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
@@ -25,6 +22,9 @@ public class RegUserReqVo {
 	@NotBlank
 	private String password;
 
+	@NotBlank
+	private String roleId;
+
 	private String userName;
 
 	private String isAdmin;
@@ -36,5 +36,5 @@ public class RegUserReqVo {
 	private String mobile;
 
 	private String address;
-	
+
 }

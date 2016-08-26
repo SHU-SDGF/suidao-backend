@@ -1,6 +1,7 @@
 package com.tunnel.service;
 
 import com.tunnel.model.User;
+import com.tunnel.model.UserRole;
 import com.tunnel.vo.RegUserReqVo;
 
 public interface UserService {
@@ -9,6 +10,6 @@ public interface UserService {
 	
 	public User verifyToken(String name, String token);
 	
-	public RegUserReqVo registerUser(RegUserReqVo reqUserVo);
+	public User registerUser(RegUserReqVo reqUserVo);
 
 }

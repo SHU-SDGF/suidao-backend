@@ -1,5 +1,7 @@
 package com.tunnel.model;
 
+import java.util.List;
+
 import javax.persistence.*;
 
 import org.springframework.data.annotation.CreatedBy;
@@ -45,7 +47,6 @@ public class User extends AbstractEntity {
 
 	@Column(name = "TOKEN")
 	private String token;
-
 
 	@Column(name = "CREATE_USER")
 	@CreatedBy

@@ -3,6 +3,10 @@ package com.tunnel.model;
 import java.io.Serializable;
 import javax.persistence.*;
 
+import com.tunnel.model.UserRole.UserRoleBuilder;
+
+import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -13,6 +17,8 @@ import lombok.Setter;
 @Embeddable
 @Setter
 @Getter
+@Builder
+@AllArgsConstructor
 public class MLoginRolePK implements Serializable {
 	//default serial version id, required for serializable classes.
 	private static final long serialVersionUID = 1L;

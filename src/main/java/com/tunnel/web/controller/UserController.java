@@ -23,6 +23,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.tunnel.exception.AppException;
 import com.tunnel.model.User;
+import com.tunnel.model.UserRole;
 import com.tunnel.service.UserService;
 import com.tunnel.util.AppConstants;
 import com.tunnel.util.AuthUtil;
@@ -42,11 +43,11 @@ public class UserController extends BaseController {
 
 	@RequestMapping(value = "/user/register", method = RequestMethod.POST)
 	@ResponseBody
-	public ResponseEntity<RegUserReqVo> register(@Validated @RequestBody RegUserReqVo reqUserVo) {
+	public ResponseEntity<User> register(@Validated @RequestBody RegUserReqVo reqUserVo) {
 
 		log.info("register ...");
 		try {
-			RegUserReqVo rspUserVo = userService.registerUser(reqUserVo);
+			User rspUserVo = userService.registerUser(reqUserVo);
 			return new ResponseEntity<>(rspUserVo, HttpStatus.OK);
 		} catch (Exception e) {
 			log.error("err.register.failed", e);
