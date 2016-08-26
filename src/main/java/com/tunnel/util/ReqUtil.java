@@ -8,7 +8,7 @@ import javax.servlet.http.HttpServletRequest;
 import java.util.Map;
 
 /**
- * Created by jbelligund001 on 2/15/2016.
+ * Created by Wayne Cao on 2/15/2016.
  */
 public class ReqUtil {
 

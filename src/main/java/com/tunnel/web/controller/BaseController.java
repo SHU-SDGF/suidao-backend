@@ -1,28 +1,13 @@
 package com.tunnel.web.controller;
 
-import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.ControllerAdvice;
-import org.springframework.web.bind.annotation.ExceptionHandler;
-import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.web.bind.annotation.ResponseStatus;
-
-import com.tunnel.exception.AppAuthException;
-import com.tunnel.exception.NotFoundException;
-import com.tunnel.vo.ValidationErrorVo;
-
 import java.util.Locale;
 
-import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.MessageSource;
 import org.springframework.context.i18n.LocaleContextHolder;
-import org.springframework.http.HttpStatus;
-import org.springframework.validation.FieldError;
-
-import lombok.extern.slf4j.Slf4j;
 
 @ControllerAdvice
-@Slf4j
 public class BaseController {
 
     @Autowired
@@ -30,8 +15,7 @@ public class BaseController {
     
     private Locale currentLocale = LocaleContextHolder.getLocale();
     
-    @Autowired
-    protected ModelMapper mapper;
+
 
 //   @ExceptionHandler(Exception.class)
 //    @ResponseBody

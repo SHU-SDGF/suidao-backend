@@ -9,7 +9,7 @@ import org.springframework.stereotype.Component;
 import java.io.IOException;
 
 /**
- * Created by jbelligund001 on 4/16/2016.
+ * Created by Wayne Cao on 4/16/2016.
  */
 @Component
 public class WhiteSpaceTrimmer extends SimpleModule {

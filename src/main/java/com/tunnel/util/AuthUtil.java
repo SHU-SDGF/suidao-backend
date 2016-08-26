@@ -12,7 +12,7 @@ import com.tunnel.model.User;
 import java.nio.charset.Charset;
 
 /**
- * Created by jbelligund001 on 2/15/2016.
+ * Created by Wayne Cao on 2/15/2016.
  */
 public class AuthUtil {
 
@@ -94,7 +94,7 @@ public class AuthUtil {
 
     public static HttpHeaders buildAuthHeaders() {
         User User = getUserDetails();
-        return buildAuthHeaders(User.getName(), User.getPasswordDigest());
+        return buildAuthHeaders(User.getLoginId(), User.getPassword());
     }
 
 }

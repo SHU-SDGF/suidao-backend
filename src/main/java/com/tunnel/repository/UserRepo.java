@@ -8,10 +8,10 @@ import com.tunnel.model.User;
 
 public interface UserRepo extends CrudRepository<User, Integer>{
 	
-	Optional<User> findByNameAndPasswordDigest(String name, String passwordDigest);
+	Optional<User> findByLoginIdAndPassword(String name, String password);
 	
-	Optional<User> findByNameAndToken(String name, String token);
+	Optional<User> findByLoginIdAndToken(String loginId, String token);
 	
-	User findOneByNameAndPasswordDigest(String name, String passwordDigest);
+	User findOneByLoginIdAndPassword(String name, String password);
 
 }

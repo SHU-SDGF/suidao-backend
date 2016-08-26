@@ -11,7 +11,7 @@ import org.springframework.context.annotation.Configuration;
  * Development Code that binds the dataSource as JNDI.
  * This class & related jars in bootLibs will be excluded from war file
  *
- * @author jbelligund001
+ * @author Wayne Cao
  */
 @Configuration
 public class TomcatEmbedded {

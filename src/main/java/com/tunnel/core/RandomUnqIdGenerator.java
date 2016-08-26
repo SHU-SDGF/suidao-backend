@@ -8,7 +8,7 @@ import java.util.UUID;
 
 /**
  * Generates a unique random generator on each call
- * Created by jbelligund001 on 6/22/2016.
+ * Created by Wayne Cao on 6/22/2016.
  */
 @Component
 public class RandomUnqIdGenerator {

@@ -2,8 +2,7 @@ package com.tunnel.model;
 
 import javax.persistence.*;
 
-import org.hibernate.annotations.NotFound;
-import org.hibernate.annotations.NotFoundAction;
+import org.springframework.data.annotation.CreatedBy;
 
 import lombok.Getter;
 import lombok.Setter;
@@ -13,29 +12,44 @@ import lombok.Setter;
  * 
  */
 @Entity
-@Table(name = "users")
-@NamedQuery(name = "User.findAll", query = "SELECT u FROM User u")
+@Table(name = "m_login")
 @Setter
 @Getter
 public class User extends AbstractEntity {
 	private static final long serialVersionUID = 1L;
 
 	@Id
-	private int id;
+	@Column(name = "LOGIN_ID")
+	private String loginId;
 
-	@ManyToOne(fetch = FetchType.LAZY)
-	@JoinColumn(name = "authority", referencedColumnName = "id")
-	@NotFound(action = NotFoundAction.IGNORE)
-	private Authority authority;
+	@Column(name = "PASSWORD")
+	private String password;
 
-	private String email;
+	@Column(name = "USER_NAME")
+	private String userName;
 
-	private String name;
-	
+	@Column(name = "IS_ADMIN", columnDefinition = "char")
+	private String isAdmin;
+
+	@Column(name = "GENDER", columnDefinition = "char")
+	private String gender;
+
+	@Column(name = "TEL_NO")
+	private String telNo;
+
+	@Column(name = "MOBILE")
+	private String mobile;
+
+	@Column(name = "ADDRESS")
+	private String address;
+
+	@Column(name = "TOKEN")
 	private String token;
 
-	@Column(name = "password_digest")
-	private String passwordDigest;
+
+	@Column(name = "CREATE_USER")
+	@CreatedBy
+	private String createUser;
 
 	public User() {
 	}

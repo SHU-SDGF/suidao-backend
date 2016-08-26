@@ -17,7 +17,7 @@ import static com.tunnel.util.WebUtils.loggedInUser;
 import java.io.IOException;
 
 /**
- * Created by jbelligund001 on 6/25/2016.
+ * Created by Wayne Cao on 6/25/2016.
  */
 
 @Component
@@ -34,7 +34,7 @@ public class RestAPIUtils {
     }
 
     private HttpHeaders httpHeaders() {
-        HttpHeaders headers = AuthUtil.buildAuthHeaders(loggedInUser().getName(), loggedInUser().getPasswordDigest());
+        HttpHeaders headers = AuthUtil.buildAuthHeaders(loggedInUser().getLoginId(), loggedInUser().getPassword());
         headers.setContentType(MediaType.APPLICATION_JSON);
         return headers;
     }

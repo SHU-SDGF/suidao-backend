@@ -21,8 +21,6 @@ public class AppProperties {
 
     private String logFile;
 
-    private int pdeFailureRetryTimes;
-
     private String notificationServiceUrl;
 
     private String userMgmtUrl;
@@ -42,8 +40,6 @@ public class AppProperties {
     private String emailServiceUrl;
     
     private String emailPlainCreds;
-
-    private long systemTenantId;
 
 
     public String getDocsDirectory(String user) {

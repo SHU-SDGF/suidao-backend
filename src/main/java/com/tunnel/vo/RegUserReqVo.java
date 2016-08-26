@@ -1,5 +1,7 @@
 package com.tunnel.vo;
 
+import javax.persistence.Column;
+
 import org.hibernate.validator.constraints.Email;
 import org.hibernate.validator.constraints.NotBlank;
 
@@ -17,30 +19,22 @@ import lombok.ToString;
 @JsonInclude(JsonInclude.Include.NON_NULL)
 public class RegUserReqVo {
 
-	private Authority authority;
+	@NotBlank
+	private String loginId;
 
-	@NotBlank(message = "{RegUserReqVo.email.NotBlank}")
-    @Email
-	private String email;
+	@NotBlank
+	private String password;
 
-	@NotBlank(message = "{RegUserReqVo.name.NotBlank}")
-	private String name;
+	private String userName;
 
-	@NotBlank(message = "{RegUserReqVo.passwordDigest.NotBlank}")
-	private String passwordDigest;
-	
-	private String token;
-	
-	@Setter
-	@Getter
-	public static class Authority {
-		
-		private int id;
+	private String isAdmin;
 
-		private String name;
+	private String gender;
 
-		private int order;
-		
-	}
+	private String telNo;
+
+	private String mobile;
+
+	private String address;
 	
 }

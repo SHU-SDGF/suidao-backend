@@ -14,13 +14,15 @@ import java.util.HashMap;
 import java.util.Map;
 
 /**
- * Created by jbelligund001 on 2/17/2016.
+ * Created by Wayne Cao on 2/17/2016.
  */
 @Getter
 @Slf4j
 public class AppException extends RuntimeException {
 
-    private static final ObjectMapper mapper = new ObjectMapper();
+	private static final long serialVersionUID = 1L;
+
+	private static final ObjectMapper mapper = new ObjectMapper();
 
     private static final TypeReference errMapType = new TypeReference<HashMap<String, String>>() {
     };

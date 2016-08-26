@@ -9,11 +9,9 @@ import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 import javax.persistence.Column;
 import javax.persistence.EntityListeners;
 import javax.persistence.MappedSuperclass;
-import javax.persistence.Temporal;
-import javax.persistence.TemporalType;
+import javax.persistence.Version;
 import javax.validation.constraints.NotNull;
 import java.io.Serializable;
-import java.util.Calendar;
 import java.util.Date;
 
 @MappedSuperclass
@@ -22,26 +20,32 @@ import java.util.Date;
 @Setter
 abstract class AbstractEntity implements Serializable {
 
+	private static final long serialVersionUID = -6965848061290894893L;
 
-    private static final long serialVersionUID = -6965848061290894893L;
+	@Column(name = "UPDATE_CNT")
+	@Version
+	private Long updateCnt;
+	
+	@Column(name = "DEL_FLG", columnDefinition = "char")
+	private String delFlg;
 	
 	@CreatedDate
-    @NotNull
-//	@Temporal(TemporalType.TIMESTAMP)
-	@Column(name="created_at")
-	private Date createdAt;
-	
-    @LastModifiedDate
-    @NotNull
-//	@Temporal(TemporalType.TIMESTAMP)
-	@Column(name="updated_at")
-	private Date updatedAt;
+	@NotNull
+	// @Temporal(TemporalType.TIMESTAMP)
+	@Column(name = "CREATE_DATE")
+	private Date createDate;
 
-    public void setCreatedAt(Date createdAt) {
-        this.createdAt = createdAt == null ? new Date() : createdAt;
-    }
+	@LastModifiedDate
+	@NotNull
+	// @Temporal(TemporalType.TIMESTAMP)
+	@Column(name = "UPDATE_DATE")
+	private Date updateDate;
 
-    public void setUpdatedAt(Date updatedAt) {
-        this.updatedAt = updatedAt == null ? new Date() : updatedAt;
-    }
+	public void setCreatedAt(Date createDate) {
+		this.createDate = createDate == null ? new Date() : createDate;
+	}
+
+	public void setUpdatedAt(Date updateDate) {
+		this.updateDate = updateDate == null ? new Date() : updateDate;
+	}
 }

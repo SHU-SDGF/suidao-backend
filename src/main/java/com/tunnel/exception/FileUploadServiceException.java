@@ -13,7 +13,12 @@ import java.util.Map;
 
 public class FileUploadServiceException extends RuntimeException{
 
-    private static ObjectMapper mapper = new ObjectMapper();
+    /**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+
+	private static ObjectMapper mapper = new ObjectMapper();
 
     private static TypeReference errMapType = new TypeReference<HashMap<String, String>>() {
     };

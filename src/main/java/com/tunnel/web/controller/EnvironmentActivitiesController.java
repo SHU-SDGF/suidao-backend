@@ -1,7 +1,7 @@
 package com.tunnel.web.controller;
 
-import com.tunnel.model.EnvironmentActitivitySummary;
-import com.tunnel.model.EnvironmentActivity;
+import com.tunnel.model.TSurrActSum;
+import com.tunnel.model.TSurrAct;
 import com.tunnel.repository.EnvironmentActitivitySummaryRepo;
 import com.tunnel.repository.EnvironmentActivityRepo;
 import com.tunnel.service.EnvironmentActitivitySummaryService;
@@ -48,21 +48,21 @@ public class EnvironmentActivitiesController extends BaseController {
 
 	@RequestMapping(value = "/environment-activities/list", method = RequestMethod.GET)
 	@ResponseBody
-	public Page<EnvironmentActivity> getEnvironmentActivityPage(
+	public Page<TSurrAct> getEnvironmentActivityPage(
 			@PageableDefault(value = 10, sort = { "id" }, direction = Direction.DESC) Pageable pageable) {
 		return environmentActivityRepo.findAll(pageable);
 	}
 
 	@RequestMapping(value = "/environment-activities/create", method = RequestMethod.POST)
 	@ResponseBody
-	public ResponseEntity<EnvironmentActivity> createEnvironmentActivityDetail(@RequestBody EnvironmentActivity environmentActivity) {
+	public ResponseEntity<TSurrAct> createEnvironmentActivityDetail(@RequestBody TSurrAct environmentActivity) {
 		return new ResponseEntity<>(environmentActivityRepo.save(environmentActivity), HttpStatus.OK);
 	}
 
 
 	@RequestMapping(value = "/environment-activities/listByActNo/{actNo}", method = RequestMethod.GET)
 	@ResponseBody
-	public Page<EnvironmentActivity> get(
+	public Page<TSurrAct> get(
 			@PageableDefault(value = 10, sort = { "id" }, direction = Direction.DESC) Pageable pageable,
 			@PathVariable("actNo") String actNo) {
 		return environmentActivityRepo.findAllByActNo(actNo, pageable);
@@ -70,7 +70,7 @@ public class EnvironmentActivitiesController extends BaseController {
 	
 	@RequestMapping(value = "/environment-activities-summary/list", method = RequestMethod.GET)
 	@ResponseBody
-	public Page<EnvironmentActitivitySummary> getEnvironmentActitivitySummaryPage(
+	public Page<TSurrActSum> getEnvironmentActitivitySummaryPage(
 			@PageableDefault(value = 10, sort = { "id" }, direction = Direction.DESC) Pageable pageable) {
 		return environmentActitivitySummaryRepo.findAll(pageable);
 	}

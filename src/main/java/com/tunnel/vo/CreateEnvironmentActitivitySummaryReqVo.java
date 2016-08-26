@@ -1,8 +1,8 @@
 package com.tunnel.vo;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
-import com.tunnel.model.EnvironmentActitivitySummary;
-import com.tunnel.model.EnvironmentActivity;
+import com.tunnel.model.TSurrActSum;
+import com.tunnel.model.TSurrAct;
 
 import lombok.Getter;
 import lombok.Setter;
@@ -12,7 +12,7 @@ import lombok.Setter;
 @JsonInclude(JsonInclude.Include.NON_NULL)
 public class CreateEnvironmentActitivitySummaryReqVo {
 
-	private EnvironmentActitivitySummary environmentActitivitySummary;
+	private TSurrActSum environmentActitivitySummary;
 	
-	private EnvironmentActivity environmentActivity;
+	private TSurrAct environmentActivity;
 }

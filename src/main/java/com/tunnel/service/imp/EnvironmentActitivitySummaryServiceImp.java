@@ -8,8 +8,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import com.tunnel.model.EnvironmentActitivitySummary;
-import com.tunnel.model.EnvironmentActivity;
+import com.tunnel.model.TSurrActSum;
+import com.tunnel.model.TSurrAct;
 import com.tunnel.service.EnvironmentActitivitySummaryService;
 import com.tunnel.vo.CreateEnvironmentActitivitySummaryReqVo;
 import com.tunnel.repository.EnvironmentActivityRepo;
@@ -36,8 +36,8 @@ public class EnvironmentActitivitySummaryServiceImp implements EnvironmentActiti
 			CreateEnvironmentActitivitySummaryReqVo vo) {
 		log.info("creating new activity ...");
 		
-		EnvironmentActitivitySummary activitySummary = vo.getEnvironmentActitivitySummary();
-		EnvironmentActivity activity = vo.getEnvironmentActivity();
+		TSurrActSum activitySummary = vo.getEnvironmentActitivitySummary();
+		TSurrAct activity = vo.getEnvironmentActivity();
 		
 		/**
 		 * logic to generate act_no
