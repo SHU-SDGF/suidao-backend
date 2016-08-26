@@ -46,7 +46,7 @@ public class MFacilityList extends AbstractEntity {
 	private String remark;
 
 	@Column(name = "subsidyDocument")
-	private String subsidy_Document;
+	private String subsidyDocument;
 
 	@Column(name = "Supplementary_Specification")
 	private String supplementarySpecification;

@@ -21,7 +21,8 @@ public class PosDespList implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	@Id
-	private String pos_Desp;
+	@Column(name="POS_DESP")
+	private String posDesp;
 
 	// bi-directional many-to-one association to TFacilityInspSum
 	@OneToMany(mappedBy = "posDespList", fetch=FetchType.LAZY)

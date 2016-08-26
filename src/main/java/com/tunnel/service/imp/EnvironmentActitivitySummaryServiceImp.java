@@ -13,10 +13,12 @@ import com.tunnel.model.TSurrAct;
 import com.tunnel.service.EnvironmentActitivitySummaryService;
 import com.tunnel.vo.CreateEnvironmentActitivitySummaryReqVo;
 import com.tunnel.repository.EnvironmentActivityRepo;
+import com.tunnel.repository.SurrInfoRepo;
 import com.tunnel.repository.EnvironmentActitivitySummaryRepo;
 
 
 import lombok.extern.slf4j.Slf4j;
+import static org.apache.commons.lang3.StringUtils.isBlank;
 
 @Service
 @Slf4j
@@ -27,6 +29,9 @@ public class EnvironmentActitivitySummaryServiceImp implements EnvironmentActiti
 
 	@Autowired
 	private EnvironmentActivityRepo environmentActitivityRepo;
+	
+	@Autowired
+	private SurrInfoRepo surrInfoRepo;
 	
 	private DateFormat format = new SimpleDateFormat("yyyyMMdd");
 	
@@ -50,6 +55,12 @@ public class EnvironmentActitivitySummaryServiceImp implements EnvironmentActiti
 		String actNo = activity.getActType().substring(0, 1) + format.format(new Date()) + serialStr;
 		activity.setActNo(actNo);
 		activitySummary.setActNo(actNo);
+		
+		if(isBlank(activitySummary.getTSurrInfo().getSurroundNo())){
+			activitySummary.setTSurrInfo(null);
+		}else{
+			activitySummary.setTSurrInfo(surrInfoRepo.getOne(activitySummary.getTSurrInfo().getSurroundNo()));
+		}
 		
 		activitySummary = environmentActitivitySummaryRepo.saveAndFlush(vo.getEnvironmentActitivitySummary());
 		activity = environmentActitivityRepo.saveAndFlush(vo.getEnvironmentActivity());

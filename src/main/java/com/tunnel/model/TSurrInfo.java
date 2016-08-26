@@ -24,67 +24,49 @@ public class TSurrInfo implements Serializable {
 
 	@Id
 	@Column(name = "Surround_No", columnDefinition = "char")
-	private String surround_No;
+	private String surroundNo;
 
 	@Column(name = "Blueprint_Path")
-	private String blueprint_Path;
+	private String blueprintPath;
 
 	@Column(name = "Building_State")
-	private String building_State;
+	private String buildingState;
 
 	@Column(name = "Depth")
 	private BigDecimal depth;
 
 	@Temporal(TemporalType.DATE)
 	@Column(name = "Finished_Year")
-	private Date finished_Year;
+	private Date finishedYear;
 
 	@Column(name = "Height")
 	private BigDecimal height;
 
 	@Column(name = "Mileage_No")
-	private String mileage_No;
+	private String mileageNo;
 
 	@Column(name = "Nearest_Tunnel")
-	private String nearest_Tunnel;
+	private String nearestTunnel;
 
 	@Column(name = "Owner_Unit")
-	private String owner_Unit;
+	private String ownerUnit;
 
 	@Column(name = "Protect_Level")
-	private String protect_Level;
+	private String protectLevel;
 
 	@Column(name = "Surround_Name")
-	private String surround_Name;
+	private String surroundName;
 
 	@Column(name = "Surround_Type")
-	private String surround_Type;
+	private String surroundType;
 
 	@Column(name = "Telephone")
 	private String telephone;
 
 	@Column(name = "Usage_State")
-	private String usage_State;
-
-	// bi-directional many-to-one association to TSurrActSum
-	@OneToMany(mappedBy = "TSurrInfo", fetch = FetchType.LAZY)
-	private List<TSurrActSum> TSurrActSums;
+	private String usageState;
 
 	public TSurrInfo() {
-	}
-
-	public TSurrActSum addTSurrActSum(TSurrActSum TSurrActSum) {
-		getTSurrActSums().add(TSurrActSum);
-		TSurrActSum.setTSurrInfo(this);
-
-		return TSurrActSum;
-	}
-
-	public TSurrActSum removeTSurrActSum(TSurrActSum TSurrActSum) {
-		getTSurrActSums().remove(TSurrActSum);
-		TSurrActSum.setTSurrInfo(null);
-
-		return TSurrActSum;
 	}
 
 }
