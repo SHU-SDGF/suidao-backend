@@ -46,7 +46,8 @@ public class TSurrActSum extends AbstractEntity {
 
 	private BigDecimal latitude;
 
-	private BigDecimal longitude;
+	@Column(name="longitude")
+	private BigDecimal longtitude;
 
 	@Temporal(TemporalType.DATE)
 	@Column(name = "START_DATE")
