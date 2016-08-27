@@ -1,10 +1,6 @@
 package com.tunnel.model;
 
-import java.util.List;
-
 import javax.persistence.*;
-
-import org.springframework.data.annotation.CreatedBy;
 
 import lombok.Getter;
 import lombok.Setter;

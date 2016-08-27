@@ -3,8 +3,6 @@ package com.tunnel.model;
 import java.io.Serializable;
 import javax.persistence.*;
 
-import com.tunnel.model.UserRole.UserRoleBuilder;
-
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;

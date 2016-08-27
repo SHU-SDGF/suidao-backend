@@ -23,7 +23,6 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.tunnel.exception.AppException;
 import com.tunnel.model.User;
-import com.tunnel.model.UserRole;
 import com.tunnel.service.UserService;
 import com.tunnel.util.AppConstants;
 import com.tunnel.util.AuthUtil;
