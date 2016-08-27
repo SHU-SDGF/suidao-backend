@@ -1,8 +1,8 @@
 package com.tunnel.service;
 
-import com.tunnel.vo.CreateEnvironmentActitivitySummaryReqVo;
+import com.tunnel.vo.EnvironmentActitivitySumAndDetailReqVo;
 
 public interface EnvironmentActitivitySummaryService {
 
-	public CreateEnvironmentActitivitySummaryReqVo createEnvironmentActitivitySummary(CreateEnvironmentActitivitySummaryReqVo vo);
+	public EnvironmentActitivitySumAndDetailReqVo createEnvironmentActitivitySummary(EnvironmentActitivitySumAndDetailReqVo vo);
 }

@@ -10,7 +10,7 @@ import lombok.Setter;
 @Getter
 @Setter
 @JsonInclude(JsonInclude.Include.NON_NULL)
-public class CreateEnvironmentActitivitySummaryReqVo {
+public class EnvironmentActitivitySumAndDetailReqVo {
 
 	private TSurrActSum environmentActitivitySummary;
 	

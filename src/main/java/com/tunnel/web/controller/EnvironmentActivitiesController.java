@@ -1,11 +1,11 @@
 package com.tunnel.web.controller;
 
-import com.tunnel.exception.AppException;
 import com.tunnel.model.TSurrAct;
+import com.tunnel.model.TSurrActSum;
 import com.tunnel.repository.EnvironmentActitivitySummaryRepo;
 import com.tunnel.repository.EnvironmentActivityRepo;
 import com.tunnel.service.EnvironmentActitivitySummaryService;
-import com.tunnel.vo.CreateEnvironmentActitivitySummaryReqVo;
+import com.tunnel.vo.EnvironmentActitivitySumAndDetailReqVo;
 import com.tunnel.vo.EnvironmentActivitiesSummaryVo;
 
 import java.util.Date;
@@ -54,11 +54,32 @@ public class EnvironmentActivitiesController extends BaseController {
 			return sumVo;
 		});
 	}
+	
+	/**
+	 * 根据id来找活动和活动历史
+	 * id是活动的id
+	 * 活动历史是最新的一条活动历史
+	 * 
+	 * @param id
+	 * @return
+	 */
+	@RequestMapping(value = "/environment-activities-summary/getById/{id}", method = RequestMethod.GET)
+	@ResponseBody
+	public EnvironmentActitivitySumAndDetailReqVo getEnvironmentActitivitySummaryById(@PathVariable("id") Integer id) {
+		TSurrActSum actSum = environmentActitivitySummaryRepo.findOne(id);
+		TSurrAct latestAct = environmentActivityRepo.findTopByActNoOrderByInspDateDesc(actSum.getActNo());
+		EnvironmentActitivitySumAndDetailReqVo resp = new EnvironmentActitivitySumAndDetailReqVo();
+		
+		resp.setEnvironmentActitivitySummary(actSum);
+		resp.setEnvironmentActivity(latestAct);
+		
+		return resp;
+	}
 
 	@RequestMapping(value = "/environment-activities-summary/create", method = RequestMethod.POST)
 	@ResponseBody
-	public ResponseEntity<CreateEnvironmentActitivitySummaryReqVo> createEnvironmentActivity(
-			@RequestBody CreateEnvironmentActitivitySummaryReqVo vo) {
+	public ResponseEntity<EnvironmentActitivitySumAndDetailReqVo> createEnvironmentActivity(
+			@RequestBody EnvironmentActitivitySumAndDetailReqVo vo) {
 		log.info("create a new environment activities summary");
 		return new ResponseEntity<>(environmentActitivitySummaryService.createEnvironmentActitivitySummary(vo),
 				HttpStatus.OK);

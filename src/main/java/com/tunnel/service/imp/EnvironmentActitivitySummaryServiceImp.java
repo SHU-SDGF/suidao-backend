@@ -11,7 +11,7 @@ import org.springframework.transaction.annotation.Transactional;
 import com.tunnel.model.TSurrActSum;
 import com.tunnel.model.TSurrAct;
 import com.tunnel.service.EnvironmentActitivitySummaryService;
-import com.tunnel.vo.CreateEnvironmentActitivitySummaryReqVo;
+import com.tunnel.vo.EnvironmentActitivitySumAndDetailReqVo;
 import com.tunnel.repository.EnvironmentActivityRepo;
 import com.tunnel.repository.SurrInfoRepo;
 import com.tunnel.repository.EnvironmentActitivitySummaryRepo;
@@ -36,8 +36,8 @@ public class EnvironmentActitivitySummaryServiceImp implements EnvironmentActiti
 
 	@Override
 	@Transactional
-	public CreateEnvironmentActitivitySummaryReqVo createEnvironmentActitivitySummary(
-			CreateEnvironmentActitivitySummaryReqVo vo) {
+	public EnvironmentActitivitySumAndDetailReqVo createEnvironmentActitivitySummary(
+			EnvironmentActitivitySumAndDetailReqVo vo) {
 		log.info("creating new activity ...");
 
 		TSurrActSum activitySummary = vo.getEnvironmentActitivitySummary();
