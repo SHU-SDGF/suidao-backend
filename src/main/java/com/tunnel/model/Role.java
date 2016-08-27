@@ -25,10 +25,6 @@ public class Role extends AbstractEntity {
 	@Column(name = "ROLE_ID")
 	private String roleId;
 
-	@Column(name = "CREATE_USER")
-	@CreatedBy
-	private String createUser;
-
 	@Column(name = "ROLE_NAME")
 	private String roleName;
 	

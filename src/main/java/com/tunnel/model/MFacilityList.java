@@ -32,10 +32,6 @@ public class MFacilityList extends AbstractEntity {
 	@Column(name = "Contingency_Plan")
 	private String contingencyPlan;
 
-	@Column(name = "CREATE_USER")
-	@CreatedBy
-	private String createUser;
-
 	@Column(name = "Facility_Importance", columnDefinition = "char")
 	private String facilityImportance;
 

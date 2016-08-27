@@ -2,6 +2,8 @@ package com.tunnel.model;
 
 import lombok.Getter;
 import lombok.Setter;
+
+import org.springframework.data.annotation.CreatedBy;
 import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.annotation.LastModifiedDate;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
@@ -21,13 +23,17 @@ import java.util.Date;
 abstract class AbstractEntity implements Serializable {
 
 	private static final long serialVersionUID = -6965848061290894893L;
+	
+	@Column(name = "CREATE_USER")
+	@CreatedBy
+	private String createUser;
 
 	@Column(name = "UPDATE_CNT")
 	@Version
 	private Long updateCnt;
 	
 	@Column(name = "DEL_FLG", columnDefinition = "char")
-	private String delFlg;
+	private String delFlg = "0";
 	
 	@CreatedDate
 	@NotNull

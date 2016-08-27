@@ -36,10 +36,6 @@ public class TSurrAct extends AbstractEntity {
 
 	private String audio;
 
-	@Column(name = "CREATE_USER")
-	@CreatedBy
-	private String createUser;
-
 	private String description;
 
 	@Temporal(TemporalType.DATE)
@@ -51,7 +47,7 @@ public class TSurrAct extends AbstractEntity {
 	private String recorder;
 
 	@Column(name="synchronize", columnDefinition = "char")
-	private String synChronize;
+	private String synChronize = "1";
 
 	private String video;
 

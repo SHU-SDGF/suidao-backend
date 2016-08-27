@@ -34,10 +34,6 @@ public class TSurrActSum extends AbstractEntity {
 	@Column(name = "ACT_NO", columnDefinition = "char")
 	private String actNo;
 
-	@Column(name = "CREATE_USER")
-	@CreatedBy
-	private String createUser;
-
 	private String description;
 
 	@Temporal(TemporalType.DATE)
@@ -54,7 +50,7 @@ public class TSurrActSum extends AbstractEntity {
 	private Date startDate;
 
 	@Column(name="synchronize", columnDefinition = "char")
-	private String synChronize;
+	private String synChronize = "1";
 
 	@Column(name = "TAG_ID")
 	private String tagId;

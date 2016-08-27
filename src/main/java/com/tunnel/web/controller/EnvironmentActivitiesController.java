@@ -1,5 +1,6 @@
 package com.tunnel.web.controller;
 
+import com.tunnel.exception.AppException;
 import com.tunnel.model.TSurrAct;
 import com.tunnel.repository.EnvironmentActitivitySummaryRepo;
 import com.tunnel.repository.EnvironmentActivityRepo;
@@ -32,20 +33,20 @@ public class EnvironmentActivitiesController extends BaseController {
 
 	@Autowired
 	private EnvironmentActivityRepo environmentActivityRepo;
-	
+
 	@Autowired
 	private EnvironmentActitivitySummaryRepo environmentActitivitySummaryRepo;
 
 	@Autowired
 	private EnvironmentActitivitySummaryService environmentActitivitySummaryService;
-	
+
 	@RequestMapping(value = "/environment-activities-summary/list", method = RequestMethod.GET)
 	@ResponseBody
 	public Page<EnvironmentActivitiesSummaryVo> getEnvironmentActitivitySummaryPage(
 			@PageableDefault(value = 10, sort = { "id" }, direction = Direction.DESC) Pageable pageable) {
-		return environmentActitivitySummaryRepo.findAll(pageable).map( sum -> {
+		return environmentActitivitySummaryRepo.findAll(pageable).map(sum -> {
 			EnvironmentActivitiesSummaryVo sumVo = mapper.map(sum, EnvironmentActivitiesSummaryVo.class);
-			Date inspDate = environmentActivityRepo.findTopByActNoOrderByInspDate(sumVo.getActNo()).getInspDate();
+			Date inspDate = environmentActivityRepo.findTopByActNoOrderByInspDateDesc(sumVo.getActNo()).getInspDate();
 			sumVo.setInspDate(inspDate);
 			return sumVo;
 		});
@@ -70,9 +71,11 @@ public class EnvironmentActivitiesController extends BaseController {
 	@RequestMapping(value = "/environment-activities/create", method = RequestMethod.POST)
 	@ResponseBody
 	public ResponseEntity<TSurrAct> createEnvironmentActivityDetail(@RequestBody TSurrAct environmentActivity) {
+		String recorder = environmentActivityRepo.findTopByActNoOrderByInspDateAsc(environmentActivity.getActNo())
+				.getRecorder();
+		environmentActivity.setRecorder(recorder);
 		return new ResponseEntity<>(environmentActivityRepo.save(environmentActivity), HttpStatus.OK);
 	}
-
 
 	@RequestMapping(value = "/environment-activities/listByActNo/{actNo}", method = RequestMethod.GET)
 	@ResponseBody

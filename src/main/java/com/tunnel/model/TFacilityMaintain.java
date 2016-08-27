@@ -26,10 +26,6 @@ public class TFacilityMaintain extends AbstractEntity {
 	@Column(name = "FM_NO")
 	private String fmNo;
 
-	@Column(name = "CREATE_USER")
-	@CreatedBy
-	private String createUser;
-
 	@Column(name = "DISEASE_NO")
 	private String diseaseNo;
 

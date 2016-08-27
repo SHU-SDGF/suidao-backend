@@ -48,10 +48,6 @@ public class User extends AbstractEntity {
 	@Column(name = "TOKEN")
 	private String token;
 
-	@Column(name = "CREATE_USER")
-	@CreatedBy
-	private String createUser;
-
 	public User() {
 	}
 

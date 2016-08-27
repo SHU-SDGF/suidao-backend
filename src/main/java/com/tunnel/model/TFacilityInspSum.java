@@ -25,10 +25,6 @@ public class TFacilityInspSum extends AbstractEntity {
 	@Id
 	private String mileage;
 
-	@Column(name = "CREATE_USER")
-	@CreatedBy
-	private String createUser;
-
 	@Temporal(TemporalType.DATE)
 	@Column(name = "DISEASE_DATE")
 	private Date diseaseDate;
