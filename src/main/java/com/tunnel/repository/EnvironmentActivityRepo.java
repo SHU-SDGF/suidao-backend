@@ -8,4 +8,6 @@ import com.tunnel.model.TSurrAct;
 public interface EnvironmentActivityRepo extends JpaRepository<TSurrAct, Integer>{
 
 	public Page<TSurrAct> findAllByActNo(String actNo, Pageable pageable);
+	
+	public TSurrAct findTopByActNoOrderByInspDate(String actNo);
 }

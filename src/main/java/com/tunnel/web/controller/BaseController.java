@@ -3,6 +3,7 @@ package com.tunnel.web.controller;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import java.util.Locale;
 
+import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.MessageSource;
 import org.springframework.context.i18n.LocaleContextHolder;
@@ -14,6 +15,9 @@ public class BaseController {
     private MessageSource msgSource;
     
     private Locale currentLocale = LocaleContextHolder.getLocale();
+    
+	@Autowired
+	protected ModelMapper mapper;
     
 
 

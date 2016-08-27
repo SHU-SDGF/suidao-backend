@@ -1,11 +1,13 @@
 package com.tunnel.web.controller;
 
-import com.tunnel.model.TSurrActSum;
 import com.tunnel.model.TSurrAct;
 import com.tunnel.repository.EnvironmentActitivitySummaryRepo;
 import com.tunnel.repository.EnvironmentActivityRepo;
 import com.tunnel.service.EnvironmentActitivitySummaryService;
 import com.tunnel.vo.CreateEnvironmentActitivitySummaryReqVo;
+import com.tunnel.vo.EnvironmentActivitiesSummaryVo;
+
+import java.util.Date;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -36,6 +38,18 @@ public class EnvironmentActivitiesController extends BaseController {
 
 	@Autowired
 	private EnvironmentActitivitySummaryService environmentActitivitySummaryService;
+	
+	@RequestMapping(value = "/environment-activities-summary/list", method = RequestMethod.GET)
+	@ResponseBody
+	public Page<EnvironmentActivitiesSummaryVo> getEnvironmentActitivitySummaryPage(
+			@PageableDefault(value = 10, sort = { "id" }, direction = Direction.DESC) Pageable pageable) {
+		return environmentActitivitySummaryRepo.findAll(pageable).map( sum -> {
+			EnvironmentActivitiesSummaryVo sumVo = mapper.map(sum, EnvironmentActivitiesSummaryVo.class);
+			Date inspDate = environmentActivityRepo.findTopByActNoOrderByInspDate(sumVo.getActNo()).getInspDate();
+			sumVo.setInspDate(inspDate);
+			return sumVo;
+		});
+	}
 
 	@RequestMapping(value = "/environment-activities-summary/create", method = RequestMethod.POST)
 	@ResponseBody
@@ -66,13 +80,6 @@ public class EnvironmentActivitiesController extends BaseController {
 			@PageableDefault(value = 10, sort = { "id" }, direction = Direction.DESC) Pageable pageable,
 			@PathVariable("actNo") String actNo) {
 		return environmentActivityRepo.findAllByActNo(actNo, pageable);
-	}
-	
-	@RequestMapping(value = "/environment-activities-summary/list", method = RequestMethod.GET)
-	@ResponseBody
-	public Page<TSurrActSum> getEnvironmentActitivitySummaryPage(
-			@PageableDefault(value = 10, sort = { "id" }, direction = Direction.DESC) Pageable pageable) {
-		return environmentActitivitySummaryRepo.findAll(pageable);
 	}
 
 }
