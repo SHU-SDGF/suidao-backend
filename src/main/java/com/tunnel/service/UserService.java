@@ -1,7 +1,6 @@
 package com.tunnel.service;
 
 import com.tunnel.model.User;
-import com.tunnel.model.UserRole;
 import com.tunnel.vo.RegUserReqVo;
 
 public interface UserService {
