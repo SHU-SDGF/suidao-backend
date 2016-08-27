@@ -10,4 +10,6 @@ import lombok.Setter;
 public class EnvironmentActivitiesSummaryVo extends TSurrActSumVo{
 
 	private Date inspDate;
+	
+	private String actStatus;
 }

@@ -46,8 +46,11 @@ public class EnvironmentActivitiesController extends BaseController {
 			@PageableDefault(value = 10, sort = { "id" }, direction = Direction.DESC) Pageable pageable) {
 		return environmentActitivitySummaryRepo.findAll(pageable).map(sum -> {
 			EnvironmentActivitiesSummaryVo sumVo = mapper.map(sum, EnvironmentActivitiesSummaryVo.class);
-			Date inspDate = environmentActivityRepo.findTopByActNoOrderByInspDateDesc(sumVo.getActNo()).getInspDate();
+			TSurrAct latestAct = environmentActivityRepo.findTopByActNoOrderByInspDateDesc(sumVo.getActNo());
+			Date inspDate = latestAct.getInspDate();
 			sumVo.setInspDate(inspDate);
+			String actStatus = latestAct.getActStatus();
+			sumVo.setActStatus(actStatus);
 			return sumVo;
 		});
 	}
