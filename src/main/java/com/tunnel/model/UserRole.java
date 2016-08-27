@@ -38,10 +38,6 @@ public class UserRole extends AbstractEntity {
 	@JoinColumn(name = "ROLE_ID", nullable=false, insertable=false, updatable=false)
 	private Role role;
 
-	@Column(name = "CREATE_USER")
-	@CreatedBy
-	private String createUser;
-
 	public UserRole() {
 	}
 
