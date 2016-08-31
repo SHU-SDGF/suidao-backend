@@ -32,7 +32,7 @@ public class TSurrAct extends AbstractEntity {
 	private String actStatus;
 
 	@Column(name = "ACTIVITY_TYPE", columnDefinition="nvarchar2")
-	private String activityType;
+	private String actType;
 
 	@Column(name = "AUDIO", columnDefinition="nvarchar2")
 	private String audio;
