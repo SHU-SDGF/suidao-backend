@@ -62,8 +62,8 @@ public class EnvironmentActitivitySummaryServiceImp implements EnvironmentActiti
 		}
 		
 		//删除标记
-		activitySummary.setDelFlg("0");
-		activitySummary.setDelFlg("0");
+		activitySummary.setDelFlg(false);
+		activitySummary.setDelFlg(false);
 
 		activitySummary = environmentActitivitySummaryRepo.saveAndFlush(activitySummary);
 		activity = environmentActitivityRepo.saveAndFlush(activity);

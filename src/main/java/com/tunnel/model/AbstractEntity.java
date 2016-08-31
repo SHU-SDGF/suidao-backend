@@ -33,7 +33,7 @@ abstract class AbstractEntity implements Serializable {
 	private Long updateCnt;
 	
 	@Column(name = "DEL_FLG", columnDefinition = "char")
-	private String delFlg = "0";
+	private boolean delFlg = false;
 	
 	@CreatedDate
 	@NotNull

@@ -1,5 +1,6 @@
 package com.tunnel.web.controller;
 
+import com.tunnel.exception.AppException;
 import com.tunnel.model.TSurrAct;
 import com.tunnel.model.TSurrActSum;
 import com.tunnel.repository.EnvironmentActitivitySummaryRepo;
@@ -47,10 +48,10 @@ public class EnvironmentActivitiesController extends BaseController {
 	@ResponseBody
 	public Page<EnvironmentActivitiesSummaryVo> getEnvironmentActitivitySummaryPage(
 			@PageableDefault(value = 10, sort = { "id" }, direction = Direction.DESC) Pageable pageable) {
-		return environmentActitivitySummaryRepo.findAll(pageable).map(sum -> {
+		return environmentActitivitySummaryRepo.findByDelFlgFalseAndLatitudeNotNull(pageable).map(sum -> {
 			EnvironmentActivitiesSummaryVo sumVo = mapper.map(sum, EnvironmentActivitiesSummaryVo.class);
-			TSurrAct latestAct = environmentActivityRepo.findTopByActNoOrderByInspDateDesc(sumVo.getActNo())
-					.orElseGet(() -> new TSurrAct());
+			TSurrAct latestAct = environmentActivityRepo
+					.findTopByActNoAndDelFlgFalseOrderByInspDateDesc(sumVo.getActNo()).orElseGet(() -> new TSurrAct());
 			Date inspDate = latestAct.getInspDate();
 			sumVo.setInspDate(inspDate);
 			String actStatus = latestAct.getActStatus();
@@ -69,8 +70,9 @@ public class EnvironmentActivitiesController extends BaseController {
 	@RequestMapping(value = "/environment-activities-summary/getById/{id}", method = RequestMethod.GET)
 	@ResponseBody
 	public EnvironmentActitivitySumAndDetailReqVo getEnvironmentActitivitySummaryById(@PathVariable("id") String id) {
-		TSurrActSum actSum = environmentActitivitySummaryRepo.findOne(id);
-		TSurrAct latestAct = environmentActivityRepo.findTopByActNoOrderByInspDateDesc(actSum.getActNo())
+		TSurrActSum actSum = environmentActitivitySummaryRepo.findByIdAndDelFlgFalseAndLatitudeNotNull(id)
+				.orElseThrow(() -> new AppException(msg("noSuchRecord")));
+		TSurrAct latestAct = environmentActivityRepo.findTopByActNoAndDelFlgFalseOrderByInspDateDesc(actSum.getActNo())
 				.orElseGet(() -> new TSurrAct());
 		EnvironmentActitivitySumAndDetailReqVo resp = new EnvironmentActitivitySumAndDetailReqVo();
 
@@ -95,14 +97,15 @@ public class EnvironmentActivitiesController extends BaseController {
 	@ResponseBody
 	public Page<TSurrAct> getEnvironmentActivityPage(
 			@PageableDefault(value = 10, sort = { "id" }, direction = Direction.DESC) Pageable pageable) {
-		return environmentActivityRepo.findAll(pageable);
+		return environmentActivityRepo.findByDelFlgFalse(pageable);
 	}
 
 	@ApiOperation("创建一条活动历史")
 	@RequestMapping(value = "/environment-activities/create", method = RequestMethod.POST)
 	@ResponseBody
 	public ResponseEntity<TSurrAct> createEnvironmentActivityDetail(@RequestBody TSurrAct environmentActivity) {
-		String recorder = environmentActivityRepo.findTopByActNoOrderByInspDateAsc(environmentActivity.getActNo())
+		String recorder = environmentActivityRepo
+				.findTopByActNoAndDelFlgFalseOrderByInspDateAsc(environmentActivity.getActNo())
 				.orElseGet(() -> new TSurrAct()).getRecorder();
 		environmentActivity.setRecorder(recorder);
 		return new ResponseEntity<>(environmentActivityRepo.save(environmentActivity), HttpStatus.OK);
@@ -114,7 +117,7 @@ public class EnvironmentActivitiesController extends BaseController {
 	public Page<TSurrAct> get(
 			@PageableDefault(value = 10, sort = { "id" }, direction = Direction.DESC) Pageable pageable,
 			@PathVariable("actNo") String actNo) {
-		return environmentActivityRepo.findAllByActNo(actNo, pageable);
+		return environmentActivityRepo.findAllByActNoAndDelFlgFalse(actNo, pageable);
 	}
 
 }
