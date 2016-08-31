@@ -2,6 +2,8 @@ package com.tunnel.model;
 
 import javax.persistence.*;
 
+import org.hibernate.annotations.NotFound;
+import org.hibernate.annotations.NotFoundAction;
 import org.springframework.data.annotation.CreatedBy;
 
 import lombok.Getter;
@@ -61,6 +63,7 @@ public class TFacilityInspDetail extends AbstractEntity {
 	// bi-directional many-to-one association to DetailTypeList
 	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "DETAIL_TYPE")
+	@NotFound(action = NotFoundAction.IGNORE)
 	private DetailTypeList detailTypeList;
 
 	public TFacilityInspDetail() {
