@@ -68,7 +68,7 @@ public class EnvironmentActivitiesController extends BaseController {
 	@ApiOperation("根据id来找活动和活动历史, id是活动的id, 活动历史是最新的一条活动历史")
 	@RequestMapping(value = "/environment-activities-summary/getById/{id}", method = RequestMethod.GET)
 	@ResponseBody
-	public EnvironmentActitivitySumAndDetailReqVo getEnvironmentActitivitySummaryById(@PathVariable("id") Integer id) {
+	public EnvironmentActitivitySumAndDetailReqVo getEnvironmentActitivitySummaryById(@PathVariable("id") String id) {
 		TSurrActSum actSum = environmentActitivitySummaryRepo.findOne(id);
 		TSurrAct latestAct = environmentActivityRepo.findTopByActNoOrderByInspDateDesc(actSum.getActNo())
 				.orElseGet(() -> new TSurrAct());
