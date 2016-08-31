@@ -20,33 +20,38 @@ public class TSurrAct extends AbstractEntity {
 	private static final long serialVersionUID = 1L;
 
 	@Id
-	@Column(name="NO")
+	@Column(name="ID", columnDefinition="nvarchar2")
 	private int id;
 
-	@Column(name = "ACT_NO", columnDefinition = "char")
+	@Column(name = "ACT_NO", columnDefinition = "nchar")
 	private String actNo;
 
-	@Column(name = "ACT_STATUS")
+	@Column(name = "ACT_STATUS", columnDefinition="nvarchar2")
 	private String actStatus;
 
-	@Column(name = "ACT_TYPE")
-	private String actType;
+	@Column(name = "ACTIVITY_TYPE", columnDefinition="nvarchar2")
+	private String activityType;
 
+	@Column(name = "AUDIO", columnDefinition="nvarchar2")
 	private String audio;
 
+	@Column(name = "DESCRIPTION", columnDefinition="nvarchar2")
 	private String description;
 
 	@Temporal(TemporalType.DATE)
 	@Column(name = "INSP_DATE")
 	private Date inspDate;
 
+	@Column(name = "PHOTO", columnDefinition="nvarchar2")
 	private String photo;
-
+	
+	@Column(name = "RECORDER", columnDefinition="nvarchar2")
 	private String recorder;
 
-	@Column(name="synchronize", columnDefinition = "char")
-	private String synChronize = "1";
+//	@Column(name="synchronize", columnDefinition = "char")
+//	private String synChronize = "1";
 
+	@Column(name = "VIDEO", columnDefinition="nvarchar2")
 	private String video;
 
 	public TSurrAct() {

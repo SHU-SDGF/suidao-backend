@@ -26,23 +26,20 @@ public class User extends AbstractEntity {
 	@Column(name = "USER_NAME")
 	private String userName;
 
-	@Column(name = "IS_ADMIN", columnDefinition = "char")
+	@Column(name = "IS_ADMIN", columnDefinition = "nvarchar2")
 	private String isAdmin;
 
-	@Column(name = "GENDER", columnDefinition = "char")
+	@Column(name = "GENDER", columnDefinition = "nvarchar2")
 	private String gender;
 
-	@Column(name = "TEL_NO")
+	@Column(name = "TEL_NO", columnDefinition = "nvarchar2")
 	private String telNo;
 
-	@Column(name = "MOBILE")
+	@Column(name = "MOBILE", columnDefinition = "nvarchar2")
 	private String mobile;
 
-	@Column(name = "ADDRESS")
+	@Column(name = "ADDRESS", columnDefinition = "nvarchar2")
 	private String address;
-
-	@Column(name = "TOKEN")
-	private String token;
 
 	public User() {
 	}

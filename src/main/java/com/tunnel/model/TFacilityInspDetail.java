@@ -1,6 +1,5 @@
 package com.tunnel.model;
 
-import java.io.Serializable;
 import javax.persistence.*;
 
 import org.springframework.data.annotation.CreatedBy;
@@ -20,7 +19,7 @@ import java.util.Date;
 @NamedQuery(name = "TFacilityInspDetail.findAll", query = "SELECT t FROM TFacilityInspDetail t")
 @Getter
 @Setter
-public class TFacilityInspDetail implements Serializable {
+public class TFacilityInspDetail extends AbstractEntity {
 	private static final long serialVersionUID = 1L;
 
 	@Id
@@ -28,17 +27,13 @@ public class TFacilityInspDetail implements Serializable {
 
 	private BigDecimal area;
 
-	@Column(name = "CREATE_USER")
-	@CreatedBy
-	private String createUser;
-
 	private BigDecimal depth;
 
 	@Temporal(TemporalType.DATE)
 	@Column(name = "DISEASE_DATE")
 	private Date diseaseDate;
 
-	@Column(name = "DISEASE_DISCRIPTION")
+	@Column(name = "DISEASE_DISCRIPTION" , columnDefinition="nvarchar2")
 	private String diseaseDiscription;
 
 	@Column(name = "DISEASE_NO")
@@ -50,8 +45,10 @@ public class TFacilityInspDetail implements Serializable {
 
 	private BigDecimal length;
 
+	@Column(name="PHOTO", columnDefinition="nvarchar2")
 	private String photo;
 
+	@Column(name="RECORDER", columnDefinition="nvarchar2")
 	private String recorder;
 
 	private BigDecimal width;

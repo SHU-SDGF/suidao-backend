@@ -21,14 +21,14 @@ public class TFacilityInspSum extends AbstractEntity {
 	private static final long serialVersionUID = 1L;
 
 	@Id
+	@Column(name = "DISEASE_NO")
+	private String diseaseNo;
+	
 	private String mileage;
 
 	@Temporal(TemporalType.DATE)
 	@Column(name = "DISEASE_DATE")
-	private Date diseaseDate;
-
-	@Column(name = "DISEASE_NO")
-	private String diseaseNo;
+	private Date diseaseDate;	
 
 	@Column(name = "PHOTO_STANDARD")
 	private String photoStandard;
@@ -38,7 +38,7 @@ public class TFacilityInspSum extends AbstractEntity {
 
 	// bi-directional many-to-one association to MonomerNoList
 	@ManyToOne(fetch = FetchType.LAZY)
-	@JoinColumn(name = "Monomer_No")
+	@JoinColumn(name = "MONOMER_NO")
 	private MonomerNoList monomerNoList;
 
 	// bi-directional many-to-one association to MFacilityList
@@ -61,25 +61,8 @@ public class TFacilityInspSum extends AbstractEntity {
 	@JoinColumn(name = "MODEL_NAME")
 	private ModelNameList modelNameList;
 
-	// bi-directional many-to-one association to TMileageDiseaseMatch
-	@OneToMany(mappedBy = "TFacilityInspSum", fetch = FetchType.LAZY)
-	private List<TMileageDiseaseMatch> TMileageDiseaseMatches;
-
-	public TFacilityInspSum() {
-	}
-
-	public TMileageDiseaseMatch addTMileageDiseaseMatch(TMileageDiseaseMatch TMileageDiseaseMatch) {
-		getTMileageDiseaseMatches().add(TMileageDiseaseMatch);
-		TMileageDiseaseMatch.setTFacilityInspSum(this);
-
-		return TMileageDiseaseMatch;
-	}
-
-	public TMileageDiseaseMatch removeTMileageDiseaseMatch(TMileageDiseaseMatch TMileageDiseaseMatch) {
-		getTMileageDiseaseMatches().remove(TMileageDiseaseMatch);
-		TMileageDiseaseMatch.setTFacilityInspSum(null);
-
-		return TMileageDiseaseMatch;
-	}
+//	// bi-directional many-to-one association to TMileageDiseaseMatch
+//	@OneToMany(mappedBy = "TFacilityInspSum", fetch = FetchType.LAZY)
+//	private List<TMileageDiseaseMatch> TMileageDiseaseMatches;
 
 }

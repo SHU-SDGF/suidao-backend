@@ -12,12 +12,12 @@ public class TunnelMileageMonomerMatchPK implements Serializable {
 
 	private static final long serialVersionUID = 1L;
 
-	@Column(name = "mileage")
+	@Column(name = "MILEAGE")
 	private String mileage;
 
-	@Column(name = "tunnel")
+	@Column(name = "TUNNEL")
 	private int tunnel;
 
-	@Column(name = "Monomer_No", nullable=false, insertable=false, updatable=false)
+	@Column(name = "MONOMER_NO", nullable=false, insertable=false, updatable=false)
 	private String monomerNo;
 }

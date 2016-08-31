@@ -3,7 +3,6 @@ package com.tunnel.service.imp;
 import java.util.Locale;
 import java.util.UUID;
 
-import org.apache.commons.codec.binary.Base64;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.MessageSource;
@@ -14,11 +13,15 @@ import com.tunnel.exception.AppAuthException;
 import com.tunnel.model.MLoginRolePK;
 import com.tunnel.model.User;
 import com.tunnel.model.UserRole;
+import com.tunnel.model.UserToken;
 import com.tunnel.repository.UserRepo;
 import com.tunnel.repository.UserRoleRepo;
+import com.tunnel.repository.UserTokenRepo;
 import com.tunnel.repository.RoleRepo;
 import com.tunnel.service.UserService;
+import com.tunnel.util.ParseMD5Util;
 import com.tunnel.vo.RegUserReqVo;
+import com.tunnel.vo.UserVo;
 
 import lombok.extern.slf4j.Slf4j;
 
@@ -41,6 +44,9 @@ public class UserServiceImp implements UserService {
 	@Autowired
 	protected ModelMapper mapper;
 
+	@Autowired
+	private UserTokenRepo userTokenRepo;
+
 	private Locale currentLocale = LocaleContextHolder.getLocale();
 
 	private String msg(String code) {
@@ -48,37 +54,43 @@ public class UserServiceImp implements UserService {
 	}
 
 	@Override
-	public User authenticate(String name, String password) {
+	public UserVo authenticate(String name, String password) {
 
 		log.info("UserServiceImp.authenticate ...");
-		User u = userRepo.findByLoginIdAndPassword(name, Base64.encodeBase64String(password.getBytes()))
+		User u = userRepo.findByLoginIdAndPassword(name, ParseMD5Util.parseStrToMd5U32(password))
 				.orElseThrow(() -> new AppAuthException(msg("err.login.failed")));
-		u.setToken(UUID.randomUUID().toString());
-		userRepo.save(u);
-		return u;
+		UserToken ut = userTokenRepo.findByLoginId(name).orElseGet(() -> new UserToken(name));
+		ut.setToken(UUID.randomUUID().toString());
+		userTokenRepo.save(ut);
+
+		UserVo uv = mapper.map(u, UserVo.class);
+		uv.setToken(ut.getToken());
+		return uv;
 	}
 
 	@Override
 	public User verifyToken(String loginId, String token) {
 
 		log.info("UserServiceImp.authenticate ...");
-		User u = userRepo.findByLoginIdAndToken(loginId, token)
+		UserToken ut = userTokenRepo.findByLoginIdAndToken(loginId, token)
 				.orElseThrow(() -> new AppAuthException(msg("err.login.failed.wrongToken")));
-		return u;
+		return userRepo.findOne(ut.getLoginId());
 	}
 
 	@Override
 	public User registerUser(RegUserReqVo reqVo) {
-		reqVo.setPassword(Base64.encodeBase64String(reqVo.getPassword().getBytes()));
-		UserRole userRole = UserRole.builder().loginId(reqVo.getLoginId())
-				.role(roleRepo.findOne(reqVo.getRoleId()))
-				.id(new MLoginRolePK(reqVo.getLoginId(), reqVo.getRoleId()))
-				.build();
+		reqVo.setPassword(ParseMD5Util.parseStrToMd5U32(reqVo.getPassword()));
+		UserRole userRole = UserRole.builder().loginId(reqVo.getLoginId()).role(roleRepo.findOne(reqVo.getRoleId()))
+				.id(new MLoginRolePK(reqVo.getLoginId(), reqVo.getRoleId())).build();
 		userRoleRepo.save(userRole);
-		
+
 		User user = userRepo.save(mapper.map(reqVo, User.class));
 
 		return user;
 	}
+
+	// public static void main(String[] args){
+	// System.out.println(ParseMD5Util.parseStrToMd5U32("ADMIN123"));
+	// }
 
 }

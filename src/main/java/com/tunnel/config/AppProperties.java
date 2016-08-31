@@ -8,7 +8,7 @@ import org.springframework.stereotype.Component;
 import java.io.File;
 
 @Component
-@ConfigurationProperties(prefix = "cip")
+@ConfigurationProperties(prefix = "tunnel")
 @Setter
 @Getter
 public class AppProperties {

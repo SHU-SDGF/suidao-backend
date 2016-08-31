@@ -22,47 +22,47 @@ public class TSurrInfo implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	@Id
-	@Column(name = "Surround_No", columnDefinition = "char")
+	@Column(name = "SURROUND_NO", columnDefinition = "nchar")
 	private String surroundNo;
 
-	@Column(name = "Blueprint_Path")
+	@Column(name = "BLUEPRINT_PATH", columnDefinition = "nvarchar2")
 	private String blueprintPath;
 
-	@Column(name = "Building_State")
+	@Column(name = "BUILDING_STATE", columnDefinition = "nvarchar2")
 	private String buildingState;
 
-	@Column(name = "Depth")
+	@Column(name = "DEPTH")
 	private BigDecimal depth;
 
 	@Temporal(TemporalType.DATE)
-	@Column(name = "Finished_Year")
+	@Column(name = "FINISHED_YEAR")
 	private Date finishedYear;
 
-	@Column(name = "Height")
+	@Column(name = "HEIGHT")
 	private BigDecimal height;
 
-	@Column(name = "Mileage_No")
+	@Column(name = "MILEAGE_NO", columnDefinition = "nvarchar2")
 	private String mileageNo;
 
-	@Column(name = "Nearest_Tunnel")
+	@Column(name = "NEAREST_TUNNEL", columnDefinition = "nvarchar2")
 	private String nearestTunnel;
 
-	@Column(name = "Owner_Unit")
+	@Column(name = "OWNER_UNIT", columnDefinition = "nvarchar2")
 	private String ownerUnit;
 
-	@Column(name = "Protect_Level")
+	@Column(name = "PROTECT_LEVEL", columnDefinition = "nvarchar2")
 	private String protectLevel;
 
-	@Column(name = "Surround_Name")
+	@Column(name = "SURROUND_NAME", columnDefinition = "nvarchar2")
 	private String surroundName;
 
-	@Column(name = "Surround_Type")
+	@Column(name = "Surround_Type", columnDefinition = "nvarchar2")
 	private String surroundType;
 
-	@Column(name = "Telephone")
+	@Column(name = "TELEPHONE", columnDefinition="nvarchar2")
 	private String telephone;
 
-	@Column(name = "Usage_State")
+	@Column(name = "USAGE_STATE", columnDefinition="nvarchar2")
 	private String usageState;
 
 	public TSurrInfo() {

@@ -10,6 +10,7 @@ import org.springframework.security.crypto.codec.Base64;
 import com.tunnel.model.User;
 
 import java.nio.charset.Charset;
+import com.tunnel.vo.UserVo;
 
 /**
  * Created by Wayne Cao on 2/15/2016.
@@ -64,14 +65,14 @@ public class AuthUtil {
         WebUtils.session().setAttribute(AppConstants.USER_SESSION, userDetail);
     }
 
-    public static User getUserDetails() {
+    public static UserVo getUserDetails() {
         UsernamePasswordAuthenticationToken principal = (UsernamePasswordAuthenticationToken)
                 SecurityContextHolder.getContext().getAuthentication();
         if (principal == null) {
             //being accessed from thread
-            return (User) WebUtils.session().getAttribute(AppConstants.USER_SESSION);
+            return (UserVo) WebUtils.session().getAttribute(AppConstants.USER_SESSION);
         }
-        return (User) principal.getDetails();
+        return (UserVo) principal.getDetails();
     }
 
     /**
@@ -93,7 +94,7 @@ public class AuthUtil {
     }
 
     public static HttpHeaders buildAuthHeaders() {
-        User User = getUserDetails();
+        UserVo User = getUserDetails();
         return buildAuthHeaders(User.getLoginId(), User.getPassword());
     }
 

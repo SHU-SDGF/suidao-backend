@@ -28,6 +28,7 @@ import com.tunnel.util.AppConstants;
 import com.tunnel.util.AuthUtil;
 import com.tunnel.vo.AuthVo;
 import com.tunnel.vo.RegUserReqVo;
+import com.tunnel.vo.UserVo;
 
 /**
  * API call ...
@@ -56,11 +57,11 @@ public class UserController extends BaseController {
 
 	@RequestMapping(value = "/login", method = RequestMethod.POST)
 	@ResponseBody
-	public ResponseEntity<User> login(@RequestBody AuthVo auth, HttpSession session) {
+	public ResponseEntity<UserVo> login(@RequestBody AuthVo auth, HttpSession session) {
 
 		log.info("login ...");
 
-		User userVo = userService.authenticate(auth.getUserName(), auth.getPassword());
+		UserVo userVo = userService.authenticate(auth.getUserName(), auth.getPassword());
 
 		List<GrantedAuthority> authorities = Collections.singletonList(new SimpleGrantedAuthority("admin"));
 
@@ -70,7 +71,7 @@ public class UserController extends BaseController {
 
 		SecurityContextHolder.getContext().setAuthentication(authToken);
 
-		User userDetail = AuthUtil.getUserDetails();
+		UserVo userDetail = AuthUtil.getUserDetails();
 		session.setAttribute(AppConstants.USER_SESSION, userDetail);
 		return new ResponseEntity<>(userDetail, HttpStatus.OK);
 

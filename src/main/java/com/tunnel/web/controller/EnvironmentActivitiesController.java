@@ -8,6 +8,8 @@ import com.tunnel.service.EnvironmentActitivitySummaryService;
 import com.tunnel.vo.EnvironmentActitivitySumAndDetailReqVo;
 import com.tunnel.vo.EnvironmentActivitiesSummaryVo;
 
+import io.swagger.annotations.ApiOperation;
+
 import java.util.Date;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -40,6 +42,7 @@ public class EnvironmentActivitiesController extends BaseController {
 	@Autowired
 	private EnvironmentActitivitySummaryService environmentActitivitySummaryService;
 
+	@ApiOperation("列出一页活动和活动历史，活动历史是最新的一条活动历史")
 	@RequestMapping(value = "/environment-activities-summary/list", method = RequestMethod.GET)
 	@ResponseBody
 	public Page<EnvironmentActivitiesSummaryVo> getEnvironmentActitivitySummaryPage(
@@ -63,6 +66,7 @@ public class EnvironmentActivitiesController extends BaseController {
 	 * @param id
 	 * @return
 	 */
+	@ApiOperation("根据id来找活动和活动历史, id是活动的id, 活动历史是最新的一条活动历史")
 	@RequestMapping(value = "/environment-activities-summary/getById/{id}", method = RequestMethod.GET)
 	@ResponseBody
 	public EnvironmentActitivitySumAndDetailReqVo getEnvironmentActitivitySummaryById(@PathVariable("id") Integer id) {
@@ -76,6 +80,7 @@ public class EnvironmentActivitiesController extends BaseController {
 		return resp;
 	}
 
+	@ApiOperation("根据id来创建活动和活动历史")
 	@RequestMapping(value = "/environment-activities-summary/create", method = RequestMethod.POST)
 	@ResponseBody
 	public ResponseEntity<EnvironmentActitivitySumAndDetailReqVo> createEnvironmentActivity(
@@ -85,6 +90,7 @@ public class EnvironmentActivitiesController extends BaseController {
 				HttpStatus.OK);
 	}
 
+	@ApiOperation("列出一页活动历史信息")
 	@RequestMapping(value = "/environment-activities/list", method = RequestMethod.GET)
 	@ResponseBody
 	public Page<TSurrAct> getEnvironmentActivityPage(
@@ -92,6 +98,7 @@ public class EnvironmentActivitiesController extends BaseController {
 		return environmentActivityRepo.findAll(pageable);
 	}
 
+	@ApiOperation("创建一条活动历史")
 	@RequestMapping(value = "/environment-activities/create", method = RequestMethod.POST)
 	@ResponseBody
 	public ResponseEntity<TSurrAct> createEnvironmentActivityDetail(@RequestBody TSurrAct environmentActivity) {
@@ -101,6 +108,7 @@ public class EnvironmentActivitiesController extends BaseController {
 		return new ResponseEntity<>(environmentActivityRepo.save(environmentActivity), HttpStatus.OK);
 	}
 
+	@ApiOperation("根据活动编码查询活动历史")
 	@RequestMapping(value = "/environment-activities/listByActNo/{actNo}", method = RequestMethod.GET)
 	@ResponseBody
 	public Page<TSurrAct> get(

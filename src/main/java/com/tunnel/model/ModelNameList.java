@@ -14,7 +14,7 @@ import java.util.List;
  * 
  */
 @Entity
-@Table(name="model_name_list")
+@Table(name="a_model_name_list")
 @NamedQuery(name="ModelNameList.findAll", query="SELECT m FROM ModelNameList m")
 @Getter
 @Setter
@@ -22,7 +22,7 @@ public class ModelNameList implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	@Id
-	@Column(name="MODEL_NAME")
+	@Column(name="MODEL_NAME", columnDefinition="nvarchar2")
 	private String modelName;
 
 	//bi-directional many-to-one association to TFacilityInspSum

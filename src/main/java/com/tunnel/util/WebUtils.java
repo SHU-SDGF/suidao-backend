@@ -7,6 +7,7 @@ import org.springframework.web.context.request.ServletRequestAttributes;
 import com.tunnel.model.User;
 
 import javax.servlet.http.HttpSession;
+import com.tunnel.vo.UserVo;
 
 public class WebUtils {
 
@@ -25,8 +26,8 @@ public class WebUtils {
 		return session;
 	}
 
-	public static User loggedInUser() {
-		User uservo = AuthUtil.getUserDetails();
+	public static UserVo loggedInUser() {
+		UserVo uservo = AuthUtil.getUserDetails();
 		if(uservo==null){
 			throw new CredentialsExpiredException("Unauthorized access");
 		}

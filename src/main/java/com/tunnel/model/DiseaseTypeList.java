@@ -13,7 +13,7 @@ import java.util.List;
  * 
  */
 @Entity
-@Table(name = "disease_type_list")
+@Table(name = "A_DISEASE_TYPE_LIST")
 @NamedQuery(name = "DiseaseTypeList.findAll", query = "SELECT d FROM DiseaseTypeList d")
 @Getter
 @Setter
@@ -21,32 +21,14 @@ public class DiseaseTypeList implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	@Id
-	@Column(name = "DISEASE_TYPE")
+	@Column(name = "DISEASE_TYPE", columnDefinition="nvarchar2")
 	private String diseaseType;
-
-	// bi-directional many-to-one association to DiseaseTypeDetailMatch
-	@OneToMany(mappedBy = "diseaseTypeList", fetch = FetchType.LAZY)
-	private List<DiseaseTypeDetailMatch> diseaseTypeDetailMatches;
 
 	// bi-directional many-to-one association to TFacilityInspDetail
 	@OneToMany(mappedBy = "diseaseTypeList", fetch = FetchType.LAZY)
 	private List<TFacilityInspDetail> TFacilityInspDetails;
 
 	public DiseaseTypeList() {
-	}
-
-	public DiseaseTypeDetailMatch addDiseaseTypeDetailMatch(DiseaseTypeDetailMatch diseaseTypeDetailMatch) {
-		getDiseaseTypeDetailMatches().add(diseaseTypeDetailMatch);
-		diseaseTypeDetailMatch.setDiseaseTypeList(this);
-
-		return diseaseTypeDetailMatch;
-	}
-
-	public DiseaseTypeDetailMatch removeDiseaseTypeDetailMatch(DiseaseTypeDetailMatch diseaseTypeDetailMatch) {
-		getDiseaseTypeDetailMatches().remove(diseaseTypeDetailMatch);
-		diseaseTypeDetailMatch.setDiseaseTypeList(null);
-
-		return diseaseTypeDetailMatch;
 	}
 
 	public TFacilityInspDetail addTFacilityInspDetail(TFacilityInspDetail TFacilityInspDetail) {

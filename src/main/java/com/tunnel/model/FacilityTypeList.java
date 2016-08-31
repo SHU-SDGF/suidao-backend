@@ -13,7 +13,7 @@ import java.util.List;
  * 
  */
 @Entity
-@Table(name = "facility_type_list")
+@Table(name = "A_FACILITY_TYPE_LIST")
 @NamedQuery(name = "FacilityTypeList.findAll", query = "SELECT f FROM FacilityTypeList f")
 @Getter
 @Setter

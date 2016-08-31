@@ -9,6 +9,8 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.context.request.RequestAttributes;
 import org.springframework.web.context.request.ServletRequestAttributes;
 
+import io.swagger.annotations.Api;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.util.HashMap;
@@ -19,6 +21,7 @@ import java.util.Map;
  */
 @RestController
 @RequestMapping("/error")
+@Api(hidden=true)
 public class AppErrorController implements ErrorController {
 
     private final ErrorAttributes errorAttributes;

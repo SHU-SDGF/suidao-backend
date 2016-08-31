@@ -10,15 +10,13 @@ import lombok.Setter;
 @Setter
 public class TSurrActSumVo {
 
-	private int id;
+	private String id;
 
 	private String actLevel;
 
 	private String actName;
 
 	private String actNo;
-
-	private String createUser;
 
 	private String description;
 
@@ -30,7 +28,7 @@ public class TSurrActSumVo {
 
 	private Date startDate;
 
-	private String synChronize;
+//	private String synChronize;
 
 	private String tagId;
 

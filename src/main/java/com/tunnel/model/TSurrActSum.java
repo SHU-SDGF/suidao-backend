@@ -2,6 +2,9 @@ package com.tunnel.model;
 
 import javax.persistence.*;
 
+import org.hibernate.annotations.NotFound;
+import org.hibernate.annotations.NotFoundAction;
+
 import lombok.Getter;
 import lombok.Setter;
 
@@ -21,41 +24,45 @@ public class TSurrActSum extends AbstractEntity {
 	private static final long serialVersionUID = 1L;
 
 	@Id
-	private int id;
+	@Column(name = "ID", columnDefinition = "nvarchar2")
+	private String id;
 
-	@Column(name = "ACT_LEVEL", columnDefinition = "char")
+	@Column(name = "ACT_LEVEL", columnDefinition = "nvarchar2")
 	private String actLevel;
 
-	@Column(name = "ACT_NAME")
+	@Column(name = "ACT_NAME", columnDefinition = "nvarchar2")
 	private String actName;
 
-	@Column(name = "ACT_NO", columnDefinition = "char")
+	@Column(name = "ACT_NO", columnDefinition = "nchar")
 	private String actNo;
 
+	@Column(name = "DESCRIPTION", columnDefinition = "nvarchar2")
 	private String description;
 
 	@Temporal(TemporalType.DATE)
 	@Column(name = "END_DATE")
 	private Date endDate;
 
+	@Column(name = "LATITUDE")
 	private BigDecimal latitude;
 
-	@Column(name="longitude")
+	@Column(name = "LONGITUDE")
 	private BigDecimal longtitude;
 
 	@Temporal(TemporalType.DATE)
 	@Column(name = "START_DATE")
 	private Date startDate;
 
-	@Column(name="synchronize", columnDefinition = "char")
-	private String synChronize = "1";
+	// @Column(name="synchronize", columnDefinition = "char")
+	// private String synChronize = "1";
 
-	@Column(name = "TAG_ID")
+	@Column(name = "TAG_ID", columnDefinition = "nvarchar2")
 	private String tagId;
 
 	// bi-directional many-to-one association to TSurrInfo
 	@ManyToOne(fetch = FetchType.LAZY)
-	@JoinColumn(name = "Surround_No")
+	@JoinColumn(name = "SURROUND_NO")
+	@NotFound(action = NotFoundAction.IGNORE)
 	private TSurrInfo TSurrInfo;
 
 	public TSurrActSum() {

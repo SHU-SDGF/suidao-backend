@@ -6,12 +6,12 @@ import org.springframework.data.repository.CrudRepository;
 
 import com.tunnel.model.User;
 
-public interface UserRepo extends CrudRepository<User, Integer>{
+public interface UserRepo extends CrudRepository<User, String>{
 	
-	Optional<User> findByLoginIdAndPassword(String name, String password);
+	Optional<User> findByLoginIdAndPassword(String loginId, String password);
 	
-	Optional<User> findByLoginIdAndToken(String loginId, String token);
+//	Optional<User> findByLoginIdAndToken(String loginId, String token);
 	
-	User findOneByLoginIdAndPassword(String name, String password);
+	User findOneByLoginIdAndPassword(String loginId, String password);
 
 }

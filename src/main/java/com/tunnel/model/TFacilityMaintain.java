@@ -21,7 +21,7 @@ public class TFacilityMaintain extends AbstractEntity {
 	private static final long serialVersionUID = 1L;
 
 	@Id
-	@Column(name = "FM_NO")
+	@Column(name = "FM_NO", columnDefinition = "nvarchar2")
 	private String fmNo;
 
 	@Column(name = "DISEASE_NO")
@@ -31,16 +31,16 @@ public class TFacilityMaintain extends AbstractEntity {
 	@Column(name = "FINISH_DATE")
 	private Date finishDate;
 
-	@Column(name = "MAINTAIN_MAN")
-	private String maintainMan;
+//	@Column(name = "MAINTAIN_MAN")
+//	private String maintainMan;
 
-	@Column(name = "QUOTA_NO")
+	@Column(name = "QUOTA_NO", columnDefinition="nvarchar2")
 	private String quotaNo;
 
 	@Column(name = "REPAIR_AMOUNT")
 	private BigDecimal repairAmount;
 
-	@Column(name = "REPAIR_CONTENT")
+	@Column(name = "REPAIR_CONTENT", columnDefinition = "nvarchar2")
 	private String repairContent;
 
 	@Column(name = "REPAIR_FEE")

@@ -14,7 +14,7 @@ import java.util.List;
  * 
  */
 @Entity
-@Table(name="monomer_no_list")
+@Table(name="A_MONOMER_NO_LIST")
 @NamedQuery(name="MonomerNoList.findAll", query="SELECT m FROM MonomerNoList m")
 @Getter
 @Setter
@@ -22,47 +22,49 @@ public class MonomerNoList implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	@Id
-	private String no;
+	@Column(name="MONOMER_NO", columnDefinition="nvarchar2")
+	private String monomerNo;
 
-	private String monomer_No;
+	@Column(name="MONOMER_NAME", columnDefinition="nvarchar2")
+	private String monomerName;
 
 	//bi-directional many-to-one association to TFacilityInspSum
 	@OneToMany(mappedBy="monomerNoList", fetch=FetchType.LAZY)
 	private List<TFacilityInspSum> TFacilityInspSums;
 
-	//bi-directional many-to-one association to TunnelMileageMonomerMatch
-	@OneToMany(mappedBy="monomerNoList", fetch=FetchType.LAZY)
-	private List<TunnelMileageMonomerMatch> tunnelMileageMonomerMatches;
+//	//bi-directional many-to-one association to TunnelMileageMonomerMatch
+//	@OneToMany(mappedBy="monomerNoList", fetch=FetchType.LAZY)
+//	private List<TunnelMileageMonomerMatch> tunnelMileageMonomerMatches;
 
 	public MonomerNoList() {
 	}
 
-	public TFacilityInspSum addTFacilityInspSum(TFacilityInspSum TFacilityInspSum) {
-		getTFacilityInspSums().add(TFacilityInspSum);
-		TFacilityInspSum.setMonomerNoList(this);
-
-		return TFacilityInspSum;
-	}
-
-	public TFacilityInspSum removeTFacilityInspSum(TFacilityInspSum TFacilityInspSum) {
-		getTFacilityInspSums().remove(TFacilityInspSum);
-		TFacilityInspSum.setMonomerNoList(null);
-
-		return TFacilityInspSum;
-	}
-
-	public TunnelMileageMonomerMatch addTunnelMileageMonomerMatch(TunnelMileageMonomerMatch tunnelMileageMonomerMatch) {
-		getTunnelMileageMonomerMatches().add(tunnelMileageMonomerMatch);
-		tunnelMileageMonomerMatch.setMonomerNoList(this);
-
-		return tunnelMileageMonomerMatch;
-	}
-
-	public TunnelMileageMonomerMatch removeTunnelMileageMonomerMatch(TunnelMileageMonomerMatch tunnelMileageMonomerMatch) {
-		getTunnelMileageMonomerMatches().remove(tunnelMileageMonomerMatch);
-		tunnelMileageMonomerMatch.setMonomerNoList(null);
-
-		return tunnelMileageMonomerMatch;
-	}
+//	public TFacilityInspSum addTFacilityInspSum(TFacilityInspSum TFacilityInspSum) {
+//		getTFacilityInspSums().add(TFacilityInspSum);
+//		TFacilityInspSum.setMonomerNoList(this);
+//
+//		return TFacilityInspSum;
+//	}
+//
+//	public TFacilityInspSum removeTFacilityInspSum(TFacilityInspSum TFacilityInspSum) {
+//		getTFacilityInspSums().remove(TFacilityInspSum);
+//		TFacilityInspSum.setMonomerNoList(null);
+//
+//		return TFacilityInspSum;
+//	}
+//
+//	public TunnelMileageMonomerMatch addTunnelMileageMonomerMatch(TunnelMileageMonomerMatch tunnelMileageMonomerMatch) {
+//		getTunnelMileageMonomerMatches().add(tunnelMileageMonomerMatch);
+//		tunnelMileageMonomerMatch.setMonomerNoList(this);
+//
+//		return tunnelMileageMonomerMatch;
+//	}
+//
+//	public TunnelMileageMonomerMatch removeTunnelMileageMonomerMatch(TunnelMileageMonomerMatch tunnelMileageMonomerMatch) {
+//		getTunnelMileageMonomerMatches().remove(tunnelMileageMonomerMatch);
+//		tunnelMileageMonomerMatch.setMonomerNoList(null);
+//
+//		return tunnelMileageMonomerMatch;
+//	}
 
 }

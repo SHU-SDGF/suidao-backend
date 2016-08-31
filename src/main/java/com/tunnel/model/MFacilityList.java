@@ -21,31 +21,31 @@ public class MFacilityList extends AbstractEntity {
 	private static final long serialVersionUID = 1L;
 
 	@Id
-	@Column(name = "Facility_No", columnDefinition = "char")
+	@Column(name = "Facility_No", columnDefinition = "nchar")
 	private String facilityNo;
 
 	@Temporal(TemporalType.DATE)
 	private Date completeDate;
 
-	@Column(name = "Contingency_Plan")
+	@Column(name = "Contingency_Plan", columnDefinition = "nvarchar2")
 	private String contingencyPlan;
 
 	@Column(name = "Facility_Importance", columnDefinition = "char")
 	private String facilityImportance;
 
-	@Column(name = "Facility_Name")
+	@Column(name = "Facility_Name", columnDefinition = "nvarchar2")
 	private String facilityName;
 
-	@Column(name = "remark")
+	@Column(name = "remark", columnDefinition="nvarchar2")
 	private String remark;
 
-	@Column(name = "subsidyDocument")
+	@Column(name = "subsidy_document", columnDefinition="nvarchar2")
 	private String subsidyDocument;
 
-	@Column(name = "Supplementary_Specification")
+	@Column(name = "Supplementary_Specification", columnDefinition="nvarchar2")
 	private String supplementarySpecification;
 
-	@Column(name = "Technical_Index")
+	@Column(name = "Technical_Index", columnDefinition="nvarchar2")
 	private String technicalIndex;
 
 	// bi-directional many-to-one association to TFacilityInspSum
