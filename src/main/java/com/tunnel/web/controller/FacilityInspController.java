@@ -14,8 +14,8 @@ public class FacilityInspController extends BaseController{
 	
 	private FacilityInspDetailRepo facilityInspDetailRepo;
 
-//	public Integer getMaxFacilityInspDetailId(){
-//		
-//	}
+	public long getMaxFacilityInspDetailId(){
+		return facilityInspDetailRepo.count();
+	}
 	
 }
