@@ -2,6 +2,9 @@ package com.tunnel.model;
 
 import javax.persistence.*;
 
+import org.hibernate.annotations.NotFound;
+import org.hibernate.annotations.NotFoundAction;
+
 import lombok.Getter;
 import lombok.Setter;
 
@@ -39,26 +42,31 @@ public class TFacilityInspSum extends AbstractEntity {
 	// bi-directional many-to-one association to MonomerNoList
 	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "MONOMER_NO")
+	@NotFound(action = NotFoundAction.IGNORE)
 	private MonomerNoList monomerNoList;
 
 	// bi-directional many-to-one association to MFacilityList
 	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "FACILITY_NO", columnDefinition = "char")
+	@NotFound(action = NotFoundAction.IGNORE)
 	private MFacilityList MFacilityList;
 
 	// bi-directional many-to-one association to FacilityTypeList
 	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "FACILITY_TYPE")
+	@NotFound(action = NotFoundAction.IGNORE)
 	private FacilityTypeList facilityTypeList;
 
 	// bi-directional many-to-one association to PosDespList
 	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "POS_DESP")
+	@NotFound(action = NotFoundAction.IGNORE)
 	private PosDespList posDespList;
 
 	// bi-directional many-to-one association to ModelNameList
 	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "MODEL_NAME")
+	@NotFound(action = NotFoundAction.IGNORE)
 	private ModelNameList modelNameList;
 
 //	// bi-directional many-to-one association to TMileageDiseaseMatch
