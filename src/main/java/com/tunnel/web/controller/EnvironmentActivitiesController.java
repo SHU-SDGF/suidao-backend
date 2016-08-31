@@ -49,7 +49,8 @@ public class EnvironmentActivitiesController extends BaseController {
 			@PageableDefault(value = 10, sort = { "id" }, direction = Direction.DESC) Pageable pageable) {
 		return environmentActitivitySummaryRepo.findAll(pageable).map(sum -> {
 			EnvironmentActivitiesSummaryVo sumVo = mapper.map(sum, EnvironmentActivitiesSummaryVo.class);
-			TSurrAct latestAct = environmentActivityRepo.findTopByActNoOrderByInspDateDesc(sumVo.getActNo());
+			TSurrAct latestAct = environmentActivityRepo.findTopByActNoOrderByInspDateDesc(sumVo.getActNo())
+					.orElseGet(() -> new TSurrAct());
 			Date inspDate = latestAct.getInspDate();
 			sumVo.setInspDate(inspDate);
 			String actStatus = latestAct.getActStatus();
@@ -57,11 +58,9 @@ public class EnvironmentActivitiesController extends BaseController {
 			return sumVo;
 		});
 	}
-	
+
 	/**
-	 * 根据id来找活动和活动历史
-	 * id是活动的id
-	 * 活动历史是最新的一条活动历史
+	 * 根据id来找活动和活动历史 id是活动的id 活动历史是最新的一条活动历史
 	 * 
 	 * @param id
 	 * @return
@@ -71,12 +70,13 @@ public class EnvironmentActivitiesController extends BaseController {
 	@ResponseBody
 	public EnvironmentActitivitySumAndDetailReqVo getEnvironmentActitivitySummaryById(@PathVariable("id") Integer id) {
 		TSurrActSum actSum = environmentActitivitySummaryRepo.findOne(id);
-		TSurrAct latestAct = environmentActivityRepo.findTopByActNoOrderByInspDateDesc(actSum.getActNo());
+		TSurrAct latestAct = environmentActivityRepo.findTopByActNoOrderByInspDateDesc(actSum.getActNo())
+				.orElseGet(() -> new TSurrAct());
 		EnvironmentActitivitySumAndDetailReqVo resp = new EnvironmentActitivitySumAndDetailReqVo();
-		
+
 		resp.setEnvironmentActitivitySummary(actSum);
 		resp.setEnvironmentActivity(latestAct);
-		
+
 		return resp;
 	}
 
@@ -103,7 +103,7 @@ public class EnvironmentActivitiesController extends BaseController {
 	@ResponseBody
 	public ResponseEntity<TSurrAct> createEnvironmentActivityDetail(@RequestBody TSurrAct environmentActivity) {
 		String recorder = environmentActivityRepo.findTopByActNoOrderByInspDateAsc(environmentActivity.getActNo())
-				.getRecorder();
+				.orElseGet(() -> new TSurrAct()).getRecorder();
 		environmentActivity.setRecorder(recorder);
 		return new ResponseEntity<>(environmentActivityRepo.save(environmentActivity), HttpStatus.OK);
 	}
