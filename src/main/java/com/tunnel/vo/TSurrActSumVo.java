@@ -10,7 +10,7 @@ import lombok.Setter;
 @Setter
 public class TSurrActSumVo {
 
-	private String id;
+	private long id;
 
 	private String actLevel;
 
