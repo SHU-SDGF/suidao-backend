@@ -56,6 +56,7 @@ public class EnvironmentActivitiesController extends BaseController {
 			sumVo.setInspDate(inspDate);
 			String actStatus = latestAct.getActStatus();
 			sumVo.setActStatus(actStatus);
+			sumVo.setLatestActId(latestAct.getId());
 			return sumVo;
 		});
 	}

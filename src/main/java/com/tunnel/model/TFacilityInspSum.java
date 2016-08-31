@@ -25,7 +25,7 @@ public class TFacilityInspSum extends AbstractEntity {
 
 	@Id
 	@Column(name = "DISEASE_NO")
-	private String diseaseNo;
+	private String id;
 	
 	private String mileage;
 
