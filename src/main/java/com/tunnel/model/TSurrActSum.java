@@ -27,7 +27,7 @@ public class TSurrActSum extends AbstractEntity {
 	@SequenceGenerator(name="T_SURR_ACT_SUM_ID_GENERATOR", sequenceName="SEQ_T_SURR_ACT_SUM")
 	@GeneratedValue(strategy=GenerationType.SEQUENCE, generator="T_SURR_ACT_SUM_ID_GENERATOR")
 	@Column(name = "ID", columnDefinition = "nvarchar2")
-	private String id;
+	private long id;
 
 	@Column(name = "ACT_LEVEL", columnDefinition = "nvarchar2")
 	private String actLevel;
