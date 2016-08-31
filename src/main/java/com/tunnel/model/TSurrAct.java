@@ -20,6 +20,8 @@ public class TSurrAct extends AbstractEntity {
 	private static final long serialVersionUID = 1L;
 
 	@Id
+	@SequenceGenerator(name="T_SURR_ACT_ID_GENERATOR", sequenceName="SEQ_T_SURR_ACT")
+	@GeneratedValue(strategy=GenerationType.SEQUENCE, generator="T_SURR_ACT_ID_GENERATOR")
 	@Column(name="ID", columnDefinition="nvarchar2")
 	private int id;
 
