@@ -55,11 +55,11 @@ public class EnvironmentActitivitySummaryServiceImp implements EnvironmentActiti
 		activitySummary.setActNo(actNo);
 
 		//周边环境
-		if (activitySummary.getTSurrInfo() == null || isBlank(activitySummary.getTSurrInfo().getSurroundNo())) {
-			activitySummary.setTSurrInfo(null);
-		} else {
-			activitySummary.setTSurrInfo(surrInfoRepo.getOne(activitySummary.getTSurrInfo().getSurroundNo()));
-		}
+//		if (activitySummary.getTSurrInfo() == null || isBlank(activitySummary.getTSurrInfo().getSurroundNo())) {
+//			activitySummary.setTSurrInfo(null);
+//		} else {
+//			activitySummary.setTSurrInfo(surrInfoRepo.getOne(activitySummary.getTSurrInfo().getSurroundNo()));
+//		}
 		
 		//删除标记
 		activitySummary.setDelFlg(false);

@@ -59,11 +59,11 @@ public class TSurrActSum extends AbstractEntity {
 	@Column(name = "TAG_ID", columnDefinition = "nvarchar2")
 	private String tagId;
 
-	// bi-directional many-to-one association to TSurrInfo
-	@ManyToOne(fetch = FetchType.LAZY)
-	@JoinColumn(name = "SURROUND_NO")
-	@NotFound(action = NotFoundAction.IGNORE)
-	private TSurrInfo TSurrInfo;
+//	// bi-directional many-to-one association to TSurrInfo
+//	@ManyToOne(fetch = FetchType.EAGER)
+//	@JoinColumn(name = "SURROUND_NO")
+//	@NotFound(action = NotFoundAction.IGNORE)
+//	private TSurrInfo TSurrInfo;
 
 	public TSurrActSum() {
 	}
