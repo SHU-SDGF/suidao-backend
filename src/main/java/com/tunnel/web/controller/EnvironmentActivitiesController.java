@@ -104,10 +104,11 @@ public class EnvironmentActivitiesController extends BaseController {
 	@RequestMapping(value = "/environment-activities/create", method = RequestMethod.POST)
 	@ResponseBody
 	public ResponseEntity<TSurrAct> createEnvironmentActivityDetail(@RequestBody TSurrAct environmentActivity) {
-		String recorder = environmentActivityRepo
+		TSurrAct oldestAct = environmentActivityRepo
 				.findTopByActNoAndDelFlgFalseOrderByInspDateAsc(environmentActivity.getActNo())
-				.orElseGet(() -> new TSurrAct()).getRecorder();
-		environmentActivity.setRecorder(recorder);
+				.orElseGet(() -> new TSurrAct());
+		environmentActivity.setRecorder(oldestAct.getRecorder());
+		environmentActivity.setActType(oldestAct.getActType());
 		return new ResponseEntity<>(environmentActivityRepo.save(environmentActivity), HttpStatus.OK);
 	}
 
