@@ -140,13 +140,4 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
             }
         }
     }
-
-    private static class AuthFailureHandler extends SimpleUrlAuthenticationFailureHandler {
-        @Override
-        public void onAuthenticationFailure(HttpServletRequest request, HttpServletResponse response,
-                                            AuthenticationException exception) throws IOException, ServletException {
-            response.setStatus(HttpServletResponse.SC_UNAUTHORIZED);
-            response.getWriter().println("{ \"message\": \"" + exception.getMessage() + "\" }");
-        }
-    }
 }

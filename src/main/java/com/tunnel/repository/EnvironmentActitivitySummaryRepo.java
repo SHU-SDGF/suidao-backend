@@ -12,4 +12,6 @@ public interface EnvironmentActitivitySummaryRepo extends JpaRepository<TSurrAct
 	public Page<TSurrActSum> findByDelFlgFalseAndLatitudeNotNull(Pageable page);
 	
 	public Optional<TSurrActSum> findByIdAndDelFlgFalseAndLatitudeNotNull(String id);
+	
+	public Optional<TSurrActSum> findByActNoAndDelFlgFalseAndLatitudeNotNull(String actNo);
 }

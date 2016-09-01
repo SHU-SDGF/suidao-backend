@@ -8,6 +8,7 @@ import com.tunnel.repository.EnvironmentActivityRepo;
 import com.tunnel.service.EnvironmentActitivitySummaryService;
 import com.tunnel.vo.EnvironmentActitivitySumAndDetailReqVo;
 import com.tunnel.vo.EnvironmentActivitiesSummaryVo;
+import com.tunnel.vo.EnvironmentActivitiesVo;
 
 import io.swagger.annotations.ApiOperation;
 
@@ -104,13 +105,22 @@ public class EnvironmentActivitiesController extends BaseController {
 	@ApiOperation("创建一条活动历史")
 	@RequestMapping(value = "/environment-activities/create", method = RequestMethod.POST)
 	@ResponseBody
-	public ResponseEntity<TSurrAct> createEnvironmentActivityDetail(@RequestBody TSurrAct environmentActivity) {
+	public ResponseEntity<EnvironmentActivitiesVo> createEnvironmentActivityDetail(
+			@RequestBody TSurrAct environmentActivity) {
+		TSurrActSum actSum = environmentActitivitySummaryRepo
+				.findByActNoAndDelFlgFalseAndLatitudeNotNull(environmentActivity.getActNo())
+				.orElseThrow(() -> new AppException("没有这个活动汇总记录 actNo"));
+
 		TSurrAct oldestAct = environmentActivityRepo
 				.findTopByActNoAndDelFlgFalseOrderByInspDateAsc(environmentActivity.getActNo())
 				.orElseGet(() -> new TSurrAct());
 		environmentActivity.setRecorder(oldestAct.getRecorder());
 		environmentActivity.setActType(oldestAct.getActType());
-		return new ResponseEntity<>(environmentActivityRepo.save(environmentActivity), HttpStatus.OK);
+
+		EnvironmentActivitiesVo resp = mapper.map(environmentActivityRepo.save(environmentActivity),
+				EnvironmentActivitiesVo.class);
+		resp.setActSumId(actSum.getId());
+		return new ResponseEntity<>(resp, HttpStatus.OK);
 	}
 
 	@ApiOperation("根据活动编码查询活动历史")
