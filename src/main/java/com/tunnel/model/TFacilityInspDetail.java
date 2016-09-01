@@ -4,7 +4,6 @@ import javax.persistence.*;
 
 import org.hibernate.annotations.NotFound;
 import org.hibernate.annotations.NotFoundAction;
-import org.springframework.data.annotation.CreatedBy;
 
 import lombok.Getter;
 import lombok.Setter;
