@@ -1,6 +1,7 @@
 package com.tunnel.model;
 
-import java.io.Serializable;
+import java.math.BigDecimal;
+
 import javax.persistence.*;
 
 import lombok.Getter;
@@ -13,36 +14,42 @@ import java.util.List;
  * 
  */
 @Entity
-@Table(name = "A_DISEASE_TYPE_LIST")
+@Table(name = "B_DISEASE_TYPE")
 @NamedQuery(name = "DiseaseTypeList.findAll", query = "SELECT d FROM DiseaseTypeList d")
 @Getter
 @Setter
-public class DiseaseTypeList implements Serializable {
+public class DiseaseTypeList extends AbstractEntity {
 	private static final long serialVersionUID = 1L;
 
 	@Id
-	@Column(name = "DISEASE_TYPE", columnDefinition="nvarchar2")
-	private String diseaseType;
+	@Column(name = "DISEASE_TYPE_NO", columnDefinition = "nvarchar2")
+	private String id;
 
-	// bi-directional many-to-one association to TFacilityInspDetail
-	@OneToMany(mappedBy = "diseaseTypeList", fetch = FetchType.LAZY)
-	private List<TFacilityInspDetail> TFacilityInspDetails;
+	@Column(name = "CAN_AREA")
+	private BigDecimal canArea;
+
+	@Column(name = "CAN_DEPTH")
+	private BigDecimal canDepth;
+
+	@Column(name = "CAN_DISLOCATION")
+	private BigDecimal canDislocation;
+
+	@Column(name = "CAN_JOINTOPEN")
+	private BigDecimal canJointopen;
+
+	@Column(name = "CAN_LENGTH")
+	private BigDecimal canLength;
+
+	@Column(name = "CAN_WIDTH")
+	private BigDecimal canWidth;
+
+	@Column(name = "DISEASE_TYPE_NAME", columnDefinition = "nvarchar2")
+	private String diseaseTypeName;
+
+	@Column(name = "PARENT_NO", columnDefinition = "nvarchar2")
+	private String parentNo;
 
 	public DiseaseTypeList() {
-	}
-
-	public TFacilityInspDetail addTFacilityInspDetail(TFacilityInspDetail TFacilityInspDetail) {
-		getTFacilityInspDetails().add(TFacilityInspDetail);
-		TFacilityInspDetail.setDiseaseTypeList(this);
-
-		return TFacilityInspDetail;
-	}
-
-	public TFacilityInspDetail removeTFacilityInspDetail(TFacilityInspDetail TFacilityInspDetail) {
-		getTFacilityInspDetails().remove(TFacilityInspDetail);
-		TFacilityInspDetail.setDiseaseTypeList(null);
-
-		return TFacilityInspDetail;
 	}
 
 }
