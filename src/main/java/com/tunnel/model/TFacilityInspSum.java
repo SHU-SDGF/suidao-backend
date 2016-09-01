@@ -9,7 +9,6 @@ import lombok.Getter;
 import lombok.Setter;
 
 import java.util.Date;
-import java.util.List;
 
 /**
  * The persistent class for the t_facility_insp_sum database table.
@@ -24,8 +23,12 @@ public class TFacilityInspSum extends AbstractEntity {
 	private static final long serialVersionUID = 1L;
 
 	@Id
+	@SequenceGenerator(name="T_FACILITY_INSP_SUM_ID_GENERATOR", sequenceName="SEQ_T_FACILITY_INSP_SUM")
+	@GeneratedValue(strategy=GenerationType.SEQUENCE, generator="T_FACILITY_INSP_SUM_ID_GENERATOR")
+	private long id;
+
 	@Column(name = "DISEASE_NO")
-	private String id;
+	private String diseaseNo;
 	
 	private String mileage;
 
@@ -51,11 +54,11 @@ public class TFacilityInspSum extends AbstractEntity {
 	@NotFound(action = NotFoundAction.IGNORE)
 	private MFacilityList MFacilityList;
 
-	// bi-directional many-to-one association to FacilityTypeList
+	// bi-directional many-to-one association to FacilityType
 	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "FACILITY_TYPE")
 	@NotFound(action = NotFoundAction.IGNORE)
-	private FacilityTypeList facilityTypeList;
+	private FacilityType facilityType;
 
 	// bi-directional many-to-one association to PosDespList
 	@ManyToOne(fetch = FetchType.LAZY)

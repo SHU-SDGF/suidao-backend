@@ -13,5 +13,8 @@ public interface FacilityInspDetailRepo extends JpaRepository<TFacilityInspDetai
 	@Query("SELECT COUNT(t) FROM TFacilityInspDetail t WHERE t.createDate > ?1")
 	Long selectCountSinceDate(Date sinceDate); 
 	
-	Stream<TFacilityInspDetail> findByCreateDateAfter(Date createDate); 
+	Stream<TFacilityInspDetail> findByCreateDateAfter(Date createDate);
+	
+	@Query("SELECT t FROM TFacilityInspDetail t WHERE t.createDate > ?1 and diseaseNo = ?2")
+	Stream<TFacilityInspDetail> findByDiseaseNoCreateDateAfter(Date createDate,String diseaseNo); 
 }

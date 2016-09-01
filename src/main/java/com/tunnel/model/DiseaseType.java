@@ -7,18 +7,17 @@ import javax.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
 
-import java.util.List;
 
 /**
- * The persistent class for the disease_type_list database table.
+ * The persistent class for the disease_type database table.
  * 
  */
 @Entity
 @Table(name = "B_DISEASE_TYPE")
-@NamedQuery(name = "DiseaseTypeList.findAll", query = "SELECT d FROM DiseaseTypeList d")
+@NamedQuery(name = "DiseaseType.findAll", query = "SELECT d FROM DiseaseType d")
 @Getter
 @Setter
-public class DiseaseTypeList extends AbstractEntity {
+public class DiseaseType extends AbstractEntity {
 	private static final long serialVersionUID = 1L;
 
 	@Id
@@ -49,7 +48,7 @@ public class DiseaseTypeList extends AbstractEntity {
 	@Column(name = "PARENT_NO", columnDefinition = "nvarchar2")
 	private String parentNo;
 
-	public DiseaseTypeList() {
+	public DiseaseType() {
 	}
 
 }

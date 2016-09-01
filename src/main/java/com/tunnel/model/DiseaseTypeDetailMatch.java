@@ -22,15 +22,15 @@
 //	@Column(name = "MATCH_ID")
 //	private int matchId;
 //
-//	// bi-directional many-to-one association to DetailTypeList
+//	// bi-directional many-to-one association to DetailType
 //	@ManyToOne(fetch = FetchType.LAZY)
 //	@JoinColumn(name = "DETAIL_TYPE")
-//	private DetailTypeList detailTypeList;
+//	private DetailType detailTypeList;
 //
-//	// bi-directional many-to-one association to DiseaseTypeList
+//	// bi-directional many-to-one association to DiseaseType
 //	@ManyToOne(fetch = FetchType.LAZY)
 //	@JoinColumn(name = "DISEASE_TYPE")
-//	private DiseaseTypeList diseaseTypeList;
+//	private DiseaseType diseaseTypeList;
 //
 //	public DiseaseTypeDetailMatch() {
 //	}

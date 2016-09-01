@@ -2,17 +2,19 @@ package com.tunnel.vo;
 
 import java.util.List;
 
-import com.tunnel.model.TFacilityInspDetail;
-import com.tunnel.model.TFacilityInspSum;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.annotation.JsonInclude;
 
 import lombok.Getter;
 import lombok.Setter;
 
 @Setter
 @Getter
+@JsonIgnoreProperties(ignoreUnknown = true)
+@JsonInclude(JsonInclude.Include.NON_NULL)
 public class FacilityInspVo {
 
-	private List<TFacilityInspDetail> facilityInspDetailList;
+	private List<TFacilityInspDetailVo> facilityInspDetailList;
 	
-	private List<TFacilityInspSum> facilityInspSumList;
+	private TFacilityInspSumVo facilityInspSum;
 }

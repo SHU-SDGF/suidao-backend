@@ -2,6 +2,7 @@ package com.tunnel.web.controller;
 
 import java.util.Calendar;
 import java.util.Date;
+import java.util.List;
 import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,7 +18,11 @@ import com.tunnel.model.TFacilityInspDetail;
 import com.tunnel.model.TFacilityInspSum;
 import com.tunnel.repository.FacilityInspDetailRepo;
 import com.tunnel.repository.TFacilityInspSumRepo;
+import com.tunnel.vo.FacilityInspRespVo;
 import com.tunnel.vo.FacilityInspVo;
+import com.tunnel.vo.FacilityInspVo2;
+import com.tunnel.vo.TFacilityInspDetailVo;
+import com.tunnel.vo.TFacilityInspSumVo;
 
 import io.swagger.annotations.ApiOperation;
 import lombok.extern.slf4j.Slf4j;
@@ -39,22 +44,49 @@ public class FacilityInspController extends BaseController {
 		return 1;// max id number
 	}
 
-	@ApiOperation("列出2年内地下巡检详细信息以及汇总信息")
-	@RequestMapping(value = "/facility-insp/list", method = RequestMethod.GET)
-	public FacilityInspVo listFacilityInsp() {
+	@ApiOperation("返回前台2年内地下巡检详细信息以及汇总信息")
+	@RequestMapping(value = "/facility-insp/download", method = RequestMethod.GET)
+	public List<FacilityInspVo> downloadFacilityInsp() {
 		log.info("enter listFacilityInsp...");
-		FacilityInspVo result = new FacilityInspVo();
 
 		Calendar cal = Calendar.getInstance();
-		cal.add(Calendar.YEAR, -2);//2年前
-//		cal.add(Calendar.MONTH, -6);// 半年前
+		cal.add(Calendar.YEAR, -2);// 2年前
+		// cal.add(Calendar.MONTH, -6);// 半年前
 		Date sinceDate = cal.getTime();
 
-		result.setFacilityInspDetailList(
-				facilityInspDetailRepo.findByCreateDateAfter(sinceDate).collect(Collectors.toList()));
-		result.setFacilityInspSumList(
-				facilityInspSumRepo.findByCreateDateAfter(sinceDate).collect(Collectors.toList()));
+		return facilityInspSumRepo.findByCreateDateAfter(sinceDate).map(e -> {
+			FacilityInspVo resp = new FacilityInspVo();
+			resp.setFacilityInspSum(mapper.map(e, TFacilityInspSumVo.class));
+			resp.setFacilityInspDetailList(
+					facilityInspDetailRepo.findByDiseaseNoCreateDateAfter(sinceDate, e.getDiseaseNo())
+							.map(d -> mapper.map(d, TFacilityInspDetailVo.class)).collect(Collectors.toList()));
+			return resp;
+		}).collect(Collectors.toList());
+	}
+
+	@ApiOperation("返回前台2年内地下巡检详细信息以及汇总信息, 第二种数据返回格式")
+	@RequestMapping(value = "/facility-insp/download2", method = RequestMethod.GET)
+	public FacilityInspVo2 downloadFacilityInsp2() {
+		log.info("enter listFacilityInsp...");
+		FacilityInspVo2 result = new FacilityInspVo2();
+		Calendar cal = Calendar.getInstance();
+		cal.add(Calendar.YEAR, -2);// 2年前
+		// cal.add(Calendar.MONTH, -6);// 半年前
+		Date sinceDate = cal.getTime();
+
+		result.setFacilityInspDetailList(facilityInspDetailRepo.findByCreateDateAfter(sinceDate)
+				.map(d -> mapper.map(d, TFacilityInspDetailVo.class)).collect(Collectors.toList()));
+		result.setFacilityInspSumList(facilityInspSumRepo.findByCreateDateAfter(sinceDate)
+				.map(s -> mapper.map(s, TFacilityInspSumVo.class)).collect(Collectors.toList()));
 		return result;
+	}
+
+	@ApiOperation("处理前台上传的地下巡检详细信息以及汇总信息")
+	@RequestMapping(value = "/facility-insp/upload", method = RequestMethod.POST)
+	public List<FacilityInspRespVo> uploadFacilityInsp() {
+		log.info("enter uploadFacilityInsp...");
+
+		return null;
 	}
 
 	@ApiOperation("列出一页地下巡检详细信息")

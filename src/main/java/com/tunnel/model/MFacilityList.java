@@ -36,37 +36,19 @@ public class MFacilityList extends AbstractEntity {
 	@Column(name = "Facility_Name", columnDefinition = "nvarchar2")
 	private String facilityName;
 
-	@Column(name = "remark", columnDefinition="nvarchar2")
+	@Column(name = "remark", columnDefinition = "nvarchar2")
 	private String remark;
 
-	@Column(name = "subsidy_document", columnDefinition="nvarchar2")
+	@Column(name = "subsidy_document", columnDefinition = "nvarchar2")
 	private String subsidyDocument;
 
-	@Column(name = "Supplementary_Specification", columnDefinition="nvarchar2")
+	@Column(name = "Supplementary_Specification", columnDefinition = "nvarchar2")
 	private String supplementarySpecification;
 
-	@Column(name = "Technical_Index", columnDefinition="nvarchar2")
+	@Column(name = "Technical_Index", columnDefinition = "nvarchar2")
 	private String technicalIndex;
 
-	// bi-directional many-to-one association to TFacilityInspSum
-	@OneToMany(mappedBy = "MFacilityList", fetch = FetchType.LAZY)
-	private List<TFacilityInspSum> TFacilityInspSums;
-
 	public MFacilityList() {
-	}
-
-	public TFacilityInspSum addTFacilityInspSum(TFacilityInspSum TFacilityInspSum) {
-		getTFacilityInspSums().add(TFacilityInspSum);
-		TFacilityInspSum.setMFacilityList(this);
-
-		return TFacilityInspSum;
-	}
-
-	public TFacilityInspSum removeTFacilityInspSum(TFacilityInspSum TFacilityInspSum) {
-		getTFacilityInspSums().remove(TFacilityInspSum);
-		TFacilityInspSum.setMFacilityList(null);
-
-		return TFacilityInspSum;
 	}
 
 }

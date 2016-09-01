@@ -24,7 +24,9 @@ public class TFacilityInspDetail extends AbstractEntity {
 	private static final long serialVersionUID = 1L;
 
 	@Id
-	private int id;
+	@SequenceGenerator(name="T_FACILITY_INSP_DETAIL_ID_GENERATOR", sequenceName="SEQ_T_FACILITY_INSP_DETAIL")
+	@GeneratedValue(strategy=GenerationType.SEQUENCE, generator="T_FACILITY_INSP_DETAIL_ID_GENERATOR")
+	private long id;
 
 	private BigDecimal area;
 
@@ -54,17 +56,17 @@ public class TFacilityInspDetail extends AbstractEntity {
 
 	private BigDecimal width;
 
-	// bi-directional many-to-one association to DiseaseTypeList
+	// bi-directional many-to-one association to DiseaseType
 	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "DISEASE_TYPE", referencedColumnName="DISEASE_TYPE_NO")
 	@NotFound(action = NotFoundAction.IGNORE)
-	private DiseaseTypeList diseaseTypeList;
+	private DiseaseType diseaseType;
 
-	// bi-directional many-to-one association to DetailTypeList
+	// bi-directional many-to-one association to DetailType
 	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "DETAIL_TYPE")
 	@NotFound(action = NotFoundAction.IGNORE)
-	private DetailTypeList detailTypeList;
+	private DetailType detailType;
 
 	public TFacilityInspDetail() {
 	}
