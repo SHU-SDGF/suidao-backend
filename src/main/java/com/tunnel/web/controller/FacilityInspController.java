@@ -101,8 +101,10 @@ public class FacilityInspController extends BaseController {
 			TFacilityInspSumRespVo respSum = new TFacilityInspSumRespVo();
 			if (sum.isNewCreated()) {
 				try {
-					TFacilityInspSum savedEntity = facilityInspSumRepo.save(mapper.map(sum, TFacilityInspSum.class));
-					respSum = mapper.map(savedEntity, TFacilityInspSumRespVo.class);
+					TFacilityInspSum sumEntity = mapper.map(sum, TFacilityInspSum.class);
+					sumEntity.setId(0);
+					sumEntity = facilityInspSumRepo.save(sumEntity);
+					respSum = mapper.map(sumEntity, TFacilityInspSumRespVo.class);
 					respSum.setSuccess(true);
 				} catch (Exception e) {
 					respSum = mapper.map(sum, TFacilityInspSumRespVo.class);
@@ -122,8 +124,9 @@ public class FacilityInspController extends BaseController {
 				TFacilityInspDetailRespVo detailRespVo = new TFacilityInspDetailRespVo();
 				if (detail.isNewCreated()) {
 					try {
-						TFacilityInspDetail detailEntity = facilityInspDetailRepo
-								.save(mapper.map(detail, TFacilityInspDetail.class));
+						TFacilityInspDetail detailEntity = mapper.map(detail, TFacilityInspDetail.class);
+						detailEntity.setId(0);
+						detailEntity = facilityInspDetailRepo.save(detailEntity);
 						detailRespVo = mapper.map(detailEntity, TFacilityInspDetailRespVo.class);
 						detailRespVo.setSuccess(true);
 					} catch (Exception e) {
