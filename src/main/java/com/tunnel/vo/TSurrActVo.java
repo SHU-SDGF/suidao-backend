@@ -11,7 +11,7 @@ import lombok.Setter;
 @Setter
 @JsonIgnoreProperties(ignoreUnknown = true)
 @JsonInclude(JsonInclude.Include.NON_NULL)
-public class TSurrActVo {
+public class TSurrActVo extends BaseVo{
 
 	private int id;
 

@@ -1,6 +1,5 @@
 package com.tunnel.web.controller;
 
-import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -26,6 +25,7 @@ import com.tunnel.vo.TFacilityInspSumVo;
 
 import io.swagger.annotations.ApiOperation;
 import lombok.extern.slf4j.Slf4j;
+import org.joda.time.DateTime;
 
 @RestController
 @Slf4j
@@ -38,21 +38,30 @@ public class FacilityInspController extends BaseController {
 	@Autowired
 	private TFacilityInspSumRepo facilityInspSumRepo;
 
-	@ApiOperation("给出当前巡检表数据最大ID值")
-	@RequestMapping(value = "/facility-insp/getMaxFacilityInspDetailId", method = RequestMethod.GET)
-	public long getMaxFacilityInspDetailId() {
-		return 1;// max id number
+	@ApiOperation("给出今天的巡查活动总数，用于病害编号的后三位流水号， 病害编号diseaseNo=巡检日期（8位）+流水号（3位）")
+	@RequestMapping(value = "/facility-insp/getCountOfToday", method = RequestMethod.GET)
+	public long getCountOfToday() {
+		return facilityInspSumRepo.countByCreateDateAfter(new DateTime().withTimeAtStartOfDay().toDate());
 	}
+
+	// public static void main(String args[]) {
+	// System.out.println(new Date());
+	// DateTime st = new DateTime();
+	// Calendar cal = Calendar.getInstance();
+	// cal.add(Calendar.DATE, -1);
+	// System.out.println(cal.getTime());
+	//
+	// System.out.println(st.withTimeAtStartOfDay().toDate());
+	//
+	// System.out.println(st.minusMonths(6).toDate());
+	// }
 
 	@ApiOperation("返回前台2年内地下巡检详细信息以及汇总信息")
 	@RequestMapping(value = "/facility-insp/download", method = RequestMethod.GET)
 	public List<FacilityInspVo> downloadFacilityInsp() {
 		log.info("enter listFacilityInsp...");
 
-		Calendar cal = Calendar.getInstance();
-		cal.add(Calendar.YEAR, -2);// 2年前
-		// cal.add(Calendar.MONTH, -6);// 半年前
-		Date sinceDate = cal.getTime();
+		Date sinceDate = new DateTime().minusYears(2).toDate();
 
 		return facilityInspSumRepo.findByCreateDateAfter(sinceDate).map(e -> {
 			FacilityInspVo resp = new FacilityInspVo();
@@ -69,10 +78,8 @@ public class FacilityInspController extends BaseController {
 	public FacilityInspVo2 downloadFacilityInsp2() {
 		log.info("enter listFacilityInsp...");
 		FacilityInspVo2 result = new FacilityInspVo2();
-		Calendar cal = Calendar.getInstance();
-		cal.add(Calendar.YEAR, -2);// 2年前
-		// cal.add(Calendar.MONTH, -6);// 半年前
-		Date sinceDate = cal.getTime();
+
+		Date sinceDate = new DateTime().minusYears(2).toDate();
 
 		result.setFacilityInspDetailList(facilityInspDetailRepo.findByCreateDateAfter(sinceDate)
 				.map(d -> mapper.map(d, TFacilityInspDetailVo.class)).collect(Collectors.toList()));

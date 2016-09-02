@@ -12,7 +12,7 @@ import lombok.Setter;
 @Setter
 @JsonIgnoreProperties(ignoreUnknown = true)
 @JsonInclude(JsonInclude.Include.NON_NULL)
-public class TSurrActSumVo {
+public class TSurrActSumVo extends BaseVo{
 
 	private long id;
 

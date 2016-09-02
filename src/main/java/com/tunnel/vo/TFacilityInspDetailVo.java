@@ -13,7 +13,7 @@ import lombok.Setter;
 @Getter
 @JsonIgnoreProperties(ignoreUnknown = true)
 @JsonInclude(JsonInclude.Include.NON_NULL)
-public class TFacilityInspDetailVo {
+public class TFacilityInspDetailVo extends BaseVo{
 	
 	private int id;
 

@@ -11,9 +11,11 @@ import lombok.Setter;
 @Getter
 @JsonIgnoreProperties(ignoreUnknown = true)
 @JsonInclude(JsonInclude.Include.NON_NULL)
-public class TFacilityInspSumVo {
+public class TFacilityInspSumVo extends BaseVo{
 	private String id;
 
+	private String diseaseNo;
+	
 	private String mileage;
 
 	private Date diseaseDate;

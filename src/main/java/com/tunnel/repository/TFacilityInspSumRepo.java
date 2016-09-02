@@ -11,4 +11,6 @@ public interface TFacilityInspSumRepo extends JpaRepository<TFacilityInspSum, St
 	
 	Stream<TFacilityInspSum> findByCreateDateAfter(Date createDate);
 	
+	long countByCreateDateAfter(Date createDate);
+	
 }
