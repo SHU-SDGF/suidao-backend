@@ -1,8 +1,9 @@
-package com.tunnel.vo;
+package com.tunnel.vo.facilityInsp.resp;
+
+import java.util.List;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonInclude;
-import com.tunnel.vo.surrAct.TSurrActVo;
 
 import lombok.Getter;
 import lombok.Setter;
@@ -11,7 +12,10 @@ import lombok.Setter;
 @Getter
 @JsonIgnoreProperties(ignoreUnknown = true)
 @JsonInclude(JsonInclude.Include.NON_NULL)
-public class EnvironmentActivitiesVo extends TSurrActVo{
+public class FacilityInspRespVo {
 
-	private long actSumId;
+	private List<TFacilityInspDetailRespVo> facilityInspDetailRespList;
+
+	private TFacilityInspSumRespVo facilityInspRespSum;
+
 }

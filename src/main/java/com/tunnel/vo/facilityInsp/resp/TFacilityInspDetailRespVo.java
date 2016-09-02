@@ -1,6 +1,4 @@
-package com.tunnel.vo;
-
-import java.util.List;
+package com.tunnel.vo.facilityInsp.resp;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonInclude;
@@ -12,8 +10,17 @@ import lombok.Setter;
 @Getter
 @JsonIgnoreProperties(ignoreUnknown = true)
 @JsonInclude(JsonInclude.Include.NON_NULL)
-public class FacilityInspVo2 {
-	private List<TFacilityInspDetailVo> facilityInspDetailList;
+public class TFacilityInspDetailRespVo {
+
+	private int id;
 	
-	private List<TFacilityInspSumVo> facilityInspSumList;
+	private boolean success;
+	
+	private String message;
+
+	private String diseaseNo;
+
+	private String photo;
+
+	boolean isNewCreated;
 }

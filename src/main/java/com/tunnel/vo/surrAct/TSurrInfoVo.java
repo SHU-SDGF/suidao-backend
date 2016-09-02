@@ -1,4 +1,4 @@
-package com.tunnel.vo;
+package com.tunnel.vo.surrAct;
 
 import java.math.BigDecimal;
 import java.util.Date;

@@ -4,6 +4,7 @@ import java.util.Date;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonInclude;
+import com.tunnel.vo.surrAct.TSurrActSumVo;
 
 import lombok.Getter;
 import lombok.Setter;
