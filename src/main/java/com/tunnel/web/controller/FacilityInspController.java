@@ -5,10 +5,6 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.domain.Page;
-import org.springframework.data.domain.Pageable;
-import org.springframework.data.domain.Sort.Direction;
-import org.springframework.data.web.PageableDefault;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -149,17 +145,17 @@ public class FacilityInspController extends BaseController {
 		}).collect(Collectors.toList());
 	}
 
-	@ApiOperation("列出一页地下巡检详细信息")
-	@RequestMapping(value = "/facility-insp-detail/list", method = RequestMethod.GET)
-	public Page<TFacilityInspDetail> getFacilityInspDetailPage(
-			@PageableDefault(value = 10, sort = { "id" }, direction = Direction.DESC) Pageable pageable) {
-		return facilityInspDetailRepo.findAll(pageable);
-	}
-
-	@ApiOperation("列出一页地下巡检汇总信息")
-	@RequestMapping(value = "/facility-insp-summary/list", method = RequestMethod.GET)
-	public Page<TFacilityInspSum> getFacilityInspSumPage(
-			@PageableDefault(value = 10, sort = { "id" }, direction = Direction.DESC) Pageable pageable) {
-		return facilityInspSumRepo.findAll(pageable);
-	}
+//	@ApiOperation("列出一页地下巡检详细信息")
+//	@RequestMapping(value = "/facility-insp-detail/list", method = RequestMethod.GET)
+//	public Page<TFacilityInspDetail> getFacilityInspDetailPage(
+//			@PageableDefault(value = 10, sort = { "id" }, direction = Direction.DESC) Pageable pageable) {
+//		return facilityInspDetailRepo.findAll(pageable);
+//	}
+//
+//	@ApiOperation("列出一页地下巡检汇总信息")
+//	@RequestMapping(value = "/facility-insp-summary/list", method = RequestMethod.GET)
+//	public Page<TFacilityInspSum> getFacilityInspSumPage(
+//			@PageableDefault(value = 10, sort = { "id" }, direction = Direction.DESC) Pageable pageable) {
+//		return facilityInspSumRepo.findAll(pageable);
+//	}
 }
