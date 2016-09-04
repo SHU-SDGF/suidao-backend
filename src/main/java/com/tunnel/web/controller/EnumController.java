@@ -50,7 +50,7 @@ public class EnumController extends BaseController {
 	@ResponseBody
 	public WholeEnumTypeVo listWholeEnumType() {
 		return WholeEnumTypeVo.builder()
-				.diseaseTypeList(diseaseTypeRepo.findAll().stream().map(e -> mapper.map(e, DiseaseTypeVo.class))
+				.diseaseTypeList(diseaseTypeRepo.findByParentIsNull().map(e -> mapper.map(e, DiseaseTypeVo.class))
 						.collect(Collectors.toList()))
 				.diseaseTypeTreeVoList(diseaseTypeRepo.findByParentIsNull()
 						.map(e -> mapper.map(e, DiseaseTypeTreeVo.class)).collect(Collectors.toList()))
