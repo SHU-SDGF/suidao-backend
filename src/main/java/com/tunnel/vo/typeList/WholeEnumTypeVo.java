@@ -6,6 +6,7 @@ import java.util.List;
 import com.tunnel.model.FacilityType;
 import com.tunnel.model.MFacilityList;
 import com.tunnel.model.ModelNameList;
+import com.tunnel.model.MonomerNoList;
 import com.tunnel.model.PosDespList;
 
 import lombok.AllArgsConstructor;
@@ -36,4 +37,7 @@ public class WholeEnumTypeVo {
 	
 	//位置描述列表
 	private List<PosDespList> posDespList;
+	
+	//单体名称枚举
+	private List<MonomerNoList> monomerNoList;
 }
