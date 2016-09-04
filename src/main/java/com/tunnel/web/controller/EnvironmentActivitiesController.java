@@ -29,6 +29,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import lombok.extern.slf4j.Slf4j;
+import static org.apache.commons.lang3.StringUtils.isBlank;
 
 @RestController
 @Slf4j
@@ -114,7 +115,9 @@ public class EnvironmentActivitiesController extends BaseController {
 		TSurrAct oldestAct = environmentActivityRepo
 				.findTopByActNoAndDelFlgFalseOrderByInspDateAsc(environmentActivity.getActNo())
 				.orElseGet(() -> new TSurrAct());
-		environmentActivity.setRecorder(oldestAct.getRecorder());
+		if(isBlank(environmentActivity.getRecorder())){
+			environmentActivity.setRecorder(oldestAct.getRecorder());
+		}
 		environmentActivity.setActType(oldestAct.getActType());
 
 		EnvironmentActivitiesVo resp = mapper.map(environmentActivityRepo.save(environmentActivity),
