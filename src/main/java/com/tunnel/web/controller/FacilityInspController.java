@@ -102,7 +102,6 @@ public class FacilityInspController extends BaseController {
 			if (sum.isNewCreated()) {
 				try {
 					TFacilityInspSum sumEntity = mapper.map(sum, TFacilityInspSum.class);
-					sumEntity.setId(0);
 					sumEntity = facilityInspSumRepo.save(sumEntity);
 					respSum = mapper.map(sumEntity, TFacilityInspSumRespVo.class);
 					respSum.setSuccess(true);

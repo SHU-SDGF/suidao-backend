@@ -15,18 +15,19 @@ import java.util.Date;
  * 
  */
 @Entity
-@Table(name = "t_facility_insp_sum")
+@Table(name = "t_facility_insp")
 @NamedQuery(name = "TFacilityInspSum.findAll", query = "SELECT t FROM TFacilityInspSum t")
 @Getter
 @Setter
 public class TFacilityInspSum extends AbstractEntity {
 	private static final long serialVersionUID = 1L;
 
-	@Id
-	@SequenceGenerator(name="T_FACILITY_INSP_SUM_ID_GENERATOR", sequenceName="SEQ_T_FACILITY_INSP_SUM")
-	@GeneratedValue(strategy=GenerationType.SEQUENCE, generator="T_FACILITY_INSP_SUM_ID_GENERATOR")
-	private long id;
+//	@Id
+//	@SequenceGenerator(name="T_FACILITY_INSP_SUM_ID_GENERATOR", sequenceName="SEQ_T_FACILITY_INSP_SUM")
+//	@GeneratedValue(strategy=GenerationType.SEQUENCE, generator="T_FACILITY_INSP_SUM_ID_GENERATOR")
+//	private long id;
 
+	@Id
 	@Column(name = "DISEASE_NO")
 	private String diseaseNo;
 	
@@ -50,7 +51,7 @@ public class TFacilityInspSum extends AbstractEntity {
 
 	// bi-directional many-to-one association to MFacilityList
 	@ManyToOne(fetch = FetchType.LAZY)
-	@JoinColumn(name = "FACILITY_NO", columnDefinition = "char")
+	@JoinColumn(name = "FACILITY_NO", columnDefinition = "nchar")
 	@NotFound(action = NotFoundAction.IGNORE)
 	private MFacilityList MFacilityList;
 
