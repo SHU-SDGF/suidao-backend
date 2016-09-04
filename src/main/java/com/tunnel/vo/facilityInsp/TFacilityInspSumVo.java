@@ -43,6 +43,7 @@ public class TFacilityInspSumVo extends BaseVo{
 @JsonIgnoreProperties(ignoreUnknown = true)
 @JsonInclude(JsonInclude.Include.NON_NULL)
 class ModelNameListVo {
+	private String id;
 	private String modelName;
 }
 
@@ -51,6 +52,7 @@ class ModelNameListVo {
 @JsonIgnoreProperties(ignoreUnknown = true)
 @JsonInclude(JsonInclude.Include.NON_NULL)
 class PosDespListVo {
+	private String id;
 	private String posDesp;
 }
 

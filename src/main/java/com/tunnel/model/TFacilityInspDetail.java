@@ -64,9 +64,9 @@ public class TFacilityInspDetail extends AbstractEntity {
 
 	// bi-directional many-to-one association to DetailType
 	@ManyToOne(fetch = FetchType.LAZY)
-	@JoinColumn(name = "DETAIL_TYPE")
+	@JoinColumn(name = "DETAIL_TYPE", referencedColumnName="DISEASE_TYPE_NO")
 	@NotFound(action = NotFoundAction.IGNORE)
-	private DetailType detailType;
+	private DiseaseType detailType;
 
 	public TFacilityInspDetail() {
 	}

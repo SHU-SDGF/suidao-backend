@@ -63,13 +63,13 @@ public class TFacilityInspSum extends AbstractEntity {
 
 	// bi-directional many-to-one association to PosDespList
 	@ManyToOne(fetch = FetchType.LAZY)
-	@JoinColumn(name = "POS_DESP")
+	@JoinColumn(name = "POS_DESP", referencedColumnName="POS_DESP_ID")
 	@NotFound(action = NotFoundAction.IGNORE)
 	private PosDespList posDespList;
 
 	// bi-directional many-to-one association to ModelNameList
 	@ManyToOne(fetch = FetchType.LAZY)
-	@JoinColumn(name = "MODEL_NAME")
+	@JoinColumn(name = "MODEL_NAME", referencedColumnName="MODEL_ID")
 	@NotFound(action = NotFoundAction.IGNORE)
 	private ModelNameList modelNameList;
 

@@ -20,6 +20,9 @@ public class PosDespList implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	@Id
+	@Column(name="POS_DESP_ID")
+	private String id;
+	
 	@Column(name="POS_DESP")
 	private String posDesp;
 
