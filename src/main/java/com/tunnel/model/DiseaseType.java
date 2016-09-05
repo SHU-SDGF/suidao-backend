@@ -2,8 +2,6 @@ package com.tunnel.model;
 
 import java.math.BigDecimal;
 import java.util.HashSet;
-import java.util.LinkedList;
-import java.util.List;
 import java.util.Set;
 
 import javax.persistence.*;
@@ -17,7 +15,7 @@ import lombok.Setter;
  * 
  */
 @Entity
-@Table(name = "B_DISEASE_TYPE")
+@Table(name = "A_DISEASE_TYPE")
 @NamedQuery(name = "DiseaseType.findAll", query = "SELECT d FROM DiseaseType d")
 @Getter
 @Setter
