@@ -79,5 +79,6 @@ class MFacilityListVo {
 @JsonIgnoreProperties(ignoreUnknown = true)
 @JsonInclude(JsonInclude.Include.NON_NULL)
 class FacilityTypeVo {
+	private String id;
 	private String facilityType;
 }

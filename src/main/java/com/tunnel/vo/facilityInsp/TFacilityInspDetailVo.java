@@ -16,7 +16,7 @@ import lombok.Setter;
 @JsonInclude(JsonInclude.Include.NON_NULL)
 public class TFacilityInspDetailVo extends BaseVo{
 	
-	private int id;
+	private long id;
 
 	private BigDecimal area;
 
@@ -42,7 +42,7 @@ public class TFacilityInspDetailVo extends BaseVo{
 
 	private DiseaseTypeVo diseaseType;
 
-	private DetailTypeVo detailType;
+	private DiseaseTypeVo detailType;
 	
 	boolean isNewCreated;
 }
@@ -53,12 +53,4 @@ public class TFacilityInspDetailVo extends BaseVo{
 @JsonInclude(JsonInclude.Include.NON_NULL)
 class DiseaseTypeVo {
 	private String id;
-}
-
-@Setter
-@Getter
-@JsonIgnoreProperties(ignoreUnknown = true)
-@JsonInclude(JsonInclude.Include.NON_NULL)
-class DetailTypeVo {
-	private String detailType;
 }
