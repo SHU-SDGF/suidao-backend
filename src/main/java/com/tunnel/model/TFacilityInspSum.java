@@ -42,6 +42,12 @@ public class TFacilityInspSum extends AbstractEntity {
 
 	@Column(name = "TAG_ID")
 	private String tagId;
+	
+	@Column(name="DATA_SOURCE")
+	private String dataSource = "M";
+	
+	@Column(name="IS_NEED_REPAIR" , columnDefinition = "char")
+	private boolean isNeedRepair;
 
 	// bi-directional many-to-one association to MonomerNoList
 	@ManyToOne(fetch = FetchType.LAZY)

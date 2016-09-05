@@ -12,7 +12,13 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.tunnel.model.TFacilityInspDetail;
 import com.tunnel.model.TFacilityInspSum;
+import com.tunnel.repository.DiseaseTypeRepo;
 import com.tunnel.repository.FacilityInspDetailRepo;
+import com.tunnel.repository.FacilityTypeRepo;
+import com.tunnel.repository.MFacilityListRepo;
+import com.tunnel.repository.ModelNameListRepo;
+import com.tunnel.repository.MonomerNoListRepo;
+import com.tunnel.repository.PosDespListRepo;
 import com.tunnel.repository.TFacilityInspSumRepo;
 import com.tunnel.vo.facilityInsp.FacilityInspVo;
 import com.tunnel.vo.facilityInsp.TFacilityInspDetailVo;
@@ -24,6 +30,7 @@ import com.tunnel.vo.facilityInsp.resp.TFacilityInspSumRespVo;
 import io.swagger.annotations.ApiOperation;
 import lombok.extern.slf4j.Slf4j;
 import org.joda.time.DateTime;
+import static org.apache.commons.lang3.StringUtils.isNotBlank;
 
 @RestController
 @Slf4j
@@ -35,6 +42,87 @@ public class FacilityInspController extends BaseController {
 
 	@Autowired
 	private TFacilityInspSumRepo facilityInspSumRepo;
+
+	@Autowired
+	private MonomerNoListRepo monomerNoListRepo;
+
+	@Autowired
+	private MFacilityListRepo facilityListRepo;
+
+	@Autowired
+	private FacilityTypeRepo facilityTypeRepo;
+
+	@Autowired
+	private PosDespListRepo posDespListRepo;
+
+	@Autowired
+	private ModelNameListRepo modelNameListRepo;
+	
+	@Autowired
+	private DiseaseTypeRepo diseaseTypeRepo;
+
+	private TFacilityInspDetail saveFacilityInspDetail(TFacilityInspDetail detailEntity) {
+		String id = "";
+
+		id = detailEntity.getDetailType().getId();
+		if (detailEntity.getDetailType() != null && isNotBlank(id)) {
+			detailEntity.setDetailType(diseaseTypeRepo.findById(id).orElse(null));
+		}else{
+			detailEntity.setDetailType(null);
+		}
+		
+		id = detailEntity.getDiseaseType().getId();
+		if (detailEntity.getDiseaseType() != null && isNotBlank(id)) {
+			detailEntity.setDiseaseType(diseaseTypeRepo.findById(id).orElse(null));
+		}else{
+			detailEntity.setDiseaseType(null);
+		}
+		
+		detailEntity = facilityInspDetailRepo.save(detailEntity);
+		return detailEntity;
+	}
+
+	private TFacilityInspSum saveFacilityInspSum(TFacilityInspSum sumEntity) {
+		String id = "";
+
+		id = sumEntity.getMonomerNoList().getMonomerNo();
+		if (sumEntity.getMonomerNoList() != null && isNotBlank(id)) {
+			sumEntity.setMonomerNoList(monomerNoListRepo.findByMonomerNo(id).orElse(null));
+		} else {
+			sumEntity.setMonomerNoList(null);
+		}
+
+		id = sumEntity.getMFacilityList().getFacilityNo();
+		if (sumEntity.getMFacilityList() != null && isNotBlank(id)) {
+			sumEntity.setMFacilityList(facilityListRepo.findByFacilityNo(id).orElse(null));
+		} else {
+			sumEntity.setMFacilityList(null);
+		}
+
+		id = sumEntity.getFacilityType().getId();
+		if (sumEntity.getFacilityType() != null && isNotBlank(id)) {
+			sumEntity.setFacilityType(facilityTypeRepo.findById(id).orElse(null));
+		} else {
+			sumEntity.setFacilityType(null);
+		}
+
+		id = sumEntity.getPosDespList().getId();
+		if (sumEntity.getPosDespList() != null && isNotBlank(id)) {
+			sumEntity.setPosDespList(posDespListRepo.findById(id).orElse(null));
+		} else {
+			sumEntity.setPosDespList(null);
+		}
+
+		id = sumEntity.getModelNameList().getId();
+		if (sumEntity.getModelNameList() != null && isNotBlank(id)) {
+			sumEntity.setModelNameList(modelNameListRepo.findById(id).orElse(null));
+		} else {
+			sumEntity.setModelNameList(null);
+		}
+
+		sumEntity = facilityInspSumRepo.save(sumEntity);
+		return sumEntity;
+	}
 
 	@ApiOperation("给出今天的巡查活动总数，用于病害编号的后三位流水号， 病害编号diseaseNo=巡检日期（8位）+流水号（3位）")
 	@RequestMapping(value = "/facility-insp/getCountOfToday", method = RequestMethod.GET)
@@ -102,10 +190,11 @@ public class FacilityInspController extends BaseController {
 			if (sum.isNewCreated()) {
 				try {
 					TFacilityInspSum sumEntity = mapper.map(sum, TFacilityInspSum.class);
-					sumEntity = facilityInspSumRepo.save(sumEntity);
+					sumEntity = saveFacilityInspSum(sumEntity);
 					respSum = mapper.map(sumEntity, TFacilityInspSumRespVo.class);
 					respSum.setSuccess(true);
 				} catch (Exception e) {
+					log.error("error saving facility insp sum", e);
 					respSum = mapper.map(sum, TFacilityInspSumRespVo.class);
 					respSum.setSuccess(false);
 					respSum.setMessage(e.getMessage());
@@ -125,12 +214,13 @@ public class FacilityInspController extends BaseController {
 					try {
 						TFacilityInspDetail detailEntity = mapper.map(detail, TFacilityInspDetail.class);
 						detailEntity.setId(0);
-						detailEntity = facilityInspDetailRepo.save(detailEntity);
+						detailEntity = saveFacilityInspDetail(detailEntity);
 						detailRespVo = mapper.map(detailEntity, TFacilityInspDetailRespVo.class);
 						detailRespVo.setSuccess(true);
 					} catch (Exception e) {
+						log.error("error saving facility insp detail", e);
 						detailRespVo = mapper.map(detail, TFacilityInspDetailRespVo.class);
-						detailRespVo.setSuccess(true);
+						detailRespVo.setSuccess(false);
 						detailRespVo.setMessage(e.getMessage());
 					}
 				} else {
@@ -143,21 +233,25 @@ public class FacilityInspController extends BaseController {
 			/***** end saving detail list ****/
 
 			return resp;
-			
+
 		}).collect(Collectors.toList());
 	}
 
-//	@ApiOperation("列出一页地下巡检详细信息")
-//	@RequestMapping(value = "/facility-insp-detail/list", method = RequestMethod.GET)
-//	public Page<TFacilityInspDetail> getFacilityInspDetailPage(
-//			@PageableDefault(value = 10, sort = { "id" }, direction = Direction.DESC) Pageable pageable) {
-//		return facilityInspDetailRepo.findAll(pageable);
-//	}
-//
-//	@ApiOperation("列出一页地下巡检汇总信息")
-//	@RequestMapping(value = "/facility-insp-summary/list", method = RequestMethod.GET)
-//	public Page<TFacilityInspSum> getFacilityInspSumPage(
-//			@PageableDefault(value = 10, sort = { "id" }, direction = Direction.DESC) Pageable pageable) {
-//		return facilityInspSumRepo.findAll(pageable);
-//	}
+	// @ApiOperation("列出一页地下巡检详细信息")
+	// @RequestMapping(value = "/facility-insp-detail/list", method =
+	// RequestMethod.GET)
+	// public Page<TFacilityInspDetail> getFacilityInspDetailPage(
+	// @PageableDefault(value = 10, sort = { "id" }, direction = Direction.DESC)
+	// Pageable pageable) {
+	// return facilityInspDetailRepo.findAll(pageable);
+	// }
+	//
+	// @ApiOperation("列出一页地下巡检汇总信息")
+	// @RequestMapping(value = "/facility-insp-summary/list", method =
+	// RequestMethod.GET)
+	// public Page<TFacilityInspSum> getFacilityInspSumPage(
+	// @PageableDefault(value = 10, sort = { "id" }, direction = Direction.DESC)
+	// Pageable pageable) {
+	// return facilityInspSumRepo.findAll(pageable);
+	// }
 }
