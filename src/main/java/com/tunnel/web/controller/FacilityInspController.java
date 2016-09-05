@@ -57,7 +57,7 @@ public class FacilityInspController extends BaseController {
 
 	@Autowired
 	private ModelNameListRepo modelNameListRepo;
-	
+
 	@Autowired
 	private DiseaseTypeRepo diseaseTypeRepo;
 
@@ -67,17 +67,17 @@ public class FacilityInspController extends BaseController {
 		id = detailEntity.getDetailType().getId();
 		if (detailEntity.getDetailType() != null && isNotBlank(id)) {
 			detailEntity.setDetailType(diseaseTypeRepo.findById(id).orElse(null));
-		}else{
+		} else {
 			detailEntity.setDetailType(null);
 		}
-		
+
 		id = detailEntity.getDiseaseType().getId();
 		if (detailEntity.getDiseaseType() != null && isNotBlank(id)) {
 			detailEntity.setDiseaseType(diseaseTypeRepo.findById(id).orElse(null));
-		}else{
+		} else {
 			detailEntity.setDiseaseType(null);
 		}
-		
+
 		detailEntity = facilityInspDetailRepo.save(detailEntity);
 		return detailEntity;
 	}
@@ -94,9 +94,10 @@ public class FacilityInspController extends BaseController {
 
 		id = sumEntity.getMFacilityList().getFacilityNo();
 		if (sumEntity.getMFacilityList() != null && isNotBlank(id)) {
-			sumEntity.setMFacilityList(facilityListRepo.findByFacilityNo(id).orElse(null));
+			sumEntity.setMFacilityList(
+					facilityListRepo.findByFacilityNo(id).orElseThrow(() -> new RuntimeException("找不到这个设施号")));
 		} else {
-			sumEntity.setMFacilityList(null);
+			throw new RuntimeException("找不到这个设施号");
 		}
 
 		id = sumEntity.getFacilityType().getId();
