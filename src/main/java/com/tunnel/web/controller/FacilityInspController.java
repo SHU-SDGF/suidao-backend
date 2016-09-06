@@ -17,7 +17,7 @@ import com.tunnel.repository.FacilityInspDetailRepo;
 import com.tunnel.repository.FacilityTypeRepo;
 import com.tunnel.repository.MFacilityListRepo;
 import com.tunnel.repository.ModelNameListRepo;
-import com.tunnel.repository.MonomerNoListRepo;
+import com.tunnel.repository.MonomerRepo;
 import com.tunnel.repository.PosDespListRepo;
 import com.tunnel.repository.TFacilityInspSumRepo;
 import com.tunnel.vo.facilityInsp.FacilityInspVo;
@@ -44,7 +44,7 @@ public class FacilityInspController extends BaseController {
 	private TFacilityInspSumRepo facilityInspSumRepo;
 
 	@Autowired
-	private MonomerNoListRepo monomerNoListRepo;
+	private MonomerRepo monomerRepo;
 
 	@Autowired
 	private MFacilityListRepo facilityListRepo;
@@ -85,11 +85,11 @@ public class FacilityInspController extends BaseController {
 	private TFacilityInspSum saveFacilityInspSum(TFacilityInspSum sumEntity) {
 		String id = "";
 
-		id = sumEntity.getMonomerNoList().getMonomerNo();
-		if (sumEntity.getMonomerNoList() != null && isNotBlank(id)) {
-			sumEntity.setMonomerNoList(monomerNoListRepo.findByMonomerNo(id).orElse(null));
+		id = sumEntity.getMonomer().getId();
+		if (sumEntity.getMonomer() != null && isNotBlank(id)) {
+			sumEntity.setMonomer(monomerRepo.findById(id).orElse(null));
 		} else {
-			sumEntity.setMonomerNoList(null);
+			sumEntity.setMonomer(null);
 		}
 
 		id = sumEntity.getMFacilityList().getFacilityNo();

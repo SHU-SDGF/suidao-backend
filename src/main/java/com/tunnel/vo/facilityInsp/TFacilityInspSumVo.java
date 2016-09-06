@@ -26,7 +26,7 @@ public class TFacilityInspSumVo extends BaseVo{
 
 	private String tagId;
 
-	private MonomerNoListVo monomerNoList;
+	private MonomerVo monomer;
 
 	private MFacilityListVo MFacilityList;
 
@@ -93,8 +93,8 @@ class PosDespListVo {
 @Getter
 @JsonIgnoreProperties(ignoreUnknown = true)
 @JsonInclude(JsonInclude.Include.NON_NULL)
-class MonomerNoListVo {
-	private String monomerNo;
+class MonomerVo {
+	private String id;
 }
 
 @Setter

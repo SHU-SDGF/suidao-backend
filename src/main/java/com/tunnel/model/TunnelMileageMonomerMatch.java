@@ -25,10 +25,10 @@
 //	@Column(name="FACILITY_NO", columnDefinition = "char")
 //	private String facilityNo;
 //
-//	//bi-directional many-to-one association to MonomerNoList
+//	//bi-directional many-to-one association to Monomer
 //	@ManyToOne(fetch=FetchType.LAZY)
 //	@JoinColumn(name="MONOMER_NO", nullable=false, insertable=false, updatable=false)
-//	private MonomerNoList monomerNoList;
+//	private Monomer monomerNoList;
 //
 //	public TunnelMileageMonomerMatch() {
 //	}

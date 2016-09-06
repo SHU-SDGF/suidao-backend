@@ -15,28 +15,28 @@ import java.util.List;
  */
 @Entity
 @Table(name="A_MONOMER_NO_LIST")
-@NamedQuery(name="MonomerNoList.findAll", query="SELECT m FROM MonomerNoList m")
+@NamedQuery(name="Monomer.findAll", query="SELECT m FROM Monomer m")
 @Getter
 @Setter
-public class MonomerNoList implements Serializable {
+public class Monomer implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	@Id
 	@Column(name="MONOMER_NO", columnDefinition="nvarchar2")
-	private String monomerNo;
+	private String id;
 
 	@Column(name="MONOMER_NAME", columnDefinition="nvarchar2")
-	private String monomerName;
+	private String name;
 
 	//bi-directional many-to-one association to TFacilityInspSum
-	@OneToMany(mappedBy="monomerNoList", fetch=FetchType.LAZY)
-	private List<TFacilityInspSum> TFacilityInspSums;
+//	@OneToMany(mappedBy="monomer", fetch=FetchType.LAZY)
+//	private List<TFacilityInspSum> TFacilityInspSums;
 
 //	//bi-directional many-to-one association to TunnelMileageMonomerMatch
 //	@OneToMany(mappedBy="monomerNoList", fetch=FetchType.LAZY)
 //	private List<TunnelMileageMonomerMatch> tunnelMileageMonomerMatches;
 
-	public MonomerNoList() {
+	public Monomer() {
 	}
 
 //	public TFacilityInspSum addTFacilityInspSum(TFacilityInspSum TFacilityInspSum) {

@@ -12,13 +12,13 @@ import org.springframework.web.bind.annotation.RestController;
 import com.tunnel.model.FacilityType;
 import com.tunnel.model.MFacilityList;
 import com.tunnel.model.ModelNameList;
-import com.tunnel.model.MonomerNoList;
+import com.tunnel.model.Monomer;
 import com.tunnel.model.PosDespList;
 import com.tunnel.repository.DiseaseTypeRepo;
 import com.tunnel.repository.FacilityTypeRepo;
 import com.tunnel.repository.MFacilityListRepo;
 import com.tunnel.repository.ModelNameListRepo;
-import com.tunnel.repository.MonomerNoListRepo;
+import com.tunnel.repository.MonomerRepo;
 import com.tunnel.repository.PosDespListRepo;
 import com.tunnel.vo.typeList.DiseaseTypeTreeVo;
 import com.tunnel.vo.typeList.DiseaseTypeVo;
@@ -48,14 +48,14 @@ public class EnumController extends BaseController {
 	private PosDespListRepo posDespListRepo;
 	
 	@Autowired
-	private MonomerNoListRepo monomerNoListRepo;
+	private MonomerRepo monomerRepo;
 
 	@ApiOperation("列出所有枚举类型")
 	@RequestMapping(value = "/whole-enum-type/list", method = RequestMethod.GET)
 	@ResponseBody
 	public WholeEnumTypeVo listWholeEnumType() {
 		return WholeEnumTypeVo.builder()
-				.monomerNoList(monomerNoListRepo.findAll().stream().map(e -> mapper.map(e, MonomerNoList.class))
+				.monomer(monomerRepo.findAll().stream().map(e -> mapper.map(e, Monomer.class))
 				.collect(Collectors.toList()))
 				.diseaseTypeList(diseaseTypeRepo.findByParentIsNull().map(e -> mapper.map(e, DiseaseTypeVo.class))
 						.collect(Collectors.toList()))
@@ -68,8 +68,8 @@ public class EnumController extends BaseController {
 	@ApiOperation("列出单体名称枚举")
 	@RequestMapping(value = "/monomer-no/list", method = RequestMethod.GET)
 	@ResponseBody
-	public List<MonomerNoList> listMonomerNo() {
-		return monomerNoListRepo.findAll().stream().map(e -> mapper.map(e, MonomerNoList.class))
+	public List<Monomer> listMonomerNo() {
+		return monomerRepo.findAll().stream().map(e -> mapper.map(e, Monomer.class))
 				.collect(Collectors.toList());
 	}
 
