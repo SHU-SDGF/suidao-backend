@@ -1,5 +1,6 @@
 package com.tunnel.vo.facilityInsp;
 
+import java.math.BigDecimal;
 import java.util.Date;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
@@ -38,6 +39,36 @@ public class TFacilityInspSumVo extends BaseVo{
 	private Boolean isNewCreated;
 	
 	private Boolean isNeedRepair;
+	
+	/**
+	 * start detail
+	 */
+	
+	private BigDecimal area;
+
+	private BigDecimal depth;
+
+	private String diseaseDiscription;
+
+	private BigDecimal dislocation;
+
+	private BigDecimal jointopen;
+
+	private BigDecimal length;
+
+	private String photo;
+
+	private String recorder;
+
+	private BigDecimal width;
+
+	private DiseaseTypeVo diseaseType;
+
+	private DiseaseTypeVo detailType;
+	
+	/** 
+	 * end detail
+	 */
 }
 
 @Setter
