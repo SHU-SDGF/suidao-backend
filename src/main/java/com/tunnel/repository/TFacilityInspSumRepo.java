@@ -8,8 +8,8 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import com.tunnel.model.TFacilityInspSum;
 
 public interface TFacilityInspSumRepo extends JpaRepository<TFacilityInspSum, String> {
-	
-	Stream<TFacilityInspSum> findByCreateDateAfterAndIsFromMobileFalse(Date createDate);
+	//findByCreateDateAfterAndIsFromMobileTrue
+	Stream<TFacilityInspSum> findByCreateDateAfterAndIsFromMobileTrue(Date createDate);
 	
 	long countByCreateDateAfter(Date createDate);
 	

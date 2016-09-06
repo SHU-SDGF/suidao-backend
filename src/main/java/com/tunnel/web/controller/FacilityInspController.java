@@ -152,7 +152,7 @@ public class FacilityInspController extends BaseController {
 
 		//如果数据量太大，则修改oracle 设置 
 		//alter system set open_cursors=3000 scope=both;
-		return facilityInspSumRepo.findByCreateDateAfterAndIsFromMobileFalse(sinceDate).map(e -> {
+		return facilityInspSumRepo.findByCreateDateAfterAndIsFromMobileTrue(sinceDate).map(e -> {
 			FacilityInspVo resp = new FacilityInspVo();
 			resp.setFacilityInspSum(mapper.map(e, TFacilityInspSumVo.class));
 			resp.setFacilityInspDetailList(
@@ -190,7 +190,7 @@ public class FacilityInspController extends BaseController {
 			/***** start saving sum *****/
 			TFacilityInspSumVo sum = facilityInsp.getFacilityInspSum();
 			TFacilityInspSumRespVo respSum = new TFacilityInspSumRespVo();
-			if (sum.getIsNewCreated()) {
+			if (sum.isNewCreated()) {
 				try {
 					TFacilityInspSum sumEntity = mapper.map(sum, TFacilityInspSum.class);
 					sumEntity = saveFacilityInspSum(sumEntity);
@@ -213,7 +213,7 @@ public class FacilityInspController extends BaseController {
 			List<TFacilityInspDetailVo> detailList = facilityInsp.getFacilityInspDetailList();
 			List<TFacilityInspDetailRespVo> respDetailList = detailList.stream().map(detail -> {
 				TFacilityInspDetailRespVo detailRespVo = new TFacilityInspDetailRespVo();
-				if (detail.getIsNewCreated()) {
+				if (detail.isNewCreated()) {
 					try {
 						TFacilityInspDetail detailEntity = mapper.map(detail, TFacilityInspDetail.class);
 						detailEntity.setId(0);

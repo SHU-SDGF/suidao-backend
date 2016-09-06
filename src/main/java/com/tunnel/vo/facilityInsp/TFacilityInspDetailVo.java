@@ -44,7 +44,7 @@ public class TFacilityInspDetailVo extends BaseVo{
 
 	private DiseaseTypeVo detailType;
 	
-	private Boolean isNewCreated;
+	private boolean isNewCreated;
 }
 
 @Setter

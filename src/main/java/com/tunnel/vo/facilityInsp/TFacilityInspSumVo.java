@@ -40,9 +40,11 @@ public class TFacilityInspSumVo extends BaseVo{
 	
 	private BigDecimal langitude;
 	
-	private Boolean isNewCreated;
+	private boolean isNewCreated;
 	
-	private Boolean isNeedRepair;
+	private boolean isNeedRepair;
+	
+	private boolean isFromMobile = true;
 	
 	/**
 	 * start detail
