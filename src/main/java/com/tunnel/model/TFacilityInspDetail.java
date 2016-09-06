@@ -26,7 +26,7 @@ public class TFacilityInspDetail extends AbstractEntity {
 	@Id
 	@SequenceGenerator(name="T_FACILITY_INSP_DETAIL_ID_GENERATOR", sequenceName="SEQ_T_FACILITY_INSP_DETAIL")
 	@GeneratedValue(strategy=GenerationType.SEQUENCE, generator="T_FACILITY_INSP_DETAIL_ID_GENERATOR")
-	private long id;
+	private Long id;
 
 	private BigDecimal area;
 

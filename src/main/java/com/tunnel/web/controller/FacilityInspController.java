@@ -61,10 +61,10 @@ public class FacilityInspController extends BaseController {
 	@Autowired
 	private DiseaseTypeRepo diseaseTypeRepo;
 
-	private TFacilityInspDetail saveFacilityInspDetail(TFacilityInspDetail detailEntity) {
-		String id = "";
-
-		id = detailEntity.getDetailType().getId();
+	private TFacilityInspDetail saveFacilityInspDetail(TFacilityInspDetailVo detail) {
+		TFacilityInspDetail detailEntity = mapper.map(detail, TFacilityInspDetail.class);
+		detailEntity.setId(null);
+		String id = detailEntity.getDetailType().getId();
 		if (detailEntity.getDetailType() != null && isNotBlank(id)) {
 			detailEntity.setDetailType(diseaseTypeRepo.findById(id).orElse(null));
 		} else {
@@ -81,11 +81,38 @@ public class FacilityInspController extends BaseController {
 		detailEntity = facilityInspDetailRepo.save(detailEntity);
 		return detailEntity;
 	}
+	
+	private TFacilityInspSum updateFacilityInspSum(TFacilityInspSumVo sum) {
+		TFacilityInspSum sumEntity = facilityInspSumRepo.findByDiseaseNo(sum.getDiseaseNo())
+				.orElseThrow(() -> new RuntimeException("没有这个diseaseNo"));
+		sumEntity.setArea(sum.getArea());
+		sumEntity.setDepth(sum.getDepth());
+		sumEntity.setDiseaseDiscription(sum.getDiseaseDiscription());
+		sumEntity.setDislocation(sum.getDislocation());
+		sumEntity.setJointopen(sum.getJointopen());
+		sumEntity.setLength(sum.getLength());
+		sumEntity.setPhoto(sum.getPhoto());
+		sumEntity.setRecorder(sum.getRecorder());
+		sumEntity.setWidth(sum.getWidth());
+		String id = sumEntity.getDetailType().getId();
+		if (sumEntity.getDetailType() != null && isNotBlank(id)) {
+			sumEntity.setDetailType(diseaseTypeRepo.findById(id).orElse(null));
+		} else {
+			sumEntity.setDetailType(null);
+		}
 
-	private TFacilityInspSum saveFacilityInspSum(TFacilityInspSum sumEntity) {
-		String id = "";
+		id = sumEntity.getDiseaseType().getId();
+		if (sumEntity.getDiseaseType() != null && isNotBlank(id)) {
+			sumEntity.setDiseaseType(diseaseTypeRepo.findById(id).orElse(null));
+		} else {
+			sumEntity.setDiseaseType(null);
+		}
+		return facilityInspSumRepo.save(sumEntity);
+	}
 
-		id = sumEntity.getMonomer().getId();
+	private TFacilityInspSum saveFacilityInspSum(TFacilityInspSumVo sum) {
+		TFacilityInspSum sumEntity = mapper.map(sum, TFacilityInspSum.class);
+		String id = sumEntity.getMonomer().getId();
 		if (sumEntity.getMonomer() != null && isNotBlank(id)) {
 			sumEntity.setMonomer(monomerRepo.findById(id).orElse(null));
 		} else {
@@ -119,6 +146,20 @@ public class FacilityInspController extends BaseController {
 			sumEntity.setModelNameList(modelNameListRepo.findById(id).orElse(null));
 		} else {
 			sumEntity.setModelNameList(null);
+		}
+		
+		id = sumEntity.getDetailType().getId();
+		if (sumEntity.getDetailType() != null && isNotBlank(id)) {
+			sumEntity.setDetailType(diseaseTypeRepo.findById(id).orElse(null));
+		} else {
+			sumEntity.setDetailType(null);
+		}
+
+		id = sumEntity.getDiseaseType().getId();
+		if (sumEntity.getDiseaseType() != null && isNotBlank(id)) {
+			sumEntity.setDiseaseType(diseaseTypeRepo.findById(id).orElse(null));
+		} else {
+			sumEntity.setDiseaseType(null);
 		}
 
 		sumEntity = facilityInspSumRepo.save(sumEntity);
@@ -189,22 +230,24 @@ public class FacilityInspController extends BaseController {
 			FacilityInspRespVo resp = new FacilityInspRespVo();
 			/***** start saving sum *****/
 			TFacilityInspSumVo sum = facilityInsp.getFacilityInspSum();
-			TFacilityInspSumRespVo respSum = new TFacilityInspSumRespVo();
+			TFacilityInspSumRespVo respSum = new TFacilityInspSumRespVo(sum.getDiseaseNo());
 			if (sum.isNewCreated()) {
 				try {
-					TFacilityInspSum sumEntity = mapper.map(sum, TFacilityInspSum.class);
-					sumEntity = saveFacilityInspSum(sumEntity);
-					respSum = mapper.map(sumEntity, TFacilityInspSumRespVo.class);
+					saveFacilityInspSum(sum);
 					respSum.setSuccess(true);
 				} catch (Exception e) {
 					log.error("error saving facility insp sum", e);
-					respSum = mapper.map(sum, TFacilityInspSumRespVo.class);
 					respSum.setSuccess(false);
 					respSum.setMessage(e.getMessage());
 				}
 			} else {
-				respSum = mapper.map(sum, TFacilityInspSumRespVo.class);
-				respSum.setSuccess(true);
+				try{
+					updateFacilityInspSum(sum);
+					respSum.setSuccess(true);
+				} catch (Exception e){
+					respSum.setSuccess(false);
+					respSum.setMessage(e.getMessage());
+				}				
 			}
 			resp.setFacilityInspRespSum(respSum);
 			/***** end saving sum *****/
@@ -212,22 +255,17 @@ public class FacilityInspController extends BaseController {
 			/***** start saving detail list ****/
 			List<TFacilityInspDetailVo> detailList = facilityInsp.getFacilityInspDetailList();
 			List<TFacilityInspDetailRespVo> respDetailList = detailList.stream().map(detail -> {
-				TFacilityInspDetailRespVo detailRespVo = new TFacilityInspDetailRespVo();
+				TFacilityInspDetailRespVo detailRespVo = new TFacilityInspDetailRespVo(detail.getId());
 				if (detail.isNewCreated()) {
 					try {
-						TFacilityInspDetail detailEntity = mapper.map(detail, TFacilityInspDetail.class);
-						detailEntity.setId(0);
-						detailEntity = saveFacilityInspDetail(detailEntity);
-						detailRespVo = mapper.map(detailEntity, TFacilityInspDetailRespVo.class);
+						saveFacilityInspDetail(detail);
 						detailRespVo.setSuccess(true);
 					} catch (Exception e) {
 						log.error("error saving facility insp detail", e);
-						detailRespVo = mapper.map(detail, TFacilityInspDetailRespVo.class);
 						detailRespVo.setSuccess(false);
 						detailRespVo.setMessage(e.getMessage());
 					}
 				} else {
-					detailRespVo = mapper.map(detail, TFacilityInspDetailRespVo.class);
 					detailRespVo.setSuccess(true);
 				}
 				return detailRespVo;
@@ -236,7 +274,7 @@ public class FacilityInspController extends BaseController {
 			/***** end saving detail list ****/
 
 			return resp;
-
+			
 		}).collect(Collectors.toList());
 	}
 

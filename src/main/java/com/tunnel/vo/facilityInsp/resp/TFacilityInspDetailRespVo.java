@@ -12,7 +12,7 @@ import lombok.Setter;
 @JsonInclude(JsonInclude.Include.NON_NULL)
 public class TFacilityInspDetailRespVo {
 
-	private int id;
+	private long id;
 	
 	private boolean success;
 	
@@ -23,4 +23,12 @@ public class TFacilityInspDetailRespVo {
 	private String photo;
 
 	boolean isNewCreated;
+	
+	public TFacilityInspDetailRespVo(){
+		
+	}
+	
+	public TFacilityInspDetailRespVo(long id){
+		this.id = id;
+	}
 }

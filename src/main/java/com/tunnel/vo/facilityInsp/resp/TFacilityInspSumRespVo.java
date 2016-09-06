@@ -11,15 +11,22 @@ import lombok.Setter;
 @JsonIgnoreProperties(ignoreUnknown = true)
 @JsonInclude(JsonInclude.Include.NON_NULL)
 public class TFacilityInspSumRespVo {
-	private String id;
-	
+
 	private boolean success;
-	
+
 	private String message;
 
 	private String diseaseNo;
 
 	private String photoStandard;
-	
+
 	private boolean isNewCreated;
+
+	public TFacilityInspSumRespVo() {
+
+	}
+
+	public TFacilityInspSumRespVo(String diseaseNo) {
+		this.diseaseNo = diseaseNo;
+	}
 }
