@@ -150,6 +150,8 @@ public class FacilityInspController extends BaseController {
 
 		Date sinceDate = new DateTime().minusYears(2).toDate();
 
+		//如果数据量太大，则修改oracle 设置 
+		//alter system set open_cursors=3000 scope=both;
 		return facilityInspSumRepo.findByCreateDateAfter(sinceDate).map(e -> {
 			FacilityInspVo resp = new FacilityInspVo();
 			resp.setFacilityInspSum(mapper.map(e, TFacilityInspSumVo.class));
