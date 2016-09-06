@@ -1,11 +1,8 @@
 package com.tunnel.model;
 
 import java.math.BigDecimal;
-import java.util.HashSet;
-import java.util.Set;
 
 import javax.persistence.*;
-import javax.validation.constraints.NotNull;
 
 import lombok.Getter;
 import lombok.Setter;
@@ -52,16 +49,16 @@ public class DiseaseType extends AbstractEntity {
 	// @OrderColumn(name = "DISEASE_TYPE_NAME")
 	// private List<DiseaseType> children;
 
-	@ManyToOne(fetch = FetchType.LAZY)
-	@JoinColumn(name = "PARENT_NO", referencedColumnName = "DISEASE_TYPE_NO")
-	private DiseaseType parent;
+	// @ManyToOne(fetch = FetchType.LAZY)
+	// @JoinColumn(name = "PARENT_NO", referencedColumnName = "DISEASE_TYPE_NO")
+	// private DiseaseType parent;
 
-	@NotNull
-	@OneToMany(mappedBy = "parent", fetch = FetchType.LAZY)
-	private Set<DiseaseType> children = new HashSet<DiseaseType>();
+	// @NotNull
+	// @OneToMany(mappedBy = "parent", fetch = FetchType.LAZY)
+	// private Set<DiseaseType> children = new HashSet<DiseaseType>();
 
-	// @Column(name = "PARENT_NO", columnDefinition = "nvarchar2")
-	// private String parentNo;
+	@Column(name = "PARENT_NO", columnDefinition = "nvarchar2")
+	private String parentNo;
 
 	public DiseaseType() {
 	}

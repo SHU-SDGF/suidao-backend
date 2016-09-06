@@ -45,6 +45,10 @@ public class TFacilityInspSum extends AbstractEntity {
 	@Column(name = "TAG_ID")
 	private String tagId;
 	
+	private BigDecimal latitude;
+	
+	private BigDecimal langitude;
+	
 	@Column(name="DATA_SOURCE")
 	private String dataSource = "M";
 	
@@ -125,10 +129,5 @@ public class TFacilityInspSum extends AbstractEntity {
 	@JoinColumn(name = "DETAIL_TYPE", referencedColumnName="DISEASE_TYPE_NO")
 	@NotFound(action = NotFoundAction.IGNORE)
 	private DiseaseType detailType;
-	
-	
-	
-	
-	
 
 }

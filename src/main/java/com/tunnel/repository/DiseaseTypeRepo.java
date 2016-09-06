@@ -9,7 +9,9 @@ import com.tunnel.model.DiseaseType;
 
 public interface DiseaseTypeRepo extends JpaRepository<DiseaseType, String>{
 
-	Stream<DiseaseType> findByParentIsNull();
+	Stream<DiseaseType> findByParentNoIsNull();
+	
+	Stream<DiseaseType> findByParentNo(String parentNo);
 	
 	Optional<DiseaseType> findById(String id);
 }

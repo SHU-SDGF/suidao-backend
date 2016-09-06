@@ -36,6 +36,10 @@ public class TFacilityInspSumVo extends BaseVo{
 
 	private ModelNameListVo modelNameList;
 	
+	private BigDecimal latitude;
+	
+	private BigDecimal langitude;
+	
 	private Boolean isNewCreated;
 	
 	private Boolean isNeedRepair;

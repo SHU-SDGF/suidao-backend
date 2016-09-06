@@ -56,11 +56,15 @@ public class EnumController extends BaseController {
 	public WholeEnumTypeVo listWholeEnumType() {
 		return WholeEnumTypeVo.builder()
 				.monomer(monomerRepo.findAll().stream().map(e -> mapper.map(e, Monomer.class))
-				.collect(Collectors.toList()))
-				.diseaseTypeList(diseaseTypeRepo.findByParentIsNull().map(e -> mapper.map(e, DiseaseTypeVo.class))
 						.collect(Collectors.toList()))
-				.diseaseTypeTreeVoList(diseaseTypeRepo.findByParentIsNull()
-						.map(e -> mapper.map(e, DiseaseTypeTreeVo.class)).collect(Collectors.toList()))
+				.diseaseTypeList(diseaseTypeRepo.findByParentNoIsNull().map(e -> mapper.map(e, DiseaseTypeVo.class))
+						.collect(Collectors.toList()))
+				.diseaseTypeTreeVoList(diseaseTypeRepo.findByParentNoIsNull()
+						.map(e -> mapper.map(e, DiseaseTypeTreeVo.class)).map(root -> {
+							root.setChildren(diseaseTypeRepo.findByParentNo(root.getId())
+									.map(c -> mapper.map(c, DiseaseTypeTreeVo.class)).collect(Collectors.toList()));
+							return root;
+						}).collect(Collectors.toList()))
 				.facilityTypeList(facilityTypeRepo.findAll()).facilityList(facilityRepo.findAll())
 				.modelNameList(modelNameListRepo.findAll()).posDespList(posDespListRepo.findAll()).build();
 	}
@@ -85,8 +89,11 @@ public class EnumController extends BaseController {
 	@RequestMapping(value = "/disease-type/listTree", method = RequestMethod.GET)
 	@ResponseBody
 	public List<DiseaseTypeTreeVo> listDiseaseTypeTree() {
-		return diseaseTypeRepo.findByParentIsNull().map(e -> mapper.map(e, DiseaseTypeTreeVo.class))
-				.collect(Collectors.toList());
+		return diseaseTypeRepo.findByParentNoIsNull().map(e -> mapper.map(e, DiseaseTypeTreeVo.class)).map(root -> {
+			root.setChildren(diseaseTypeRepo.findByParentNo(root.getId())
+					.map(c -> mapper.map(c, DiseaseTypeTreeVo.class)).collect(Collectors.toList()));
+			return root;
+		}).collect(Collectors.toList());
 	}
 
 	@ApiOperation("列出设施小类枚举")
