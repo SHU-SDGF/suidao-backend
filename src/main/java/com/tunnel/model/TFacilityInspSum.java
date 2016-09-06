@@ -15,7 +15,7 @@ import java.util.Date;
  * 
  */
 @Entity
-@Table(name = "t_facility_insp")
+@Table(name = "T_FACILITY_INSP_SUM")
 @NamedQuery(name = "TFacilityInspSum.findAll", query = "SELECT t FROM TFacilityInspSum t")
 @Getter
 @Setter
