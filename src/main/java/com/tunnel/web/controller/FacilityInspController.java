@@ -188,7 +188,7 @@ public class FacilityInspController extends BaseController {
 			/***** start saving sum *****/
 			TFacilityInspSumVo sum = facilityInsp.getFacilityInspSum();
 			TFacilityInspSumRespVo respSum = new TFacilityInspSumRespVo();
-			if (sum.isNewCreated()) {
+			if (sum.getIsNewCreated()) {
 				try {
 					TFacilityInspSum sumEntity = mapper.map(sum, TFacilityInspSum.class);
 					sumEntity = saveFacilityInspSum(sumEntity);
@@ -211,7 +211,7 @@ public class FacilityInspController extends BaseController {
 			List<TFacilityInspDetailVo> detailList = facilityInsp.getFacilityInspDetailList();
 			List<TFacilityInspDetailRespVo> respDetailList = detailList.stream().map(detail -> {
 				TFacilityInspDetailRespVo detailRespVo = new TFacilityInspDetailRespVo();
-				if (detail.isNewCreated()) {
+				if (detail.getIsNewCreated()) {
 					try {
 						TFacilityInspDetail detailEntity = mapper.map(detail, TFacilityInspDetail.class);
 						detailEntity.setId(0);

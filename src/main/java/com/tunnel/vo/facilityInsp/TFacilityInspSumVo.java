@@ -35,9 +35,9 @@ public class TFacilityInspSumVo extends BaseVo{
 
 	private ModelNameListVo modelNameList;
 	
-	boolean isNewCreated;
+	private Boolean isNewCreated;
 	
-	boolean isNeedRepair;
+	private Boolean isNeedRepair;
 }
 
 @Setter
