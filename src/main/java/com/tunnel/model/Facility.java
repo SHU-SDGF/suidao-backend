@@ -13,15 +13,15 @@ import java.util.Date;
  */
 @Entity
 @Table(name = "m_facility_list")
-@NamedQuery(name = "MFacilityList.findAll", query = "SELECT m FROM MFacilityList m")
+@NamedQuery(name = "Facility.findAll", query = "SELECT m FROM Facility m")
 @Getter
 @Setter
-public class MFacilityList extends AbstractEntity {
+public class Facility extends AbstractEntity {
 	private static final long serialVersionUID = 1L;
 
 	@Id
 	@Column(name = "Facility_No", columnDefinition = "nchar")
-	private String facilityNo;
+	private String id;
 
 	@Temporal(TemporalType.DATE)
 	private Date completeDate;
@@ -47,7 +47,7 @@ public class MFacilityList extends AbstractEntity {
 	@Column(name = "Technical_Index", columnDefinition = "nvarchar2")
 	private String technicalIndex;
 
-	public MFacilityList() {
+	public Facility() {
 	}
 
 }

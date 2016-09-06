@@ -15,7 +15,7 @@ import com.tunnel.model.TFacilityInspSum;
 import com.tunnel.repository.DiseaseTypeRepo;
 import com.tunnel.repository.FacilityInspDetailRepo;
 import com.tunnel.repository.FacilityTypeRepo;
-import com.tunnel.repository.MFacilityListRepo;
+import com.tunnel.repository.FacilityRepo;
 import com.tunnel.repository.ModelNameListRepo;
 import com.tunnel.repository.MonomerRepo;
 import com.tunnel.repository.PosDespListRepo;
@@ -47,7 +47,7 @@ public class FacilityInspController extends BaseController {
 	private MonomerRepo monomerRepo;
 
 	@Autowired
-	private MFacilityListRepo facilityListRepo;
+	private FacilityRepo facilityRepo;
 
 	@Autowired
 	private FacilityTypeRepo facilityTypeRepo;
@@ -92,10 +92,10 @@ public class FacilityInspController extends BaseController {
 			sumEntity.setMonomer(null);
 		}
 
-		id = sumEntity.getMFacilityList().getFacilityNo();
-		if (sumEntity.getMFacilityList() != null && isNotBlank(id)) {
-			sumEntity.setMFacilityList(
-					facilityListRepo.findByFacilityNo(id).orElseThrow(() -> new RuntimeException("找不到这个设施号")));
+		id = sumEntity.getFacility().getId();
+		if (sumEntity.getFacility() != null && isNotBlank(id)) {
+			sumEntity.setFacility(
+					facilityRepo.findById(id).orElseThrow(() -> new RuntimeException("找不到这个设施号")));
 		} else {
 			throw new RuntimeException("找不到这个设施号");
 		}

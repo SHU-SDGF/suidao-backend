@@ -57,11 +57,11 @@ public class TFacilityInspSum extends AbstractEntity {
 	@NotFound(action = NotFoundAction.IGNORE)
 	private Monomer monomer;
 
-	// bi-directional many-to-one association to MFacilityList
+	// bi-directional many-to-one association to Facility
 	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "FACILITY_NO", columnDefinition = "nchar")
 	@NotFound(action = NotFoundAction.IGNORE)
-	private MFacilityList MFacilityList;
+	private Facility Facility;
 
 	// bi-directional many-to-one association to FacilityType
 	@ManyToOne(fetch = FetchType.LAZY)

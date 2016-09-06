@@ -10,13 +10,13 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.tunnel.model.FacilityType;
-import com.tunnel.model.MFacilityList;
+import com.tunnel.model.Facility;
 import com.tunnel.model.ModelNameList;
 import com.tunnel.model.Monomer;
 import com.tunnel.model.PosDespList;
 import com.tunnel.repository.DiseaseTypeRepo;
 import com.tunnel.repository.FacilityTypeRepo;
-import com.tunnel.repository.MFacilityListRepo;
+import com.tunnel.repository.FacilityRepo;
 import com.tunnel.repository.ModelNameListRepo;
 import com.tunnel.repository.MonomerRepo;
 import com.tunnel.repository.PosDespListRepo;
@@ -39,7 +39,7 @@ public class EnumController extends BaseController {
 	private FacilityTypeRepo facilityTypeRepo;
 
 	@Autowired
-	private MFacilityListRepo facilityListRepo;
+	private FacilityRepo facilityRepo;
 
 	@Autowired
 	private ModelNameListRepo modelNameListRepo;
@@ -61,7 +61,7 @@ public class EnumController extends BaseController {
 						.collect(Collectors.toList()))
 				.diseaseTypeTreeVoList(diseaseTypeRepo.findByParentIsNull()
 						.map(e -> mapper.map(e, DiseaseTypeTreeVo.class)).collect(Collectors.toList()))
-				.facilityTypeList(facilityTypeRepo.findAll()).facilityList(facilityListRepo.findAll())
+				.facilityTypeList(facilityTypeRepo.findAll()).facilityList(facilityRepo.findAll())
 				.modelNameList(modelNameListRepo.findAll()).posDespList(posDespListRepo.findAll()).build();
 	}
 	
@@ -99,8 +99,8 @@ public class EnumController extends BaseController {
 	@ApiOperation("列出设施信息")
 	@RequestMapping(value = "/facility/list", method = RequestMethod.GET)
 	@ResponseBody
-	public List<MFacilityList> listFacility() {
-		return facilityListRepo.findAll();
+	public List<Facility> listFacility() {
+		return facilityRepo.findAll();
 	}
 
 	@ApiOperation("列出模型名字列表")

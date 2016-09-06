@@ -4,7 +4,7 @@ package com.tunnel.vo.typeList;
 import java.util.List;
 
 import com.tunnel.model.FacilityType;
-import com.tunnel.model.MFacilityList;
+import com.tunnel.model.Facility;
 import com.tunnel.model.ModelNameList;
 import com.tunnel.model.Monomer;
 import com.tunnel.model.PosDespList;
@@ -30,7 +30,7 @@ public class WholeEnumTypeVo {
 	private List<FacilityType> facilityTypeList;
 	
 	//设施信息
-	private List<MFacilityList> facilityList;
+	private List<Facility> facilityList;
 	
 	//模型名字列表
 	private List<ModelNameList> modelNameList;
