@@ -49,8 +49,8 @@ public class TFacilityInspSum extends AbstractEntity {
 	
 	private BigDecimal langitude;
 	
-	@Column(name="DATA_SOURCE")
-	private String dataSource = "M";
+	@Column(name="IS_FROM_MOBILE",  columnDefinition = "char")
+	private boolean isFromMobile = true;
 	
 	@Column(name="IS_NEED_REPAIR" , columnDefinition = "char")
 	private boolean isNeedRepair = false;

@@ -9,7 +9,7 @@ import com.tunnel.model.TFacilityInspSum;
 
 public interface TFacilityInspSumRepo extends JpaRepository<TFacilityInspSum, String> {
 	
-	Stream<TFacilityInspSum> findByCreateDateAfter(Date createDate);
+	Stream<TFacilityInspSum> findByCreateDateAfterAndIsFromMobileFalse(Date createDate);
 	
 	long countByCreateDateAfter(Date createDate);
 	
