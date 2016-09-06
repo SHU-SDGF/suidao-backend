@@ -81,7 +81,7 @@ public class FacilityInspController extends BaseController {
 		detailEntity = facilityInspDetailRepo.save(detailEntity);
 		return detailEntity;
 	}
-	
+
 	private TFacilityInspSum updateFacilityInspSum(TFacilityInspSumVo sum) {
 		TFacilityInspSum sumEntity = facilityInspSumRepo.findByDiseaseNo(sum.getDiseaseNo())
 				.orElseThrow(() -> new RuntimeException("没有这个diseaseNo"));
@@ -121,8 +121,7 @@ public class FacilityInspController extends BaseController {
 
 		id = sumEntity.getFacility().getId();
 		if (sumEntity.getFacility() != null && isNotBlank(id)) {
-			sumEntity.setFacility(
-					facilityRepo.findById(id).orElseThrow(() -> new RuntimeException("找不到这个设施号")));
+			sumEntity.setFacility(facilityRepo.findById(id).orElseThrow(() -> new RuntimeException("找不到这个设施号")));
 		} else {
 			throw new RuntimeException("找不到这个设施号");
 		}
@@ -147,7 +146,7 @@ public class FacilityInspController extends BaseController {
 		} else {
 			sumEntity.setModelNameList(null);
 		}
-		
+
 		id = sumEntity.getDetailType().getId();
 		if (sumEntity.getDetailType() != null && isNotBlank(id)) {
 			sumEntity.setDetailType(diseaseTypeRepo.findById(id).orElse(null));
@@ -191,8 +190,8 @@ public class FacilityInspController extends BaseController {
 
 		Date sinceDate = new DateTime().minusYears(2).toDate();
 
-		//如果数据量太大，则修改oracle 设置 
-		//alter system set open_cursors=3000 scope=both;
+		// 如果数据量太大，则修改oracle 设置
+		// alter system set open_cursors=3000 scope=both;
 		return facilityInspSumRepo.findByCreateDateAfterAndIsFromMobileTrue(sinceDate).map(e -> {
 			FacilityInspVo resp = new FacilityInspVo();
 			resp.setFacilityInspSum(mapper.map(e, TFacilityInspSumVo.class));
@@ -231,24 +230,19 @@ public class FacilityInspController extends BaseController {
 			/***** start saving sum *****/
 			TFacilityInspSumVo sum = facilityInsp.getFacilityInspSum();
 			TFacilityInspSumRespVo respSum = new TFacilityInspSumRespVo(sum.getDiseaseNo());
-			if (sum.isNewCreated()) {
-				try {
+			try {
+				if (sum.isNewCreated()) {
 					saveFacilityInspSum(sum);
-					respSum.setSuccess(true);
-				} catch (Exception e) {
-					log.error("error saving facility insp sum", e);
-					respSum.setSuccess(false);
-					respSum.setMessage(e.getMessage());
-				}
-			} else {
-				try{
+				} else {
 					updateFacilityInspSum(sum);
-					respSum.setSuccess(true);
-				} catch (Exception e){
-					respSum.setSuccess(false);
-					respSum.setMessage(e.getMessage());
-				}				
+				}
+				respSum.setSuccess(true);
+			} catch (Exception e) {
+				log.error("error saving/updating facility insp sum", e);
+				respSum.setSuccess(false);
+				respSum.setMessage(e.getMessage());
 			}
+
 			resp.setFacilityInspRespSum(respSum);
 			/***** end saving sum *****/
 
@@ -256,17 +250,15 @@ public class FacilityInspController extends BaseController {
 			List<TFacilityInspDetailVo> detailList = facilityInsp.getFacilityInspDetailList();
 			List<TFacilityInspDetailRespVo> respDetailList = detailList.stream().map(detail -> {
 				TFacilityInspDetailRespVo detailRespVo = new TFacilityInspDetailRespVo(detail.getId());
-				if (detail.isNewCreated()) {
-					try {
+				try {
+					if (detail.isNewCreated()) {
 						saveFacilityInspDetail(detail);
-						detailRespVo.setSuccess(true);
-					} catch (Exception e) {
-						log.error("error saving facility insp detail", e);
-						detailRespVo.setSuccess(false);
-						detailRespVo.setMessage(e.getMessage());
 					}
-				} else {
 					detailRespVo.setSuccess(true);
+				} catch (Exception e) {
+					log.error("error saving facility insp detail", e);
+					detailRespVo.setSuccess(false);
+					detailRespVo.setMessage(e.getMessage());
 				}
 				return detailRespVo;
 			}).collect(Collectors.toList());
@@ -274,7 +266,7 @@ public class FacilityInspController extends BaseController {
 			/***** end saving detail list ****/
 
 			return resp;
-			
+
 		}).collect(Collectors.toList());
 	}
 
