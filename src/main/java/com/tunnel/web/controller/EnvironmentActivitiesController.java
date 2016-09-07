@@ -88,11 +88,16 @@ public class EnvironmentActivitiesController extends BaseController {
 	@ApiOperation("根据id来创建活动和活动历史")
 	@RequestMapping(value = "/environment-activities-summary/create", method = RequestMethod.POST)
 	@ResponseBody
-	public ResponseEntity<EnvironmentActitivitySumAndDetailReqVo> createEnvironmentActivity(
+	public ResponseEntity<Object> createEnvironmentActivity(
 			@RequestBody EnvironmentActitivitySumAndDetailReqVo vo) {
 		log.info("create a new environment activities summary");
-		return new ResponseEntity<>(environmentActitivitySummaryService.createEnvironmentActitivitySummary(vo),
-				HttpStatus.OK);
+		try{
+			return new ResponseEntity<>(environmentActitivitySummaryService.createEnvironmentActitivitySummary(vo),
+					HttpStatus.OK);
+		}catch(Exception e){
+			return new ResponseEntity<>(e, HttpStatus.INTERNAL_SERVER_ERROR);
+		}
+		
 	}
 
 	@ApiOperation("列出一页活动历史信息")
