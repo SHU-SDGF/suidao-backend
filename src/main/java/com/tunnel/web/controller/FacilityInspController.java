@@ -43,40 +43,40 @@ public class FacilityInspController extends BaseController {
 	@Autowired
 	private TFacilityInspSumRepo facilityInspSumRepo;
 
-	@Autowired
-	private MonomerRepo monomerRepo;
-
-	@Autowired
-	private FacilityRepo facilityRepo;
-
-	@Autowired
-	private FacilityTypeRepo facilityTypeRepo;
-
-	@Autowired
-	private PosDespListRepo posDespListRepo;
-
-	@Autowired
-	private ModelRepo modelRepo;
-
-	@Autowired
-	private DiseaseTypeRepo diseaseTypeRepo;
+//	@Autowired
+//	private MonomerRepo monomerRepo;
+//
+//	@Autowired
+//	private FacilityRepo facilityRepo;
+//
+//	@Autowired
+//	private FacilityTypeRepo facilityTypeRepo;
+//
+//	@Autowired
+//	private PosDespListRepo posDespListRepo;
+//
+//	@Autowired
+//	private ModelRepo modelRepo;
+//
+//	@Autowired
+//	private DiseaseTypeRepo diseaseTypeRepo;
 
 	private FacilityInspDetail saveFacilityInspDetail(FacilityInspDetailVo detail) {
 		FacilityInspDetail detailEntity = mapper.map(detail, FacilityInspDetail.class);
 		detailEntity.setId(null);
-		String id = detailEntity.getDetailType().getId();
-		if (detailEntity.getDetailType() != null && isNotBlank(id)) {
-			detailEntity.setDetailType(diseaseTypeRepo.findById(id).orElse(null));
-		} else {
-			detailEntity.setDetailType(null);
-		}
-
-		id = detailEntity.getDiseaseType().getId();
-		if (detailEntity.getDiseaseType() != null && isNotBlank(id)) {
-			detailEntity.setDiseaseType(diseaseTypeRepo.findById(id).orElse(null));
-		} else {
-			detailEntity.setDiseaseType(null);
-		}
+//		String id = detailEntity.getDetailType().getId();
+//		if (detailEntity.getDetailType() != null && isNotBlank(id)) {
+//			detailEntity.setDetailType(diseaseTypeRepo.findById(id).orElse(null));
+//		} else {
+//			detailEntity.setDetailType(null);
+//		}
+//
+//		id = detailEntity.getDiseaseType().getId();
+//		if (detailEntity.getDiseaseType() != null && isNotBlank(id)) {
+//			detailEntity.setDiseaseType(diseaseTypeRepo.findById(id).orElse(null));
+//		} else {
+//			detailEntity.setDiseaseType(null);
+//		}
 
 		detailEntity = facilityInspDetailRepo.save(detailEntity);
 		return detailEntity;

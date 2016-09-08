@@ -12,6 +12,8 @@ public interface TFacilityInspSumRepo extends JpaRepository<FacilityInspSum, Str
 	//findByCreateDateAfterAndIsFromMobileTrue
 	Stream<FacilityInspSum> findByCreateDateAfterAndIsFromMobileTrue(Date createDate);
 	
+	Stream<FacilityInspSum> findByCreateDateAfterAndIsFromMobileFalse(Date createDate);
+	
 	Optional<FacilityInspSum> findByDiseaseNo(String diseaseNo);
 	
 	long countByCreateDateAfter(Date createDate);
