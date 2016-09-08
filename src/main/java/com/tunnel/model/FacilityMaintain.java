@@ -14,10 +14,10 @@ import java.util.Date;
  */
 @Entity
 @Table(name = "t_facility_maintain")
-@NamedQuery(name = "TFacilityMaintain.findAll", query = "SELECT t FROM TFacilityMaintain t")
+@NamedQuery(name = "FacilityMaintain.findAll", query = "SELECT t FROM FacilityMaintain t")
 @Getter
 @Setter
-public class TFacilityMaintain extends AbstractEntity {
+public class FacilityMaintain extends AbstractEntity {
 	private static final long serialVersionUID = 1L;
 
 	@Id
@@ -46,7 +46,7 @@ public class TFacilityMaintain extends AbstractEntity {
 	@Column(name = "REPAIR_FEE")
 	private BigDecimal repairFee;
 
-	public TFacilityMaintain() {
+	public FacilityMaintain() {
 	}
 
 }

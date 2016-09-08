@@ -11,13 +11,13 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.tunnel.model.FacilityType;
 import com.tunnel.model.Facility;
-import com.tunnel.model.ModelNameList;
+import com.tunnel.model.Model;
 import com.tunnel.model.Monomer;
 import com.tunnel.model.PosDespList;
 import com.tunnel.repository.DiseaseTypeRepo;
 import com.tunnel.repository.FacilityTypeRepo;
 import com.tunnel.repository.FacilityRepo;
-import com.tunnel.repository.ModelNameListRepo;
+import com.tunnel.repository.ModelRepo;
 import com.tunnel.repository.MonomerRepo;
 import com.tunnel.repository.PosDespListRepo;
 import com.tunnel.vo.typeList.DiseaseTypeTreeVo;
@@ -42,7 +42,7 @@ public class EnumController extends BaseController {
 	private FacilityRepo facilityRepo;
 
 	@Autowired
-	private ModelNameListRepo modelNameListRepo;
+	private ModelRepo modelRepo;
 
 	@Autowired
 	private PosDespListRepo posDespListRepo;
@@ -54,6 +54,7 @@ public class EnumController extends BaseController {
 	@RequestMapping(value = "/whole-enum-type/list", method = RequestMethod.GET)
 	@ResponseBody
 	public WholeEnumTypeVo listWholeEnumType() {
+		log.info("downloading whole enum type...");
 		return WholeEnumTypeVo.builder()
 				.monomer(monomerRepo.findAll().stream().map(e -> mapper.map(e, Monomer.class))
 						.collect(Collectors.toList()))
@@ -66,7 +67,7 @@ public class EnumController extends BaseController {
 							return root;
 						}).collect(Collectors.toList()))
 				.facilityTypeList(facilityTypeRepo.findAll()).facilityList(facilityRepo.findAll())
-				.modelNameList(modelNameListRepo.findAll()).posDespList(posDespListRepo.findAll()).build();
+				.modelList(modelRepo.findAll()).posDespList(posDespListRepo.findAll()).build();
 	}
 	
 	@ApiOperation("列出单体名称枚举")
@@ -113,8 +114,8 @@ public class EnumController extends BaseController {
 	@ApiOperation("列出模型名字列表")
 	@RequestMapping(value = "/model-name/list", method = RequestMethod.GET)
 	@ResponseBody
-	public List<ModelNameList> listModelName() {
-		return modelNameListRepo.findAll();
+	public List<Model> listModelName() {
+		return modelRepo.findAll();
 	}
 
 	@ApiOperation("列出位置描述列表")

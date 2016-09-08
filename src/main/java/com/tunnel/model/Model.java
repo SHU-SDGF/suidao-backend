@@ -13,10 +13,10 @@ import lombok.Setter;
  */
 @Entity
 @Table(name="a_model_name_list")
-@NamedQuery(name="ModelNameList.findAll", query="SELECT m FROM ModelNameList m")
+@NamedQuery(name="Model.findAll", query="SELECT m FROM Model m")
 @Getter
 @Setter
-public class ModelNameList implements Serializable {
+public class Model implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	@Id
@@ -26,7 +26,7 @@ public class ModelNameList implements Serializable {
 	@Column(name="MODEL_NAME", columnDefinition="nvarchar2")
 	private String modelName;
 
-	public ModelNameList() {
+	public Model() {
 	}
 
 }

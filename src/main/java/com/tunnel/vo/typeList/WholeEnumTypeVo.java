@@ -5,7 +5,7 @@ import java.util.List;
 
 import com.tunnel.model.FacilityType;
 import com.tunnel.model.Facility;
-import com.tunnel.model.ModelNameList;
+import com.tunnel.model.Model;
 import com.tunnel.model.Monomer;
 import com.tunnel.model.PosDespList;
 
@@ -33,7 +33,7 @@ public class WholeEnumTypeVo {
 	private List<Facility> facilityList;
 	
 	//模型名字列表
-	private List<ModelNameList> modelNameList;
+	private List<Model> modelList;
 	
 	//位置描述列表
 	private List<PosDespList> posDespList;

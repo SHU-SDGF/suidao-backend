@@ -13,7 +13,7 @@
 //@JsonIgnoreProperties(ignoreUnknown = true)
 //@JsonInclude(JsonInclude.Include.NON_NULL)
 //public class FacilityInspVo2 {
-//	private List<TFacilityInspDetailVo> facilityInspDetailList;
+//	private List<FacilityInspDetailVo> facilityInspDetailList;
 //	
-//	private List<TFacilityInspSumVo> facilityInspSumList;
+//	private List<FacilityInspSumVo> facilityInspSumList;
 //}

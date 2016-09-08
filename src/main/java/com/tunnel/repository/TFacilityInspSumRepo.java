@@ -6,13 +6,13 @@ import java.util.stream.Stream;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 
-import com.tunnel.model.TFacilityInspSum;
+import com.tunnel.model.FacilityInspSum;
 
-public interface TFacilityInspSumRepo extends JpaRepository<TFacilityInspSum, String> {
+public interface TFacilityInspSumRepo extends JpaRepository<FacilityInspSum, String> {
 	//findByCreateDateAfterAndIsFromMobileTrue
-	Stream<TFacilityInspSum> findByCreateDateAfterAndIsFromMobileTrue(Date createDate);
+	Stream<FacilityInspSum> findByCreateDateAfterAndIsFromMobileTrue(Date createDate);
 	
-	Optional<TFacilityInspSum> findByDiseaseNo(String diseaseNo);
+	Optional<FacilityInspSum> findByDiseaseNo(String diseaseNo);
 	
 	long countByCreateDateAfter(Date createDate);
 	

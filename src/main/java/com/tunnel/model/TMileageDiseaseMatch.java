@@ -39,10 +39,10 @@
 //	private BigDecimal locationY;
 //
 //
-//	// bi-directional many-to-one association to TFacilityInspSum
+//	// bi-directional many-to-one association to FacilityInspSum
 //	@ManyToOne(fetch = FetchType.LAZY)
 //	@JoinColumn(name = "MILEAGE")
-//	private TFacilityInspSum TFacilityInspSum;
+//	private FacilityInspSum FacilityInspSum;
 //
 //	public TMileageDiseaseMatch() {
 //	}

@@ -17,10 +17,10 @@ import java.util.Date;
  */
 @Entity
 @Table(name = "T_FACILITY_INSP")
-@NamedQuery(name = "TFacilityInspSum.findAll", query = "SELECT t FROM TFacilityInspSum t")
+@NamedQuery(name = "FacilityInspSum.findAll", query = "SELECT t FROM FacilityInspSum t")
 @Getter
 @Setter
-public class TFacilityInspSum extends AbstractEntity {
+public class FacilityInspSum extends AbstractEntity {
 	private static final long serialVersionUID = 1L;
 
 //	@Id
@@ -55,38 +55,53 @@ public class TFacilityInspSum extends AbstractEntity {
 	@Column(name="IS_NEED_REPAIR" , columnDefinition = "char")
 	private boolean isNeedRepair = false;
 
-	// bi-directional many-to-one association to Monomer
-	@ManyToOne(fetch = FetchType.LAZY)
-	@JoinColumn(name = "MONOMER_NO")
-	@NotFound(action = NotFoundAction.IGNORE)
-	private Monomer monomer;
+//	// bi-directional many-to-one association to Monomer
+//	@ManyToOne(fetch = FetchType.LAZY)
+//	@JoinColumn(name = "MONOMER_NO")
+//	@NotFound(action = NotFoundAction.IGNORE)
+//	private Monomer monomer;
+	
+	@Column(name="MONOMER_NO", columnDefinition="nvarchar2")
+	private String monomerId;
 
 	// bi-directional many-to-one association to Facility
-	@ManyToOne(fetch = FetchType.LAZY)
-	@JoinColumn(name = "FACILITY_NO", columnDefinition = "nchar")
-	@NotFound(action = NotFoundAction.IGNORE)
-	private Facility Facility;
+//	@ManyToOne(fetch = FetchType.LAZY)
+//	@JoinColumn(name = "FACILITY_NO", columnDefinition = "nchar")
+//	@NotFound(action = NotFoundAction.IGNORE)
+//	private Facility Facility;
 
+	@Column(name = "Facility_No", columnDefinition = "nchar")
+	private String facilityId;
+	
 	// bi-directional many-to-one association to FacilityType
-	@ManyToOne(fetch = FetchType.LAZY)
-	@JoinColumn(name = "FACILITY_TYPE")
-	@NotFound(action = NotFoundAction.IGNORE)
-	private FacilityType facilityType;
+//	@ManyToOne(fetch = FetchType.LAZY)
+//	@JoinColumn(name = "FACILITY_TYPE")
+//	@NotFound(action = NotFoundAction.IGNORE)
+//	private FacilityType facilityType;
 
+	@Column(name="FACILITY_TYPE")
+	private String facilityTypeId;
+	
 	// bi-directional many-to-one association to PosDespList
-	@ManyToOne(fetch = FetchType.LAZY)
-	@JoinColumn(name = "POS_DESP", referencedColumnName="POS_DESP_ID")
-	@NotFound(action = NotFoundAction.IGNORE)
-	private PosDespList posDespList;
+//	@ManyToOne(fetch = FetchType.LAZY)
+//	@JoinColumn(name = "POS_DESP", referencedColumnName="POS_DESP_ID")
+//	@NotFound(action = NotFoundAction.IGNORE)
+//	private PosDespList posDespList;
 
-	// bi-directional many-to-one association to ModelNameList
-	@ManyToOne(fetch = FetchType.LAZY)
-	@JoinColumn(name = "MODEL_NAME", referencedColumnName="MODEL_ID")
-	@NotFound(action = NotFoundAction.IGNORE)
-	private ModelNameList modelNameList;
+	@Column(name="POS_DESP")
+	private String posDespId;
+	
+	// bi-directional many-to-one association to Model
+//	@ManyToOne(fetch = FetchType.LAZY)
+//	@JoinColumn(name = "MODEL_NAME", referencedColumnName="MODEL_ID")
+//	@NotFound(action = NotFoundAction.IGNORE)
+//	private Model modelNameList;
+	
+	@Column(name="MODEL_NAME", columnDefinition="nvarchar2")
+	private String modelId;
 	
 //	// bi-directional many-to-one association to TMileageDiseaseMatch
-//	@OneToMany(mappedBy = "TFacilityInspSum", fetch = FetchType.LAZY)
+//	@OneToMany(mappedBy = "FacilityInspSum", fetch = FetchType.LAZY)
 //	private List<TMileageDiseaseMatch> TMileageDiseaseMatches;
 	
 	
@@ -119,15 +134,21 @@ public class TFacilityInspSum extends AbstractEntity {
 	private BigDecimal width;
 
 	// bi-directional many-to-one association to DiseaseType
-	@ManyToOne(fetch = FetchType.LAZY)
-	@JoinColumn(name = "DISEASE_TYPE", referencedColumnName="DISEASE_TYPE_NO")
-	@NotFound(action = NotFoundAction.IGNORE)
-	private DiseaseType diseaseType;
+//	@ManyToOne(fetch = FetchType.LAZY)
+//	@JoinColumn(name = "DISEASE_TYPE", referencedColumnName="DISEASE_TYPE_NO")
+//	@NotFound(action = NotFoundAction.IGNORE)
+//	private DiseaseType diseaseType;
+	
+	@Column(name = "DISEASE_TYPE", columnDefinition = "nvarchar2")
+	private String diseaseTypeId;
 
 	// bi-directional many-to-one association to DetailType
-	@ManyToOne(fetch = FetchType.LAZY)
-	@JoinColumn(name = "DETAIL_TYPE", referencedColumnName="DISEASE_TYPE_NO")
-	@NotFound(action = NotFoundAction.IGNORE)
-	private DiseaseType detailType;
+//	@ManyToOne(fetch = FetchType.LAZY)
+//	@JoinColumn(name = "DETAIL_TYPE", referencedColumnName="DISEASE_TYPE_NO")
+//	@NotFound(action = NotFoundAction.IGNORE)
+//	private DiseaseType detailType;
+	
+	@Column(name = "DETAIL_TYPE", columnDefinition = "nvarchar2")
+	private String detailTypeId;
 
 }

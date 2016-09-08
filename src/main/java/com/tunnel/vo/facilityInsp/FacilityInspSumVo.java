@@ -14,19 +14,47 @@ import lombok.Setter;
 @Getter
 @JsonIgnoreProperties(ignoreUnknown = true)
 @JsonInclude(JsonInclude.Include.NON_NULL)
-public class TFacilityInspDetailVo extends BaseVo{
-	
-	private long id;
+public class FacilityInspSumVo extends BaseVo{
 
+	private String diseaseNo;
+	
+	private String mileage;
+
+	private Date diseaseDate;
+
+	private String photoStandard;
+
+	private String tagId;
+	
+	private BigDecimal latitude;
+	
+	private BigDecimal langitude;
+
+	private String monomerId;
+
+	private String facilityId;
+
+	private String facilityTypeId;
+
+	private String posDespId;
+
+	private String modelId;
+	
+	private boolean isNewCreated;
+	
+	private boolean isNeedRepair;
+	
+	private boolean isFromMobile = true;
+	
+	/**
+	 * start detail
+	 */
+	
 	private BigDecimal area;
 
 	private BigDecimal depth;
 
-	private Date diseaseDate;
-
 	private String diseaseDiscription;
-
-	private String diseaseNo;
 
 	private BigDecimal dislocation;
 
@@ -40,17 +68,11 @@ public class TFacilityInspDetailVo extends BaseVo{
 
 	private BigDecimal width;
 
-	private DiseaseTypeVo diseaseType;
+	private String diseaseTypeId;
 
-	private DiseaseTypeVo detailType;
+	private String detailTypeId;
 	
-	private boolean isNewCreated;
-}
-
-@Setter
-@Getter
-@JsonIgnoreProperties(ignoreUnknown = true)
-@JsonInclude(JsonInclude.Include.NON_NULL)
-class DiseaseTypeVo {
-	private String id;
+	/** 
+	 * end detail
+	 */
 }

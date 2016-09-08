@@ -28,9 +28,9 @@ public class Monomer implements Serializable {
 	@Column(name="MONOMER_NAME", columnDefinition="nvarchar2")
 	private String name;
 
-	//bi-directional many-to-one association to TFacilityInspSum
+	//bi-directional many-to-one association to FacilityInspSum
 //	@OneToMany(mappedBy="monomer", fetch=FetchType.LAZY)
-//	private List<TFacilityInspSum> TFacilityInspSums;
+//	private List<FacilityInspSum> TFacilityInspSums;
 
 //	//bi-directional many-to-one association to TunnelMileageMonomerMatch
 //	@OneToMany(mappedBy="monomerNoList", fetch=FetchType.LAZY)
@@ -39,18 +39,18 @@ public class Monomer implements Serializable {
 	public Monomer() {
 	}
 
-//	public TFacilityInspSum addTFacilityInspSum(TFacilityInspSum TFacilityInspSum) {
-//		getTFacilityInspSums().add(TFacilityInspSum);
-//		TFacilityInspSum.setMonomerNoList(this);
+//	public FacilityInspSum addTFacilityInspSum(FacilityInspSum FacilityInspSum) {
+//		getTFacilityInspSums().add(FacilityInspSum);
+//		FacilityInspSum.setMonomerNoList(this);
 //
-//		return TFacilityInspSum;
+//		return FacilityInspSum;
 //	}
 //
-//	public TFacilityInspSum removeTFacilityInspSum(TFacilityInspSum TFacilityInspSum) {
-//		getTFacilityInspSums().remove(TFacilityInspSum);
-//		TFacilityInspSum.setMonomerNoList(null);
+//	public FacilityInspSum removeTFacilityInspSum(FacilityInspSum FacilityInspSum) {
+//		getTFacilityInspSums().remove(FacilityInspSum);
+//		FacilityInspSum.setMonomerNoList(null);
 //
-//		return TFacilityInspSum;
+//		return FacilityInspSum;
 //	}
 //
 //	public TunnelMileageMonomerMatch addTunnelMileageMonomerMatch(TunnelMileageMonomerMatch tunnelMileageMonomerMatch) {

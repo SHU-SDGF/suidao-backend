@@ -13,8 +13,8 @@ import lombok.Setter;
 @JsonInclude(JsonInclude.Include.NON_NULL)
 public class FacilityInspVo {
 
-	private List<TFacilityInspDetailVo> facilityInspDetailList;
+	private List<FacilityInspDetailVo> facilityInspDetailList;
 	
-	private TFacilityInspSumVo facilityInspSum;
+	private FacilityInspSumVo facilityInspSum;
 	
 }
