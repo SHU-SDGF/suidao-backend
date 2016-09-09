@@ -28,7 +28,7 @@ public class FacilityInspSumVo extends BaseVo{
 	
 	private BigDecimal latitude;
 	
-	private BigDecimal langitude;
+	private BigDecimal longitude;
 
 	private String monomerId;
 

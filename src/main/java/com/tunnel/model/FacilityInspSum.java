@@ -47,7 +47,8 @@ public class FacilityInspSum extends AbstractEntity {
 	
 	private BigDecimal latitude;
 	
-	private BigDecimal langitude;
+	@Column(name="langitude")
+	private BigDecimal longitude;
 	
 	@Column(name="IS_FROM_MOBILE",  columnDefinition = "char")
 	private boolean isFromMobile = true;
