@@ -10,10 +10,10 @@
 		var password = $("input#password").val();
 
 		var postData = {
-				userName:username,
-				password:password
+			userName : username,
+			password : password
 		};
-		
+
 		function make_base_auth(user, password) {
 			var tok = user + ':' + password;
 			var hash = btoa(tok);
@@ -33,21 +33,45 @@
 			success : function() {
 				alert("登录成功，现在你可以查看API了")
 			},
-			error: function() {
+			error : function() {
 				alert("登录失败")
 			}
 		});
 	}
 </script>
+
+<script
+	src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+<script>
+	$(document).ready(function() {
+		$("#fileup").change(function() {
+			var v = $(this).val();
+			var reader = new FileReader();
+			reader.readAsDataURL(this.files[0]);
+			reader.onload = function(e) {
+				console.log(e.target.result);
+				$('#file_base64').val(e.target.result);
+			};
+		});
+	});
+</script>
 </head>
 <body>
 	<div>
-		<input type="text" name="username" id="username" class="text" />
-		 <input type="password" name="password" id="password" class="text" /> 
-		 <input type="submit" name="sub" onclick="login();" />
+		<input type="text" name="username" id="username" class="text" /> <input
+			type="password" name="password" id="password" class="text" /> <input
+			type="submit" name="sub" onclick="login();" />
 	</div>
 	<div id="API_link">
 		<a href="swagger-ui.html"> Check API</a>
+	</div>
+	<div>
+		<p>base64 文件上传</p>
+		<form onsubmit="return false;">
+			<input type="hidden" name="file_base64" id="file_base64"> <input
+				type="file" id="fileup"> <input type="submit" value="submit"
+				onclick="$.post('upload', $(this).parent().serialize());">
+		</form>
 	</div>
 </body>
 </html>

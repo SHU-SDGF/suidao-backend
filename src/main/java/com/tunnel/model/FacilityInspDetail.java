@@ -37,7 +37,7 @@ public class FacilityInspDetail extends AbstractEntity {
 	private Date diseaseDate;
 
 	@Column(name = "DISEASE_DISCRIPTION" , columnDefinition="nvarchar2")
-	private String diseaseDiscription;
+	private String diseaseDescription;
 
 	@Column(name = "DISEASE_NO")
 	private String diseaseNo;

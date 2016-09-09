@@ -54,7 +54,7 @@ public class FacilityInspSumVo extends BaseVo{
 
 	private BigDecimal depth;
 
-	private String diseaseDiscription;
+	private String diseaseDescription;
 
 	private BigDecimal dislocation;
 

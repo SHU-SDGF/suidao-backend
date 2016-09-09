@@ -12,13 +12,13 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.tunnel.model.FacilityInspDetail;
 import com.tunnel.model.FacilityInspSum;
-import com.tunnel.repository.DiseaseTypeRepo;
+//import com.tunnel.repository.DiseaseTypeRepo;
 import com.tunnel.repository.FacilityInspDetailRepo;
-import com.tunnel.repository.FacilityTypeRepo;
-import com.tunnel.repository.FacilityRepo;
-import com.tunnel.repository.ModelRepo;
-import com.tunnel.repository.MonomerRepo;
-import com.tunnel.repository.PosDespListRepo;
+//import com.tunnel.repository.FacilityTypeRepo;
+//import com.tunnel.repository.FacilityRepo;
+//import com.tunnel.repository.ModelRepo;
+//import com.tunnel.repository.MonomerRepo;
+//import com.tunnel.repository.PosDespListRepo;
 import com.tunnel.repository.TFacilityInspSumRepo;
 import com.tunnel.vo.facilityInsp.FacilityInspVo;
 import com.tunnel.vo.facilityInsp.FacilityInspDetailVo;
@@ -30,7 +30,7 @@ import com.tunnel.vo.facilityInsp.resp.TFacilityInspSumRespVo;
 import io.swagger.annotations.ApiOperation;
 import lombok.extern.slf4j.Slf4j;
 import org.joda.time.DateTime;
-import static org.apache.commons.lang3.StringUtils.isNotBlank;
+//import static org.apache.commons.lang3.StringUtils.isNotBlank;
 
 @RestController
 @Slf4j
@@ -87,7 +87,7 @@ public class FacilityInspController extends BaseController {
 				.orElseThrow(() -> new RuntimeException("没有这个diseaseNo"));
 		sumEntity.setArea(sum.getArea());
 		sumEntity.setDepth(sum.getDepth());
-		sumEntity.setDiseaseDiscription(sum.getDiseaseDiscription());
+		sumEntity.setDiseaseDescription(sum.getDiseaseDescription());
 		sumEntity.setDislocation(sum.getDislocation());
 		sumEntity.setJointopen(sum.getJointopen());
 		sumEntity.setLength(sum.getLength());

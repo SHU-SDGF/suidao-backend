@@ -117,7 +117,7 @@ public class FacilityInspSum extends AbstractEntity {
 	private BigDecimal depth;
 
 	@Column(name = "DISEASE_DISCRIPTION" , columnDefinition="nvarchar2")
-	private String diseaseDiscription;
+	private String diseaseDescription;
 
 	private BigDecimal dislocation;
 
