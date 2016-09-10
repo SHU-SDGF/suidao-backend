@@ -78,7 +78,7 @@ public class UserController extends BaseController {
 
 	}
 	
-	@RequestMapping(value = "/searchByLoginId", method = RequestMethod.GET)
+	@RequestMapping(value = "/user/searchByLoginId", method = RequestMethod.GET)
 	@ResponseBody
 	public ResponseEntity<UserVo> searchByLoginId(@RequestParam String loginId) {
 
