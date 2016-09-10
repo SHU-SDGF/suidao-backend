@@ -64,7 +64,7 @@ public class UserServiceImp implements UserService {
 		userTokenRepo.save(ut);
 
 		UserVo uv = mapper.map(u, UserVo.class);
-		uv.setPassword("");
+		uv.setPassword(null);
 		uv.setToken(ut.getToken());
 		return uv;
 	}
@@ -74,7 +74,7 @@ public class UserServiceImp implements UserService {
 		User u = userRepo.findByLoginId(loginId)
 				.orElseThrow(() -> new AppAuthException(msg("err.login.failed")));
 		UserVo uv = mapper.map(u, UserVo.class);
-		uv.setPassword("");
+		uv.setPassword(null);
 		return uv;
 	}
 
