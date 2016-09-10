@@ -72,7 +72,7 @@ public class UserServiceImp implements UserService {
 	@Override
 	public UserVo searchByLoginId(String loginId){
 		User u = userRepo.findByLoginId(loginId)
-				.orElseThrow(() -> new AppAuthException(msg("err.login.failed")));
+				.orElseThrow(() -> new AppAuthException("不存在此用户，登录id" + loginId));
 		UserVo uv = mapper.map(u, UserVo.class);
 		uv.setPassword(null);
 		return uv;
