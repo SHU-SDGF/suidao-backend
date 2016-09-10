@@ -54,17 +54,27 @@ public class UserServiceImp implements UserService {
 	}
 
 	@Override
-	public UserVo authenticate(String name, String password) {
+	public UserVo authenticate(String loginId, String password) {
 
 		log.info("UserServiceImp.authenticate ...");
-		User u = userRepo.findByLoginIdAndPassword(name, ParseMD5Util.parseStrToMd5U32(password))
+		User u = userRepo.findByLoginIdAndPassword(loginId, ParseMD5Util.parseStrToMd5U32(password))
 				.orElseThrow(() -> new AppAuthException(msg("err.login.failed")));
-		UserToken ut = userTokenRepo.findByLoginId(name).orElseGet(() -> new UserToken(name));
+		UserToken ut = userTokenRepo.findByLoginId(loginId).orElseGet(() -> new UserToken(loginId));
 		ut.setToken(UUID.randomUUID().toString());
 		userTokenRepo.save(ut);
 
 		UserVo uv = mapper.map(u, UserVo.class);
+		uv.setPassword("");
 		uv.setToken(ut.getToken());
+		return uv;
+	}
+	
+	@Override
+	public UserVo searchByLoginId(String loginId){
+		User u = userRepo.findByLoginId(loginId)
+				.orElseThrow(() -> new AppAuthException(msg("err.login.failed")));
+		UserVo uv = mapper.map(u, UserVo.class);
+		uv.setPassword("");
 		return uv;
 	}
 

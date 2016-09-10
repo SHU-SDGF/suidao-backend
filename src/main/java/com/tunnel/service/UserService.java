@@ -11,5 +11,7 @@ public interface UserService {
 	public User verifyToken(String name, String token);
 	
 	public User registerUser(RegUserReqVo reqUserVo);
+	
+	public UserVo searchByLoginId(String loginId);
 
 }

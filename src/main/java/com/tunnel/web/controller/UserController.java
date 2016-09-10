@@ -18,6 +18,7 @@ import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -73,6 +74,16 @@ public class UserController extends BaseController {
 
 		UserVo userDetail = AuthUtil.getUserDetails();
 		session.setAttribute(AppConstants.USER_SESSION, userDetail);
+		return new ResponseEntity<>(userDetail, HttpStatus.OK);
+
+	}
+	
+	@RequestMapping(value = "/searchByLoginId", method = RequestMethod.GET)
+	@ResponseBody
+	public ResponseEntity<UserVo> searchByLoginId(@RequestParam String loginId) {
+
+		log.info("searchByLoginId ...");
+		UserVo userDetail = userService.searchByLoginId(loginId);
 		return new ResponseEntity<>(userDetail, HttpStatus.OK);
 
 	}
