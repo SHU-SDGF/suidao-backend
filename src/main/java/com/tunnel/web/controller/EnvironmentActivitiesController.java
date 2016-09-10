@@ -53,7 +53,7 @@ public class EnvironmentActivitiesController extends BaseController {
 		return environmentActitivitySummaryRepo.findByDelFlgFalseAndLatitudeNotNull(pageable).map(sum -> {
 			EnvironmentActivitiesSummaryVo sumVo = mapper.map(sum, EnvironmentActivitiesSummaryVo.class);
 			TSurrAct latestAct = environmentActivityRepo
-					.findTopByActNoAndDelFlgFalseOrderByInspDateDesc(sumVo.getActNo()).orElseGet(() -> new TSurrAct());
+					.findTopByActNoAndDelFlgFalseOrderByCreateDateDesc(sumVo.getActNo()).orElseGet(() -> new TSurrAct());
 			Date inspDate = latestAct.getInspDate();
 			sumVo.setInspDate(inspDate);
 			String actStatus = latestAct.getActStatus();
@@ -75,7 +75,7 @@ public class EnvironmentActivitiesController extends BaseController {
 	public EnvironmentActitivitySumAndDetailReqVo getEnvironmentActitivitySummaryById(@PathVariable("id") String id) {
 		TSurrActSum actSum = environmentActitivitySummaryRepo.findByIdAndDelFlgFalseAndLatitudeNotNull(id)
 				.orElseThrow(() -> new AppException(msg("noSuchRecord")));
-		TSurrAct latestAct = environmentActivityRepo.findTopByActNoAndDelFlgFalseOrderByInspDateDesc(actSum.getActNo())
+		TSurrAct latestAct = environmentActivityRepo.findTopByActNoAndDelFlgFalseOrderByCreateDateDesc(actSum.getActNo())
 				.orElseGet(() -> new TSurrAct());
 		EnvironmentActitivitySumAndDetailReqVo resp = new EnvironmentActitivitySumAndDetailReqVo();
 
@@ -118,7 +118,7 @@ public class EnvironmentActivitiesController extends BaseController {
 				.orElseThrow(() -> new AppException("没有这个活动汇总记录 actNo"));
 
 		TSurrAct oldestAct = environmentActivityRepo
-				.findTopByActNoAndDelFlgFalseOrderByInspDateAsc(environmentActivity.getActNo())
+				.findTopByActNoAndDelFlgFalseOrderByCreateDateAsc(environmentActivity.getActNo())
 				.orElseGet(() -> new TSurrAct());
 		if(isBlank(environmentActivity.getRecorder())){
 			environmentActivity.setRecorder(oldestAct.getRecorder());

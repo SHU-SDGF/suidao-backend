@@ -11,9 +11,9 @@ public interface EnvironmentActivityRepo extends JpaRepository<TSurrAct, Integer
 
 	public Page<TSurrAct> findAllByActNoAndDelFlgFalse(String actNo, Pageable pageable);
 	
-	public Optional<TSurrAct> findTopByActNoAndDelFlgFalseOrderByInspDateDesc(String actNo);
+	public Optional<TSurrAct> findTopByActNoAndDelFlgFalseOrderByCreateDateDesc(String actNo);
 	
-	public Optional<TSurrAct> findTopByActNoAndDelFlgFalseOrderByInspDateAsc(String actNo);
+	public Optional<TSurrAct> findTopByActNoAndDelFlgFalseOrderByCreateDateAsc(String actNo);
 	
 	public Page<TSurrAct> findByDelFlgFalse(Pageable pageable);
 }
