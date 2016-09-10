@@ -19,5 +19,7 @@ public class EnvironmentActivitiesSummaryVo extends TSurrActSumVo{
 	
 	private String actStatus;
 	
+	private String actType;
+	
 	private long latestActId;
 }

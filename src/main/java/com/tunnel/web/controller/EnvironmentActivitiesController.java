@@ -56,9 +56,9 @@ public class EnvironmentActivitiesController extends BaseController {
 					.findTopByActNoAndDelFlgFalseOrderByCreateDateDesc(sumVo.getActNo()).orElseGet(() -> new TSurrAct());
 			Date inspDate = latestAct.getInspDate();
 			sumVo.setInspDate(inspDate);
-			String actStatus = latestAct.getActStatus();
-			sumVo.setActStatus(actStatus);
+			sumVo.setActStatus(latestAct.getActStatus());
 			sumVo.setLatestActId(latestAct.getId());
+			sumVo.setActType(latestAct.getActType());
 			return sumVo;
 		});
 	}
