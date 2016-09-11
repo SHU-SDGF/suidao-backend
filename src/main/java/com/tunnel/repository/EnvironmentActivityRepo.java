@@ -9,7 +9,7 @@ import com.tunnel.model.TSurrAct;
 
 public interface EnvironmentActivityRepo extends JpaRepository<TSurrAct, Integer>{
 
-	public Page<TSurrAct> findAllByActNoAndDelFlgFalse(String actNo, Pageable pageable);
+	public Page<TSurrAct> findByActNoAndDelFlgFalse(String actNo, Pageable pageable);
 	
 	public Optional<TSurrAct> findTopByActNoAndDelFlgFalseOrderByCreateDateDesc(String actNo);
 	

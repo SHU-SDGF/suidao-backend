@@ -137,7 +137,7 @@ public class EnvironmentActivitiesController extends BaseController {
 	public Page<TSurrAct> get(
 			@PageableDefault(value = 10, sort = { "id" }, direction = Direction.DESC) Pageable pageable,
 			@PathVariable("actNo") String actNo) {
-		return environmentActivityRepo.findAllByActNoAndDelFlgFalse(actNo, pageable);
+		return environmentActivityRepo.findByActNoAndDelFlgFalse(actNo, pageable);
 	}
 
 }
