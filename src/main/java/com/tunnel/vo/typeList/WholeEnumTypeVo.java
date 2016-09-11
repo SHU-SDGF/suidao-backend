@@ -8,6 +8,7 @@ import com.tunnel.model.Facility;
 import com.tunnel.model.Model;
 import com.tunnel.model.Monomer;
 import com.tunnel.model.PosDespList;
+import com.tunnel.vo.UserVo;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -40,4 +41,7 @@ public class WholeEnumTypeVo {
 	
 	//单体名称枚举
 	private List<Monomer> monomer;
+	
+	//所有用户
+	private List<UserVo> userList;
 }

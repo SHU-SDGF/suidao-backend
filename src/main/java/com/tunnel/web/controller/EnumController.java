@@ -14,12 +14,15 @@ import com.tunnel.model.Facility;
 import com.tunnel.model.Model;
 import com.tunnel.model.Monomer;
 import com.tunnel.model.PosDespList;
+import com.tunnel.model.User;
 import com.tunnel.repository.DiseaseTypeRepo;
 import com.tunnel.repository.FacilityTypeRepo;
 import com.tunnel.repository.FacilityRepo;
 import com.tunnel.repository.ModelRepo;
 import com.tunnel.repository.MonomerRepo;
 import com.tunnel.repository.PosDespListRepo;
+import com.tunnel.repository.UserRepo;
+import com.tunnel.vo.UserVo;
 import com.tunnel.vo.typeList.DiseaseTypeTreeVo;
 import com.tunnel.vo.typeList.DiseaseTypeVo;
 import com.tunnel.vo.typeList.WholeEnumTypeVo;
@@ -46,18 +49,19 @@ public class EnumController extends BaseController {
 
 	@Autowired
 	private PosDespListRepo posDespListRepo;
-	
+
 	@Autowired
 	private MonomerRepo monomerRepo;
+
+	@Autowired
+	private UserRepo userRepo;
 
 	@ApiOperation("列出所有枚举类型")
 	@RequestMapping(value = "/whole-enum-type/list", method = RequestMethod.GET)
 	@ResponseBody
 	public WholeEnumTypeVo listWholeEnumType() {
 		log.info("downloading whole enum type...");
-		return WholeEnumTypeVo.builder()
-				.monomer(monomerRepo.findAll().stream().map(e -> mapper.map(e, Monomer.class))
-						.collect(Collectors.toList()))
+		return WholeEnumTypeVo.builder().monomer(monomerRepo.findAll())
 				.diseaseTypeList(diseaseTypeRepo.findByParentNoIsNull().map(e -> mapper.map(e, DiseaseTypeVo.class))
 						.collect(Collectors.toList()))
 				.diseaseTypeTreeVoList(diseaseTypeRepo.findByParentNoIsNull()
@@ -67,15 +71,28 @@ public class EnumController extends BaseController {
 							return root;
 						}).collect(Collectors.toList()))
 				.facilityTypeList(facilityTypeRepo.findAll()).facilityList(facilityRepo.findAll())
-				.modelList(modelRepo.findAll()).posDespList(posDespListRepo.findAll()).build();
+				.modelList(modelRepo.findAll()).posDespList(posDespListRepo.findAll())
+				.userList(userRepo.findAll().stream().map(this::mapUserVo).collect(Collectors.toList())).build();
 	}
-	
+
+	@ApiOperation("列出所有用户")
+	@RequestMapping(value = "/user/list", method = RequestMethod.GET)
+	@ResponseBody
+	public List<UserVo> listUser() {
+		return userRepo.findAll().stream().map(this::mapUserVo).collect(Collectors.toList());
+	}
+
+	private UserVo mapUserVo(User u) {
+		UserVo vo = mapper.map(u, UserVo.class);
+		vo.setPassword(null);
+		return vo;
+	}
+
 	@ApiOperation("列出单体名称枚举")
 	@RequestMapping(value = "/monomer-no/list", method = RequestMethod.GET)
 	@ResponseBody
 	public List<Monomer> listMonomerNo() {
-		return monomerRepo.findAll().stream().map(e -> mapper.map(e, Monomer.class))
-				.collect(Collectors.toList());
+		return monomerRepo.findAll();
 	}
 
 	@ApiOperation("列出病害类型枚举")
