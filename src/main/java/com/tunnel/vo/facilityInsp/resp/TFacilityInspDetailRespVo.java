@@ -22,7 +22,7 @@ public class TFacilityInspDetailRespVo {
 
 	private String photo;
 
-	boolean isNewCreated;
+//	private String synFlg;
 	
 	public TFacilityInspDetailRespVo(){
 		

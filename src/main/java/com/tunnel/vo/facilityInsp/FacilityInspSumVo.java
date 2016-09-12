@@ -40,7 +40,10 @@ public class FacilityInspSumVo extends BaseVo{
 
 	private String modelId;
 	
-	private boolean isNewCreated;
+	//0代表未变动的
+	//1代表create
+	//2代表update
+	private String synFlg;
 	
 	private boolean isNeedRepair;
 	

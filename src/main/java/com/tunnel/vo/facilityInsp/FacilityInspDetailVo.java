@@ -44,5 +44,5 @@ public class FacilityInspDetailVo extends BaseVo{
 
 	private String detailTypeId;
 	
-	private boolean isNewCreated;
+	private String synFlg;
 }

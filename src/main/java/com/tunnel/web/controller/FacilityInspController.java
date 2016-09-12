@@ -232,9 +232,9 @@ public class FacilityInspController extends BaseController {
 			FacilityInspSumVo sum = facilityInsp.getFacilityInspSum();
 			TFacilityInspSumRespVo respSum = new TFacilityInspSumRespVo(sum.getDiseaseNo());
 			try {
-				if (sum.isNewCreated()) {
+				if (sum.getSynFlg().equals("1")) {
 					saveFacilityInspSum(sum);
-				} else {
+				} else if (sum.getSynFlg().equals("2")) {
 					updateFacilityInspSum(sum);
 				}
 				respSum.setSuccess(true);
@@ -252,7 +252,7 @@ public class FacilityInspController extends BaseController {
 			List<TFacilityInspDetailRespVo> respDetailList = detailList.stream().map(detail -> {
 				TFacilityInspDetailRespVo detailRespVo = new TFacilityInspDetailRespVo(detail.getId());
 				try {
-					if (detail.isNewCreated()) {
+					if (detail.getSynFlg().equals("1")) {
 						saveFacilityInspDetail(detail);
 					}
 					detailRespVo.setSuccess(true);

@@ -20,7 +20,7 @@ public class TFacilityInspSumRespVo {
 
 	private String photoStandard;
 
-	private boolean isNewCreated;
+//	private String synFlg;
 
 	public TFacilityInspSumRespVo() {
 
