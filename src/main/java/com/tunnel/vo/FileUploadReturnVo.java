@@ -18,5 +18,7 @@ public class FileUploadReturnVo {
 
 	private String path;
 	
+	private String message;
+	
 	private boolean success;
 }
