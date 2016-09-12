@@ -16,7 +16,7 @@ import lombok.extern.slf4j.Slf4j;
 public class FileUploadController extends BaseController {
 
 	@RequestMapping(value = "/upload", method = RequestMethod.POST)
-	public FileUploadReturnVo upload(@RequestParam("file_base64") MultipartFile file) throws Exception {
+	public FileUploadReturnVo upload(@RequestParam("file") MultipartFile file) throws Exception {
 		log.info("uploading file ... ");
 		file.getContentType();
 		return FileUploadReturnVo.builder().success(true).path("").build();

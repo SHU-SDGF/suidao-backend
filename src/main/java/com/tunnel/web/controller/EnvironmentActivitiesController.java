@@ -123,8 +123,9 @@ public class EnvironmentActivitiesController extends BaseController {
 		if(isBlank(environmentActivity.getRecorder())){
 			environmentActivity.setRecorder(oldestAct.getRecorder());
 		}
-		environmentActivity.setActType(oldestAct.getActType());
-
+		if(isBlank(environmentActivity.getActType())){
+			environmentActivity.setActType(oldestAct.getActType());
+		}
 		EnvironmentActivitiesVo resp = mapper.map(environmentActivityRepo.save(environmentActivity),
 				EnvironmentActivitiesVo.class);
 		resp.setActSumId(actSum.getId());

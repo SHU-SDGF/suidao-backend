@@ -48,7 +48,7 @@
 			reader.readAsDataURL(this.files[0]);
 			reader.onload = function(e) {
 				console.log(e.target.result);
-				$('#file_base64').val(e.target.result);
+				$('#fileString').val(e.target.result);
 			};
 		});
 	});
@@ -63,12 +63,20 @@
 	<div id="API_link">
 		<a href="swagger-ui.html"> Check API</a>
 	</div>
+	<p>base64 文件上传</p>
 	<div>
-		<p>base64 文件上传</p>
 		<form onsubmit="return false;">
 			<input type="hidden" name="file_base64" id="file_base64"> <input
 				type="file" id="fileup"> <input type="submit" value="submit"
-				onclick="$.post('upload', $(this).parent().serialize());">
+				onclick="$.post('upload-base64', $(this).parent().serialize());">
+		</form>
+	</div>
+	<p>普通文件上传</p>
+	<div>
+		<form action="upload" method="post" enctype="multipart/form-data">
+			<label for="file">Filename:</label> <input type="file" name="file"
+				id="file" /> <br /> <input type="submit" name="submit"
+				value="Submit" />
 		</form>
 	</div>
 </body>
