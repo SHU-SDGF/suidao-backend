@@ -50,7 +50,5 @@ public class FacilityInspDetailVo extends BaseVo{
 	
 	private String facilityTypeId; 
 	
-	private String diseaseDiscription; 
-	
 	private String synFlg;
 }

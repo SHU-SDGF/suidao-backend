@@ -80,9 +80,6 @@ public class FacilityInspDetail extends AbstractEntity {
 	@Column(name="FACILITY_TYPE", columnDefinition="nvarchar2")
 	private String facilityTypeId;
 	
-	@Column(name = "DISEASE_DISCRIPTION" ,columnDefinition="nvarchar2" )
-	private String diseaseDiscription;
-	
 	public FacilityInspDetail() {
 	}
 
