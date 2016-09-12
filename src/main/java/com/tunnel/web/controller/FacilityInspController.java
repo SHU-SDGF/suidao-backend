@@ -189,7 +189,7 @@ public class FacilityInspController extends BaseController {
 	public List<FacilityInspVo> downloadFacilityInsp() {
 		log.info("enter listFacilityInsp...");
 
-		Date sinceDate = new DateTime().minusYears(2).toDate();
+		Date sinceDate = new DateTime().minusYears(5).toDate();
 
 		// 如果数据量太大，则修改oracle 设置
 		// alter system set open_cursors=3000 scope=both;
