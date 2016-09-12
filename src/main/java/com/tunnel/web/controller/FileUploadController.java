@@ -31,17 +31,16 @@ public class FileUploadController extends BaseController {
 		file.getContentType();
 
 		String relvDir = "/" + WebUtils.loggedInUser().getLoginId() + "/";
-		String absoluteDir = appProperties.getFileUploadBasePath() + relvDir;
-		if (new File(absoluteDir).mkdirs()) {
-			String fileRelvPath = relvDir + new SimpleDateFormat("yyyyMMddHHmmss").format(new Date())
-					+ file.getOriginalFilename();
-			File dest = new File(appProperties.getFileUploadBasePath() + fileRelvPath);
-			file.transferTo(dest);
-			return FileUploadReturnVo.builder().success(true).path(fileRelvPath).build();
-		} else {
-			return FileUploadReturnVo.builder().success(false).message("无法创建目录: " + absoluteDir).build();
+		File absoluteDir = new File(appProperties.getFileUploadBasePath() + relvDir);
+		if (!absoluteDir.exists()) {
+			absoluteDir.mkdirs();
 		}
 
+		String fileRelvPath = relvDir + new SimpleDateFormat("yyyyMMddHHmmss").format(new Date())
+				+ file.getOriginalFilename();
+		File dest = new File(appProperties.getFileUploadBasePath() + fileRelvPath);
+		file.transferTo(dest);
+		return FileUploadReturnVo.builder().success(true).path(fileRelvPath).build();
 	}
 
 }
