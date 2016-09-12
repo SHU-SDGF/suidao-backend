@@ -196,7 +196,7 @@ public class FacilityInspController extends BaseController {
 			FacilityInspVo resp = new FacilityInspVo();
 			resp.setFacilityInspSum(mapper.map(e, FacilityInspSumVo.class));
 			resp.setFacilityInspDetailList(
-					facilityInspDetailRepo.findByDiseaseNoCreateDateAfter(sinceDate, e.getDiseaseNo())
+					facilityInspDetailRepo.findTop5ByDiseaseNoCreateDateAfter(sinceDate, e.getDiseaseNo())
 							.map(d -> mapper.map(d, FacilityInspDetailVo.class)).collect(Collectors.toList()));
 			return resp;
 		}).collect(Collectors.toList());
