@@ -18,9 +18,9 @@ public class TFacilityInspDetailRespVo {
 	
 	private String message;
 
-	private String diseaseNo;
+//	private String diseaseNo;
 
-	private String photo;
+//	private String photo;
 
 //	private String synFlg;
 	

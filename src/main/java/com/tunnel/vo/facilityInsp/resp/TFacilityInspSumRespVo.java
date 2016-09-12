@@ -18,7 +18,7 @@ public class TFacilityInspSumRespVo {
 
 	private String diseaseNo;
 
-	private String photoStandard;
+//	private String photoStandard;
 
 //	private String synFlg;
 

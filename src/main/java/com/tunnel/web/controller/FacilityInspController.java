@@ -195,10 +195,15 @@ public class FacilityInspController extends BaseController {
 		// alter system set open_cursors=3000 scope=both;
 		return facilityInspSumRepo.findByCreateDateAfterAndIsFromMobileTrue(sinceDate).limit(2999).map(e -> {
 			FacilityInspVo resp = new FacilityInspVo();
-			resp.setFacilityInspSum(mapper.map(e, FacilityInspSumVo.class));
-			resp.setFacilityInspDetailList(
-					facilityInspDetailRepo.findByDiseaseNoCreateDateAfter(sinceDate, e.getDiseaseNo()).limit(5)
-							.map(d -> mapper.map(d, FacilityInspDetailVo.class)).collect(Collectors.toList()));
+			FacilityInspSumVo sumVo = mapper.map(e, FacilityInspSumVo.class);
+			sumVo.setSynFlg("0");
+			resp.setFacilityInspSum(sumVo);
+			resp.setFacilityInspDetailList(facilityInspDetailRepo
+					.findByDiseaseNoCreateDateAfter(sinceDate, e.getDiseaseNo()).limit(5).map(d -> {
+				FacilityInspDetailVo vo = mapper.map(d, FacilityInspDetailVo.class);
+				vo.setSynFlg("0");
+				return vo;
+			}).collect(Collectors.toList()));
 			return resp;
 		}).collect(Collectors.toList());
 	}
