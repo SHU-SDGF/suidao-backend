@@ -16,7 +16,6 @@ public interface FacilityInspDetailRepo extends JpaRepository<FacilityInspDetail
 	Stream<FacilityInspDetail> findByCreateDateAfter(Date createDate);
 	
 	@Query("SELECT t FROM FacilityInspDetail t WHERE t.createDate > ?1 and t.diseaseNo = ?2 "
-			+ "ORDER BY t.createDate "
-			+ "LIMIT 5 ")
-	Stream<FacilityInspDetail> findTop5ByDiseaseNoCreateDateAfter(Date createDate,String diseaseNo); 
+			+ "ORDER BY t.createDate ")
+	Stream<FacilityInspDetail> findByDiseaseNoCreateDateAfter(Date createDate,String diseaseNo); 
 }
