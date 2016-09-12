@@ -40,9 +40,17 @@ public class FacilityInspDetailVo extends BaseVo{
 
 	private BigDecimal width;
 
-	private String diseaseTypeId;
+	private String diseaseTypeId; //必填
 
 	private String detailTypeId;
+	
+	private String monomerId; //必填
+	
+	private String facilityId; //必填
+	
+	private String facilityTypeId; 
+	
+	private String diseaseDiscription; 
 	
 	private String synFlg;
 }

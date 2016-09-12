@@ -2,9 +2,6 @@ package com.tunnel.model;
 
 import javax.persistence.*;
 
-import org.hibernate.annotations.NotFound;
-import org.hibernate.annotations.NotFoundAction;
-
 import lombok.Getter;
 import lombok.Setter;
 
@@ -73,6 +70,18 @@ public class FacilityInspDetail extends AbstractEntity {
 
 	@Column(name = "DETAIL_TYPE", columnDefinition = "nvarchar2")
 	private String detailTypeId;
+	
+	@Column(name="MONOMER_NO", columnDefinition="nvarchar2")
+	private String monomerId;
+	
+	@Column(name = "FACILITY_NO", columnDefinition = "nchar")
+	private String facilityId;
+	
+	@Column(name="FACILITY_TYPE", columnDefinition="nvarchar2")
+	private String facilityTypeId;
+	
+	@Column(name = "DISEASE_DISCRIPTION" ,columnDefinition="nvarchar2" )
+	private String diseaseDiscription;
 	
 	public FacilityInspDetail() {
 	}

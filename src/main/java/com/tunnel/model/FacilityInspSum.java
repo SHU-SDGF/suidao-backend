@@ -2,8 +2,8 @@ package com.tunnel.model;
 
 import javax.persistence.*;
 
-import org.hibernate.annotations.NotFound;
-import org.hibernate.annotations.NotFoundAction;
+//import org.hibernate.annotations.NotFound;
+//import org.hibernate.annotations.NotFoundAction;
 
 import lombok.Getter;
 import lombok.Setter;
@@ -71,7 +71,7 @@ public class FacilityInspSum extends AbstractEntity {
 //	@NotFound(action = NotFoundAction.IGNORE)
 //	private Facility Facility;
 
-	@Column(name = "Facility_No", columnDefinition = "nchar")
+	@Column(name = "FACILITY_NO", columnDefinition = "nchar")
 	private String facilityId;
 	
 	// bi-directional many-to-one association to FacilityType
@@ -80,7 +80,7 @@ public class FacilityInspSum extends AbstractEntity {
 //	@NotFound(action = NotFoundAction.IGNORE)
 //	private FacilityType facilityType;
 
-	@Column(name="FACILITY_TYPE")
+	@Column(name="FACILITY_TYPE", columnDefinition="nvarchar2")
 	private String facilityTypeId;
 	
 	// bi-directional many-to-one association to PosDespList
