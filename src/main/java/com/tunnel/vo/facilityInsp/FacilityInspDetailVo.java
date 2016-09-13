@@ -22,11 +22,11 @@ public class FacilityInspDetailVo extends BaseVo{
 
 	private BigDecimal depth;
 
-	private Date diseaseDate;
+	private Date diseaseDate;//必填
 
 	private String diseaseDescription;
 
-	private String diseaseNo;
+	private String diseaseNo;//必填
 
 	private BigDecimal dislocation;
 
