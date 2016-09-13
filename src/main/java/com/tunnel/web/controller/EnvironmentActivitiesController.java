@@ -13,6 +13,8 @@ import com.tunnel.vo.EnvironmentActivitiesVo;
 import io.swagger.annotations.ApiOperation;
 
 import java.util.Date;
+import java.util.List;
+import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -48,9 +50,8 @@ public class EnvironmentActivitiesController extends BaseController {
 	@ApiOperation("列出一页活动和活动历史，活动历史是最新的一条活动历史")
 	@RequestMapping(value = "/environment-activities-summary/list", method = RequestMethod.GET)
 	@ResponseBody
-	public Page<EnvironmentActivitiesSummaryVo> getEnvironmentActitivitySummaryPage(
-			@PageableDefault(value = 10, sort = { "id" }, direction = Direction.DESC) Pageable pageable) {
-		return environmentActitivitySummaryRepo.findByDelFlgFalseAndLatitudeNotNull(pageable).map(sum -> {
+	public List<EnvironmentActivitiesSummaryVo> getEnvironmentActitivitySummaryPage() {
+		return environmentActitivitySummaryRepo.findByDelFlgFalseAndLatitudeNotNull().map(sum -> {
 			EnvironmentActivitiesSummaryVo sumVo = mapper.map(sum, EnvironmentActivitiesSummaryVo.class);
 			TSurrAct latestAct = environmentActivityRepo
 					.findTopByActNoAndDelFlgFalseOrderByCreateDateDesc(sumVo.getActNo()).orElseGet(() -> new TSurrAct());
@@ -60,7 +61,7 @@ public class EnvironmentActivitiesController extends BaseController {
 			sumVo.setLatestActId(latestAct.getId());
 			sumVo.setActType(latestAct.getActType());
 			return sumVo;
-		});
+		}).collect(Collectors.toList());
 	}
 
 	/**
