@@ -12,6 +12,7 @@ import org.springframework.stereotype.Service;
 import com.tunnel.exception.AppAuthException;
 import com.tunnel.model.User;
 import com.tunnel.service.UserService;
+import com.tunnel.vo.UserVo;
 
 import java.util.Collections;
 import java.util.List;
@@ -29,7 +30,7 @@ public class AuthProvider implements AuthenticationProvider {
     @Override
     public Authentication authenticate(Authentication auth) {
         try {
-            User userVo = userService.verifyToken(auth.getName(), auth.getCredentials().toString());
+            UserVo userVo = userService.verifyToken(auth.getName(), auth.getCredentials().toString());
 
             List<GrantedAuthority> authorities = Collections.singletonList(new SimpleGrantedAuthority("admin"));
 

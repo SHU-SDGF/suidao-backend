@@ -79,12 +79,12 @@ public class UserServiceImp implements UserService {
 	}
 
 	@Override
-	public User verifyToken(String loginId, String token) {
+	public UserVo verifyToken(String loginId, String token) {
 
 		log.info("UserServiceImp.authenticate ...");
 		UserToken ut = userTokenRepo.findByLoginIdAndToken(loginId, token)
 				.orElseThrow(() -> new AppAuthException(msg("err.login.failed.wrongToken")));
-		return userRepo.findOne(ut.getLoginId());
+		return mapper.map(userRepo.findOne(ut.getLoginId()), UserVo.class);
 	}
 
 	@Override

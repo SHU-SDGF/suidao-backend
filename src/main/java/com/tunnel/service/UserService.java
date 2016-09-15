@@ -8,7 +8,7 @@ public interface UserService {
 	
 	public UserVo authenticate(String name, String password);
 	
-	public User verifyToken(String name, String token);
+	public UserVo verifyToken(String name, String token);
 	
 	public User registerUser(RegUserReqVo reqUserVo);
 	
