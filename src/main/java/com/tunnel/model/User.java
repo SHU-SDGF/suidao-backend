@@ -26,10 +26,10 @@ public class User extends AbstractEntity {
 	@Column(name = "USER_NAME")
 	private String userName;
 
-	@Column(name = "IS_ADMIN", columnDefinition = "nvarchar2")
+	@Column(name = "IS_ADMIN", columnDefinition = "char")
 	private String isAdmin;
 
-	@Column(name = "GENDER", columnDefinition = "nvarchar2")
+	@Column(name = "GENDER", columnDefinition = "char")
 	private String gender;
 
 	@Column(name = "TEL_NO", columnDefinition = "nvarchar2")

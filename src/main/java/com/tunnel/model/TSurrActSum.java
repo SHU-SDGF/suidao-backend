@@ -12,11 +12,11 @@ import java.math.BigDecimal;
 import java.util.Date;
 
 /**
- * The persistent class for the t_surr_act_sum database table.
+ * The persistent class for the T_SURR_ACT_LIST database table.
  * 
  */
 @Entity
-@Table(name = "t_surr_act_sum")
+@Table(name = "T_SURR_ACT_LIST")
 @NamedQuery(name = "TSurrActSum.findAll", query = "SELECT t FROM TSurrActSum t")
 @Getter
 @Setter
@@ -24,9 +24,9 @@ public class TSurrActSum extends AbstractEntity {
 	private static final long serialVersionUID = 1L;
 
 	@Id
-	@SequenceGenerator(name="T_SURR_ACT_SUM_ID_GENERATOR", sequenceName="SEQ_T_SURR_ACT_SUM")
-	@GeneratedValue(strategy=GenerationType.SEQUENCE, generator="T_SURR_ACT_SUM_ID_GENERATOR")
-	@Column(name = "ID", columnDefinition = "nvarchar2")
+	@SequenceGenerator(name="T_SURR_ACT_LIST_ID_GENERATOR", sequenceName="SEQ_T_SURR_ACT_LIST")
+	@GeneratedValue(strategy=GenerationType.SEQUENCE, generator="T_SURR_ACT_LIST_ID_GENERATOR")
+	@Column(name = "ID")
 	private long id;
 
 	@Column(name = "ACT_LEVEL", columnDefinition = "nvarchar2")
@@ -35,7 +35,7 @@ public class TSurrActSum extends AbstractEntity {
 	@Column(name = "ACT_NAME", columnDefinition = "nvarchar2")
 	private String actName;
 
-	@Column(name = "ACT_NO", columnDefinition = "nchar")
+	@Column(name = "ACT_NO", columnDefinition = "char")
 	private String actNo;
 
 	@Column(name = "DESCRIPTION", columnDefinition = "nvarchar2")
@@ -55,8 +55,8 @@ public class TSurrActSum extends AbstractEntity {
 	@Column(name = "START_DATE")
 	private Date startDate;
 
-	// @Column(name="synchronize", columnDefinition = "char")
-	// private String synChronize = "1";
+	 @Column(name="synchronize", columnDefinition = "char")
+	 private String synChronize = "1";
 
 	@Column(name = "TAG_ID", columnDefinition = "nvarchar2")
 	private String tagId;

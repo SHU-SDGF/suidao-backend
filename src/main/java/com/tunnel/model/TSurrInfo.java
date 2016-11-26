@@ -22,6 +22,8 @@ public class TSurrInfo implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	@Id
+	private Long id;
+	
 	@Column(name = "SURROUND_NO", columnDefinition = "nchar")
 	private String surroundNo;
 

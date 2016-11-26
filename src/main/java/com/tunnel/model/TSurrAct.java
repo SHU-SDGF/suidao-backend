@@ -8,11 +8,11 @@ import lombok.Setter;
 import java.util.Date;
 
 /**
- * The persistent class for the t_surr_act database table.
+ * The persistent class for the T_SURR_ACT_RECORD database table.
  * 
  */
 @Entity
-@Table(name = "t_surr_act")
+@Table(name = "T_SURR_ACT_RECORD")
 @NamedQuery(name = "TSurrAct.findAll", query = "SELECT t FROM TSurrAct t")
 @Getter
 @Setter
@@ -20,12 +20,12 @@ public class TSurrAct extends AbstractEntity {
 	private static final long serialVersionUID = 1L;
 
 	@Id
-	@SequenceGenerator(name="T_SURR_ACT_ID_GENERATOR", sequenceName="SEQ_T_SURR_ACT")
-	@GeneratedValue(strategy=GenerationType.SEQUENCE, generator="T_SURR_ACT_ID_GENERATOR")
-	@Column(name="ID", columnDefinition="nvarchar2")
+	@SequenceGenerator(name="T_SURR_ACT_RECORD_ID_GENERATOR", sequenceName="SEQ_T_SURR_ACT_RECORD")
+	@GeneratedValue(strategy=GenerationType.SEQUENCE, generator="T_SURR_ACT_RECORD_ID_GENERATOR")
+	@Column(name="ID")
 	private int id;
 
-	@Column(name = "ACT_NO", columnDefinition = "nchar")
+	@Column(name = "ACT_NO", columnDefinition = "char")
 	private String actNo;
 
 	@Column(name = "ACT_STATUS", columnDefinition="nvarchar2")
@@ -50,8 +50,8 @@ public class TSurrAct extends AbstractEntity {
 	@Column(name = "RECORDER", columnDefinition="nvarchar2")
 	private String recorder;
 
-//	@Column(name="synchronize", columnDefinition = "char")
-//	private String synChronize = "1";
+	@Column(name="synchronize", columnDefinition = "char")
+	private String synChronize = "1";
 
 	@Column(name = "VIDEO", columnDefinition="nvarchar2")
 	private String video;
