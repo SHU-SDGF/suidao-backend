@@ -46,20 +46,20 @@ public class TSurrActSum extends AbstractEntity {
 	private Date endDate;
 
 	@Column(name = "LATITUDE")
-	private BigDecimal latitude;
+	private String latitude;
 
 	@Column(name = "LONGITUDE")
-	private BigDecimal longtitude;
+	private String longtitude;
 
 	@Temporal(TemporalType.DATE)
 	@Column(name = "START_DATE")
 	private Date startDate;
 
 	 @Column(name="synchronize", columnDefinition = "char")
-	 private String synChronize = "1";
+	 private String synChronize = "0";
 
 	@Column(name = "TAG_ID", columnDefinition = "nvarchar2")
-	private String tagId;
+	private String tagId = "0";
 
 //	// bi-directional many-to-one association to TSurrInfo
 //	@ManyToOne(fetch = FetchType.EAGER)

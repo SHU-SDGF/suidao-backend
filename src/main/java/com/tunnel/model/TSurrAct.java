@@ -51,7 +51,7 @@ public class TSurrAct extends AbstractEntity {
 	private String recorder;
 
 	@Column(name="synchronize", columnDefinition = "char")
-	private String synChronize = "1";
+	private String synChronize = "0";
 
 	@Column(name = "VIDEO", columnDefinition="nvarchar2")
 	private String video;

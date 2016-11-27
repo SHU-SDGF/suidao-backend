@@ -43,7 +43,7 @@ public class FacilityInspSum extends AbstractEntity {
 	private String photoStandard;
 
 	@Column(name = "TAG_ID")
-	private String tagId;
+	private String tagId = "0";
 	
 	private BigDecimal latitude;
 	
