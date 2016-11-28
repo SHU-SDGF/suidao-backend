@@ -24,7 +24,7 @@ public class FacilityInspDetailVo extends BaseVo{
 
 	private Date diseaseDate;//必填
 
-	private String diseaseDescription;
+	private String diseaseDescription; //必填
 
 	private String diseaseNo;//必填
 

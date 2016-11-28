@@ -23,6 +23,7 @@ import com.tunnel.vo.facilityInsp.resp.TFacilityInspDetailRespVo;
 import com.tunnel.vo.facilityInsp.resp.TFacilityInspSumRespVo;
 
 import lombok.extern.slf4j.Slf4j;
+import static org.apache.commons.lang3.StringUtils.isEmpty;
 
 @Service
 @Slf4j
@@ -58,6 +59,9 @@ public class FacilityInspServiceImpl implements FacilityInspService{
 	private FacilityInspDetail saveFacilityInspDetail(FacilityInspDetailVo detail) {
 		FacilityInspDetail detailEntity = mapper.map(detail, FacilityInspDetail.class);
 		detailEntity.setId(null);
+		if(isEmpty(detailEntity.getDiseaseDescription())){
+			detailEntity.setDiseaseDescription("  ");
+		}
 		// String id = detailEntity.getDetailType().getId();
 		// if (detailEntity.getDetailType() != null && isNotBlank(id)) {
 		// detailEntity.setDetailType(diseaseTypeRepo.findById(id).orElse(null));
