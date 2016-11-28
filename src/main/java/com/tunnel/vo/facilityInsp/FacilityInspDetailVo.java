@@ -34,7 +34,7 @@ public class FacilityInspDetailVo extends BaseVo{
 
 	private BigDecimal length;
 
-	private String[] photo;
+	private String photo;
 
 	private String recorder;
 
