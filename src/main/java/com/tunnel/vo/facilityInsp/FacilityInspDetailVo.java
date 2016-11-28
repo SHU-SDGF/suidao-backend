@@ -34,7 +34,7 @@ public class FacilityInspDetailVo extends BaseVo{
 
 	private BigDecimal length;
 
-	private String photo;
+	private String[] photo;
 
 	private String recorder;
 
@@ -48,7 +48,7 @@ public class FacilityInspDetailVo extends BaseVo{
 	
 	private String facilityId; //必填
 	
-	private String facilityTypeId; 
+	private String facilityTypeId = "1"; 
 	
-	private String synFlg;
+	private String synFlg; //0,1,2 synFlg: 0 初始创投，synFlg: 1创建 synFlg: 2更新
 }
